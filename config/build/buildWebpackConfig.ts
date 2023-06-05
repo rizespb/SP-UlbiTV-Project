@@ -4,9 +4,10 @@ import path from 'path'
 import { buildPlugins } from './buildPlugins'
 import { buildLoaders } from './buildLoaders'
 import { buildResolvers } from './buildResolvers'
+import { buildDevServer } from './buildDevServer'
 
 export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
-  const { paths, mode } = options
+  const { paths, mode, isDev } = options
 
   return {
     // 'development' - для сборки во время разрабоки
@@ -33,5 +34,13 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
     },
 
     resolve: buildResolvers(),
+
+    // Указывает сборщику, как генерировать sourcemap (карту соответствия исходного кода и скомпилированного кода).
+    // Чтобы в случае ошибки мы могли найти ее в коде, а не только в огромном бандле
+    // 'inline-source-map' больше для разработки, не не для прода. Есть другие варианты
+    devtool: isDev ? 'inline-source-map' : undefined,
+
+    // Пересборка проекта во время разработки
+    devServer: isDev ? buildDevServer(options) : undefined,
   }
 }
