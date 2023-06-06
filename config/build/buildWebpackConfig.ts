@@ -30,7 +30,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
 
     module: {
       // В поле rules мы конфигурируем лоадеры, т.е. программы, которые будут отвечать за подключение файлов НЕ *.js (например, jpeg, css, ts)
-      rules: buildLoaders(),
+      rules: buildLoaders(options),
     },
 
     resolve: buildResolvers(),
