@@ -8,6 +8,8 @@ export interface BuildPath {
   build: string
   // путь к index.html
   html: string
+  // путь к папке src:
+  src: string
 }
 
 export interface BuildEnv {

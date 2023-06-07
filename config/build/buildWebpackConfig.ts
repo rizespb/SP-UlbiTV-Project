@@ -33,7 +33,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
       rules: buildLoaders(options),
     },
 
-    resolve: buildResolvers(),
+    resolve: buildResolvers(options),
 
     // Указывает сборщику, как генерировать sourcemap (карту соответствия исходного кода и скомпилированного кода).
     // Чтобы в случае ошибки мы могли найти ее в коде, а не только в огромном бандле
