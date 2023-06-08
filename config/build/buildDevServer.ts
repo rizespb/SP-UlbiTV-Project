@@ -8,5 +8,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     open: true,
     // Проксировать запросы через index страницу (главную). Чтобы при переходе по прямой ссылке на любую страницу Роутер "подхватывал" адрес и рендерил то, что надо
     historyApiFallback: true,
+    // Чтобы работал hot replacement (обновление страницы без перезагрузки)
+    hot: true,
   }
 }

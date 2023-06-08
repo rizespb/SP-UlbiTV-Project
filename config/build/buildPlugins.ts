@@ -23,5 +23,7 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
     new webpack.DefinePlugin({
       __IS_DEV__: JSON.stringify(isDev),
     }),
+    // hot replacement (обновление страницы без перезагрузки) (некоторые изменения компонентов реакт все равно требуют перезагрузки. Лучше использовать React Refresh Webpack Plugin)
+    new webpack.HotModuleReplacementPlugin(),
   ]
 }
