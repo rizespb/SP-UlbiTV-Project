@@ -8,6 +8,30 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     use: ['@svgr/webpack'],
   }
 
+  // Подлючаем для работы с i18n, чтобы вебпак при сборке порбегался по всем файлам и вытаскивал все ключи для переводов в один объект, помещая их в папку extractedTranslations
+  // Если бы не использовали TS (и в частности typescriptLoader), тогда нам в любом случае пришлось бы подключать babelLoader и @babel/preset-react
+  const babelLoader = {
+    test: /\.(js|jsx|ts|tsx)$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: {
+        // preset-env для перевода JS в более старые стандарты
+        presets: ['@babel/preset-env'],
+        plugins: [
+          [
+            'i18next-extract',
+            {
+              locales: ['ru', 'en'],
+              // Ключ по-умолчанию равен значению. Иначе значение будет ""
+              keyAsDefaultValue: true,
+            },
+          ],
+        ],
+      },
+    },
+  }
+
   // file-loader - это загрузчик для Webpack, который позволяет переносить файлы проекта (например, изображения, шрифты и другие статические ресурсы) в выходную директорию сборки (По умолчанию Webpack обрабатывает только JavaScript-файлы)
   const fileLoader = {
     test: /\.(png|jpe?g|gif|woff2|woff)$/i,
@@ -55,5 +79,5 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
   }
 
   // Важно! Последовательность вызова лоадеров имеет значение!
-  return [fileLoader, svgLoader, typescriptLoader, cssLoader]
+  return [fileLoader, svgLoader, babelLoader, typescriptLoader, cssLoader]
 }
