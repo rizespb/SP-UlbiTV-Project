@@ -5,19 +5,23 @@ import { ThemeButton } from 'shared/ui/Button/ui/Button'
 import cls from './LangSwitcher.module.scss'
 
 interface LangSwitcherProps {
-  className?: string
+    className?: string
 }
 
 export const LangSwitcher = ({ className }: LangSwitcherProps) => {
-  const { t, i18n } = useTranslation()
+    const { t, i18n } = useTranslation()
 
-  const toggle = () => {
-    i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru')
-  }
+    const toggle = () => {
+        i18n.changeLanguage(i18n.language === 'ru' ? 'en' : 'ru')
+    }
 
-  return (
-    <Button theme={ThemeButton.CLEAR} onClick={toggle} className={classNames(cls.LangSwitcher, {}, [className])}>
-      {t('Язык')}
-    </Button>
-  )
+    return (
+        <Button
+            theme={ThemeButton.CLEAR}
+            onClick={toggle}
+            className={classNames(cls.LangSwitcher, {}, [className])}
+        >
+            {t('Язык')}
+        </Button>
+    )
 }
