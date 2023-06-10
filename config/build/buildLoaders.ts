@@ -47,7 +47,7 @@ export function buildLoaders({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         use: [
             // Создает стили из JS-строк
             // style-loader конвертирует в JS (более быстро при dev)
-            // MiniCssExtractPlugin (Работает вемсте с плагином MiniCssExtractPlugin) выдяеляет стили в отдельные файлы
+            // MiniCssExtractPlugin (Работает вместе с плагином MiniCssExtractPlugin) выдяеляет стили в отдельные файлы
             isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
             // Транслирует CSS в CommonJS и подключает модули
             {
