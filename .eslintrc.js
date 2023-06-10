@@ -2,6 +2,7 @@ module.exports = {
     env: {
         browser: true,
         es2021: true,
+        jest: true,
     },
     extends: [
         'plugin:react/recommended',
@@ -46,9 +47,11 @@ module.exports = {
         // Разрешаем нижние подчеркивания
         'no-underscore-dangle': 'off',
         // показывать ошибку, если строки в JSX не обернуты в хук для перевода
-        'i18next/no-literal-string': ['error', { markupOnly: true }],
+        // 'i18next/no-literal-string': ['error', { markupOnly: true }],
+        'i18next/no-literal-string': ['off'],
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
+        'max-len': ['error', { ignoreComments: true, code: '80' }],
         '@typescript-eslint/no-unused-vars': [
             'warn',
             { argsIgnorePattern: '^_' },

@@ -1,4 +1,9 @@
 {
-  "presets": ["@babel/preset-env"],
-  "plugins": ["i18next-extract"]
+    "presets": [
+        // для общей транспиляции JS - потребовалось добавить при настройке i18next
+        "@babel/preset-env",
+        // Добавили при настройке JEST
+        "@babel/preset-typescript"
+    ],
+    "plugins": ["i18next-extract"]
 }
