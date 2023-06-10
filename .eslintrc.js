@@ -3,7 +3,13 @@ module.exports = {
         browser: true,
         es2021: true,
     },
-    extends: ['plugin:react/recommended', 'airbnb', 'prettier'],
+    extends: [
+        'plugin:react/recommended',
+        'airbnb',
+        // plugin:i18next/recommended' -будет указывать на, что требуется обернуть тектст в хук для перевода
+        'plugin:i18next/recommended',
+        'prettier',
+    ],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaFeatures: {
@@ -12,7 +18,8 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['react', '@typescript-eslint', 'prettier'],
+    // i18next -будет указывать на, что требуется обернуть тектст в хук для перевода
+    plugins: ['react', '@typescript-eslint', 'i18next', 'prettier'],
     rules: {
         semi: ['error', 'never'],
 
@@ -38,6 +45,8 @@ module.exports = {
         'import/no-extraneous-dependencies': 'off',
         // Разрешаем нижние подчеркивания
         'no-underscore-dangle': 'off',
+        // показывать ошибку, если строки в JSX не обернуты в хук для перевода
+        'i18next/no-literal-string': ['error', { markupOnly: true }],
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': [
