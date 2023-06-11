@@ -3,7 +3,15 @@
         // для общей транспиляции JS - потребовалось добавить при настройке i18next
         "@babel/preset-env",
         // Добавили при настройке JEST
-        "@babel/preset-typescript"
+        "@babel/preset-typescript",
+        // Добавили при настройке JEST
+        [
+            "@babel/preset-react",
+            {
+                // Для того, чтобы в тестах не указывать import React
+                "runtime": "automatic"
+            }
+        ]
     ],
     "plugins": ["i18next-extract"]
 }
