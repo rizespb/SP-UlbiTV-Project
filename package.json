@@ -7,13 +7,14 @@
         "lint:ts:fix": "eslint **/*.{ts,tsx} --fix",
         "lint:scss": "stylelint **/*.scss",
         "lint:scss:fix": "stylelint **/*.scss --fix",
+        "lint": "npm run lint:ts & npm run lint:scss",
+        "lint:fix": "npm run lint:ts:fix & npm run lint:scss:fix",
         "unit": "jest --config ./config/jest/jest.config.ts"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "babel-loader": "^8.2.3",
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-typescript": "^7.16.7",
         "@svgr/webpack": "^6.2.1",
@@ -26,6 +27,7 @@
         "@types/webpack-dev-server": "^4.7.2",
         "@typescript-eslint/eslint-plugin": "^5.12.1",
         "@typescript-eslint/parser": "^5.12.1",
+        "babel-loader": "^8.2.3",
         "babel-plugin-i18next-extract": "^0.8.3",
         "css-loader": "^6.6.0",
         "eslint": "^8.10.0",

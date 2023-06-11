@@ -51,7 +51,7 @@ module.exports = {
         'i18next/no-literal-string': ['off'],
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
-        'max-len': ['error', { ignoreComments: true, code: '80' }],
+        'max-len': ['error', { ignoreComments: true, code: 80 }],
         '@typescript-eslint/no-unused-vars': [
             'warn',
             { argsIgnorePattern: '^_' },

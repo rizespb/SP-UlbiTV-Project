@@ -6,13 +6,11 @@ interface LoaderProps {
     className?: string
 }
 
-export const Loader = ({ type = 'ring', className }: LoaderProps) => {
-    return (
-        <div className={classNames(cls[`loader-${type}`], {}, [className])}>
-            <div />
-            <div />
-            <div />
-            <div />
-        </div>
-    )
-}
+export const Loader = ({ type = 'ring', className }: LoaderProps) => (
+    <div className={classNames(cls[`loader-${type}`], {}, [className])}>
+        <div />
+        <div />
+        <div />
+        <div />
+    </div>
+)
