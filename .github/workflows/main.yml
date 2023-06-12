@@ -1,0 +1,43 @@
+name: Linting, testing, building
+on:
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
+jobs:
+    pipeline:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [16.x]
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - name: Installing Node.js ${{ matrix.node-version}}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version}}
+
+            # --force добавил, т.к. loki (для скришотного тестирования) без него не ставится
+            - name: Installing node_modules
+              run: npm ci --force
+
+            - name: Build production project
+              run: npm run build:prod
+
+            - name: Linting TypeScript
+              run: npm run lint:ts
+
+            - name: Linting CSS
+              run: npm run lint:scss
+
+            - name: Unit testing
+              run: npm run test:unit
+
+            - name: Build Storybook
+              run: npm run storybook:build
+
+            # Запускать после storybook:build, т.к. loki работает со storybook. Команда взята из доки loki. Локально эта команда не сработает и не должна
+            - name: Screenshot testing (Loki)
+              run: npm run test:ui:ci
