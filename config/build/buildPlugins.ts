@@ -5,7 +5,7 @@ import webpack from 'webpack'
 import { BuildOptions } from './types/config'
 
 export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
-    return [
+    const plugins = [
         // Для генерации html-файлов с подключенными к скриптами
         new HtmlWebpackPlugin({
             // Создаст html-файл на основе указанного файла
@@ -27,15 +27,23 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
         }),
-
-        // hot replacement (обновление страницы без перезагрузки) (некоторые изменения компонентов реакт все равно требуют перезагрузки. Лучше использовать React Refresh Webpack Plugin)
-        new webpack.HotModuleReplacementPlugin(),
-
-        // Анализ размера бандлов. После подключение при запуске npm start или npm run build откроектся еще и страница с размером бандла
-        new BundleAnalyzerPlugin({
-            // Страница с анализатором не будет автоматически открываться в браузере
-            // Но в терминале будет указан сервер, по которому она запущена - http://127.0.0.1:8888
-            openAnalyzer: false,
-        }),
     ]
+
+    if (isDev) {
+        plugins.push(
+            // hot replacement (обновление страницы без перезагрузки) (некоторые изменения компонентов реакт все равно требуют перезагрузки. Лучше использовать React Refresh Webpack Plugin)
+            new webpack.HotModuleReplacementPlugin(),
+        )
+
+        plugins.push(
+            // Анализ размера бандлов. После подключение при запуске npm start или npm run build откроектся еще и страница с размером бандла
+            new BundleAnalyzerPlugin({
+                // Страница с анализатором не будет автоматически открываться в браузере
+                // Но в терминале будет указан сервер, по которому она запущена - http://127.0.0.1:8888
+                openAnalyzer: false,
+            }),
+        )
+    }
+
+    return plugins
 }

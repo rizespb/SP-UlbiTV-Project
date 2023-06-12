@@ -1,7 +1,7 @@
 {
     "scripts": {
         "start": "webpack serve --env port=3000",
-        "build:prod": "webpack --env mode=production",
+        "build:prod": "webpack --env mode=production & echo Сборка завершена",
         "build:dev": "webpack --env mode=development",
         "lint:ts": "eslint **/*.{ts,tsx}",
         "lint:ts:fix": "eslint **/*.{ts,tsx} --fix",
