@@ -14,6 +14,10 @@
         "test:ui:ok": "loki approve",
         "comment for test:ui:ci": "test:ui:ci для запуска loki в GitCI. ЗАПУСКАТЬ после storybook:build",
         "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
+        "comment for test:ui:json/html": "test:ui:json для запуска scripts/generate-visual-json-report, а test:ui:html для конвертации полученного json-отчета в html. Подробности см. в файле scripts/generate-visual-json-report",
+        "test:ui:json": "node scripts/generate-visual-json-report.js",
+        "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
+        "test:ui:report": "npm run test:ui:json & npm run test:ui:html",
         "storybook": "storybook dev -p 6006 -c ./config/storybook",
         "storybook:build": "storybook build -c ./config/storybook"
     },
@@ -63,6 +67,7 @@
         "loki": "^0.32.0",
         "mini-css-extract-plugin": "^2.5.3",
         "prettier": "^2.8.8",
+        "reg-cli": "^0.17.6",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.49.9",
         "sass-loader": "^12.6.0",
