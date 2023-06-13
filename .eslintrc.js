@@ -20,7 +20,7 @@ module.exports = {
         sourceType: 'module',
     },
     // i18next -будет указывать на, что требуется обернуть тектст в хук для перевода
-    plugins: ['react', '@typescript-eslint', 'i18next', 'prettier'],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'prettier'],
     rules: {
         semi: ['error', 'never'],
 
@@ -50,6 +50,10 @@ module.exports = {
         ],
         // Чтобы не конвертировал prop={true} в просто prop
         'react/jsx-boolean-value': 'off',
+        'jsx-a11y/no-static-element-interactions': 'off',
+        'jsx-a11y/click-events-have-key-events': 'off',
+        'react-hooks/rules-of-hooks': 'error',
+        'react-hooks/exhaustive-deps': 'error',
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
         'max-len': ['error', { ignoreComments: true, code: 100 }],
@@ -61,10 +65,11 @@ module.exports = {
     // Переписываем правила Линта для определенных файлов
     overrides: [
         {
-            files: ['**/src/**/*.test.{ts,tsx}'],
+            files: ['**/src/**/*.{test,stories}.{ts,tsx}'],
             rules: {
                 // Отключаем требование переводить текск в тестах
                 'i18next/no-literal-string': 'off',
+                'max-len': 'off',
             },
         },
     ],
