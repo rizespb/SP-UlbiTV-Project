@@ -48,6 +48,8 @@ module.exports = {
             'error',
             { markupOnly: true, ignoreAttribute: ['data-testid', 'to'] },
         ],
+        // Чтобы не конвертировал prop={true} в просто prop
+        'react/jsx-boolean-value': 'off',
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
         'max-len': ['error', { ignoreComments: true, code: 100 }],
