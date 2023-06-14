@@ -6,5 +6,7 @@
   "Главная": "Main",
   "О сайте": "About us",
   "Короткий лейбл для Переключателя языка": "En",
-  "Войти": "Log In"
+  "Войти": "Log In",
+  "increment": "increment",
+  "decrement": "decrement"
 }

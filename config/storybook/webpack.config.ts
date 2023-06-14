@@ -15,7 +15,8 @@ export default ({ config }: { config: webpack.Configuration }) => {
     }
 
     // Для понимания Сторибуком абсолютных импортов в проекте
-    config.resolve?.modules?.push(paths.src)
+    // Добавляем paths.src в начало массива modules, чтобы вебпак вначале проверял пути в папке src, а потом уже в node_modules (вначале делали через push(paths.src) и был кейс, когда абсолютный путь совпал с таким же путем в node_modules и сборока Сторибука падала: не найден файл)
+    config.resolve?.modules?.unshift(paths.src)
     config.resolve?.extensions?.push('.ts', '.tsx')
 
     // Настраиваем обработку svg

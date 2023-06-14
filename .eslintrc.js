@@ -54,9 +54,10 @@ module.exports = {
         'jsx-a11y/click-events-have-key-events': 'off',
         'react-hooks/rules-of-hooks': 'error',
         'react-hooks/exhaustive-deps': 'error',
+        'max-len': ['error', { ignoreComments: true, code: 100 }],
+        'no-param-reassign': 'off',
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
-        'max-len': ['error', { ignoreComments: true, code: 100 }],
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
     },
     globals: {
