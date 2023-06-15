@@ -8,14 +8,16 @@ interface ModalProps {
     children: ReactNode
     isOpen?: boolean
     onClose?: () => void
+    lazy?: boolean
 }
 
 const ANIMATION_DELAY = 300
 
 export const Modal = (props: ModalProps) => {
-    const { className, children, isOpen, onClose } = props
+    const { className, children, isOpen, onClose, lazy } = props
 
     const [isClosing, setIsClosing] = useState(false)
+    const [isMounted, setIsMounted] = useState(false)
     const timerRef = useRef<ReturnType<typeof setTimeout>>()
 
     const closeHandler = useCallback(() => {
@@ -57,6 +59,22 @@ export const Modal = (props: ModalProps) => {
     const mods: Record<string, boolean> = {
         [cls.opened]: isOpen,
         [cls.isClosing]: isClosing,
+    }
+
+    // МОдальное окно всегда встроено в Виртуальный дом. С помощью CSS:
+    // opacity: 0;
+    // pointer-events: none;
+    // z-index: -1;
+    // мы полностью ее скрываем ПОД остальным сайтом. Но тогда инпут сразу присутствует в ДОМ. И при клике на кнопку Войти он не получает фокус (автофокус устанавливается при первоначальном рендере)
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsMounted(true)
+        }
+    }, [isOpen])
+
+    if (lazy && !isMounted) {
+        return null
     }
 
     return (

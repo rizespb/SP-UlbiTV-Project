@@ -1,9 +1,9 @@
+import { LoginModal } from 'features/AuthByUsername'
 import { useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Button } from 'shared/ui/Button'
 import { ButtonTheme } from 'shared/ui/Button/ui/Button'
-import { Modal } from 'shared/ui/Modal'
 import cls from './Navbar.module.scss'
 
 interface NavbarProps {
@@ -12,28 +12,23 @@ interface NavbarProps {
 
 export const Navbar = ({ className }: NavbarProps) => {
     const { t } = useTranslation()
-    const [isAuthModel, setIsAuthModel] = useState(false)
+    const [isAuthModal, setIsAuthModal] = useState(false)
 
-    const onToggleModal = useCallback(() => {
-        setIsAuthModel((prev) => !prev)
+    const onCloseModal = useCallback(() => {
+        setIsAuthModal(false)
+    }, [])
+
+    const onShowModal = useCallback(() => {
+        setIsAuthModal(true)
     }, [])
 
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
-            <Button
-                theme={ButtonTheme.CLEAR_INVERTED}
-                className={cls.links}
-                onClick={onToggleModal}
-            >
+            <Button theme={ButtonTheme.CLEAR_INVERTED} className={cls.links} onClick={onShowModal}>
                 {t('Войти')}
             </Button>
 
-            <Modal isOpen={isAuthModel} onClose={onToggleModal}>
-                {t(
-                    // eslint-disable-next-line max-len
-                    'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad nulla ab at? Rem, soluta eos. Fugit voluptas, dolorem eos eius laudantium qui? Nesciunt perspiciatis debitis eaque quaerat maiores assumenda corrupti.',
-                )}
-            </Modal>
+            <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
         </div>
     )
 }

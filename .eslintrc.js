@@ -36,7 +36,7 @@ module.exports = {
         'import/extensions': 'off',
         'import/prefer-default-export': 'off',
         'react/function-component-definition': 'off',
-        'react/jsx-props-no-spreading': 'warn',
+        'react/jsx-props-no-spreading': 'off',
         'react/require-default-props': 'off',
         // Отключили, потому что свойство влохо работает с TS
         'no-shadow': 'off',

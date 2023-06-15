@@ -8,5 +8,7 @@
   "Короткий лейбл для Переключателя языка": "En",
   "Войти": "Log In",
   "increment": "increment",
-  "decrement": "decrement"
+  "decrement": "decrement",
+  "Введите имя": "Enter username",
+  "Введите пароль": "Enter password"
 }
