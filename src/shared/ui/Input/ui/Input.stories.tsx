@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Theme } from 'app/providers/ThemeProvider'
-import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Input } from './Input'
 
 export default {
@@ -19,4 +17,3 @@ Primary.args = {
     placeholder: 'Type text',
     value: '1234567',
 }
-
