@@ -12,11 +12,10 @@ export default {
 // eslint-disable-next-line react/jsx-props-no-spreading
 const Template: ComponentStory<typeof Sidebar> = (args) => <Sidebar {...args} />
 
-// Мы глобально оборачиваем Storybook в storybook/preview.ts в ThemeDecorator декоратор, который прокидывает светлую тему
 export const Light = Template.bind({})
 Light.args = {}
+Light.decorators = [ThemeDecorator(Theme.LIGHT)]
 
-// А вот темную тему указываем индивидуально
 export const Dark = Template.bind({})
 Dark.args = {}
 Dark.decorators = [ThemeDecorator(Theme.DARK)]

@@ -12,32 +12,33 @@ export default {
 // eslint-disable-next-line react/jsx-props-no-spreading
 const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />
 
-// Светлую тему подключили глобально в config\storybook\preview.ts
-// Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
 export const Primary = Template.bind({})
 Primary.args = {
     children: 'Text',
 }
+Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Clear = Template.bind({})
 Clear.args = {
     children: 'Text',
     theme: ButtonTheme.CLEAR,
 }
+Clear.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const ClearInverted = Template.bind({})
 ClearInverted.args = {
     children: 'Text',
     theme: ButtonTheme.CLEAR_INVERTED,
 }
+ClearInverted.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Outline = Template.bind({})
 Outline.args = {
     children: 'Text',
     theme: ButtonTheme.OUTLINE,
 }
+Outline.decorators = [ThemeDecorator(Theme.LIGHT)]
 
-// А вот темную тему указываем индивидуально
 export const OutlineDark = Template.bind({})
 OutlineDark.args = {
     children: 'Text',
@@ -50,12 +51,14 @@ BackgroundTheme.args = {
     children: 'Text',
     theme: ButtonTheme.BACKGROUND,
 }
+BackgroundTheme.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const BackgroundInvertedTheme = Template.bind({})
 BackgroundInvertedTheme.args = {
     children: 'Text',
     theme: ButtonTheme.BACKGROUND_INVERTED,
 }
+BackgroundInvertedTheme.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Square = Template.bind({})
 Square.args = {
@@ -63,6 +66,7 @@ Square.args = {
     theme: ButtonTheme.BACKGROUND_INVERTED,
     square: true,
 }
+Square.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const SquareSizeL = Template.bind({})
 SquareSizeL.args = {
@@ -71,6 +75,7 @@ SquareSizeL.args = {
     square: true,
     size: ButtonSize.L,
 }
+SquareSizeL.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const SquareSizeXL = Template.bind({})
 SquareSizeXL.args = {
@@ -79,3 +84,12 @@ SquareSizeXL.args = {
     square: true,
     size: ButtonSize.XL,
 }
+SquareSizeXL.decorators = [ThemeDecorator(Theme.LIGHT)]
+
+export const Disabled = Template.bind({})
+Disabled.args = {
+    children: '>',
+    theme: ButtonTheme.OUTLINE,
+    disabled: true,
+}
+Disabled.decorators = [ThemeDecorator(Theme.LIGHT)]

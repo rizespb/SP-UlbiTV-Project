@@ -1,7 +1,5 @@
 import type { Preview } from '@storybook/react'
 import { RouterDecorator } from '../../src/shared/config/storybook/RouterDecorator/RouterDecorator'
-import { ThemeDecorator } from '../../src/shared/config/storybook/ThemeDecorator/ThemeDecorator'
-import { Theme } from '../../src/app/providers/ThemeProvider/lib/ThemeContext'
 import { StyleDecorator } from '../../src/shared/config/storybook/StyleDecorator/StyleDecorator'
 
 const preview: Preview = {
@@ -17,7 +15,6 @@ const preview: Preview = {
     decorators: [
         StyleDecorator,
         // Глобально будем использовать всетлую тему. А там, где надо - локально в историях добавлять темную тему через Story.decorators
-        ThemeDecorator(Theme.LIGHT),
         RouterDecorator,
     ],
 }

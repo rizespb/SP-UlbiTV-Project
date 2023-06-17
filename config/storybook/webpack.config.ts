@@ -1,4 +1,4 @@
-import webpack, { RuleSetRule } from 'webpack'
+import webpack, { DefinePlugin, RuleSetRule } from 'webpack'
 import path from 'path'
 import { buildCssLoaders } from '../build/loaders/buildCssLoaders'
 import { BuildPath } from '../build/types/config'
@@ -24,11 +24,7 @@ export default ({ config }: { config: webpack.Configuration }) => {
         // Если правило (а более точно лоадер) содержит регулярку, указываюшщую на svg, то исключаем файлы svg из обработки этим лоадером
         // eslint-disable-next-line no-param-reassign
         config.module.rules = config.module.rules?.map((rule: RuleSetRule | '...') => {
-            if (
-                rule !== '...' &&
-                rule.test instanceof RegExp &&
-                rule.test.toString().includes('svg')
-            ) {
+            if (rule !== '...' && rule.test instanceof RegExp && rule.test.toString().includes('svg')) {
                 return { ...rule, exclude: /\.svg$/i }
             }
 
@@ -43,6 +39,12 @@ export default ({ config }: { config: webpack.Configuration }) => {
     })
 
     config.module?.rules?.push(buildCssLoaders(true))
+
+    config.plugins?.push(
+        new DefinePlugin({
+            __IS_DEV__: true,
+        }),
+    )
 
     return config
 }

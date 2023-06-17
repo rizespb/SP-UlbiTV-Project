@@ -15,14 +15,13 @@ export default {
 // eslint-disable-next-line react/jsx-props-no-spreading
 const Template: ComponentStory<typeof AppLink> = (args) => <AppLink {...args} />
 
-// Светлую тему подключили глобально в config\storybook\preview.ts
-// Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
 export const Primary = Template.bind({})
 Primary.args = {
     theme: AppLinkTheme.PRIMARY,
     children: 'Text',
 }
-// А вот темную тему указываем индивидуально
+Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
+
 export const PrimaryDark = Template.bind({})
 PrimaryDark.args = {
     theme: AppLinkTheme.PRIMARY,
@@ -35,7 +34,8 @@ Secondary.args = {
     theme: AppLinkTheme.SECONDARY,
     children: 'Text',
 }
-// А вот темную тему указываем индивидуально
+Secondary.decorators = [ThemeDecorator(Theme.LIGHT)]
+
 export const SecondaryDark = Template.bind({})
 SecondaryDark.args = {
     theme: AppLinkTheme.SECONDARY,
@@ -48,7 +48,8 @@ Red.args = {
     theme: AppLinkTheme.RED,
     children: 'Text',
 }
-// А вот темную тему указываем индивидуально
+Red.decorators = [ThemeDecorator(Theme.LIGHT)]
+
 export const RedDark = Template.bind({})
 RedDark.args = {
     theme: AppLinkTheme.RED,
