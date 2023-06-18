@@ -8,6 +8,8 @@ const initialState: ILoginSchema = {
     password: '',
 }
 
+// Сделали асинхронной загрузку LoginForm и также сделаем асинхронной (динамической) загрузку слайса loginSlice - она нам нужен только для авторизации. Поэтому будем подгружать его только при открытии формы авторизации
+
 export const loginSlice = createSlice({
     name: 'login',
     initialState,

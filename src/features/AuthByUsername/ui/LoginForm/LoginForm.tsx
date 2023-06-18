@@ -1,5 +1,3 @@
-import { loginActions } from 'features/AuthByUsername'
-import { loginByUsername } from 'features/AuthByUsername/services/loginByUsername/loginByUsername'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,17 +6,30 @@ import { Button } from 'shared/ui/Button'
 import { ButtonTheme } from 'shared/ui/Button/ui/Button'
 import { Input } from 'shared/ui/Input/Input'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
-import { getLoginState } from '../../model/selectors/getLoginState/getLoginState'
+import { DynamicModuleLoade, TReducerLIst } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { loginByUsername } from '../../services/loginByUsername/loginByUsername'
+import { loginActions, loginReducer } from '../../model/slice/loginSlice'
+import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername'
+import { getLoginPassword } from '../../model/selectors/getLoginPassword/getLoginPassword'
+import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLoginIsLoading'
+import { getLoginError } from '../../model/selectors/getLoginError/getLoginError'
 import cls from './LoginForm.module.scss'
 
-interface LoginFormProps {
+export interface ILoginFormProps {
     className?: string
 }
 
-export const LoginForm = ({ className }: LoginFormProps) => {
+const initialReducers: TReducerLIst = {
+    loginForm: loginReducer,
+}
+
+const LoginForm = ({ className }: ILoginFormProps) => {
     const { t } = useTranslation()
     const dispatch = useDispatch()
-    const { username, password, isLoading, error } = useSelector(getLoginState)
+    const username = useSelector(getLoginUsername)
+    const password = useSelector(getLoginPassword)
+    const isLoading = useSelector(getLoginIsLoading)
+    const error = useSelector(getLoginError)
 
     const onChangeUsername = useCallback(
         (value: string) => {
@@ -39,30 +50,44 @@ export const LoginForm = ({ className }: LoginFormProps) => {
     }, [dispatch, username, password])
 
     return (
-        <div className={classNames(cls.LoginForm, {}, [className])}>
-            <Text title={t('Форма авторизации')} />
+        // Асинхронная загрузка редюсора
+        // ТОлько при монтировании LoginForm мы добавляем loginReducer в стор
+        // Т.к. LoginForm асинхронный, то и редюсор будет подгружаться асинхронно
+        // loginReducer изолирован внутри фичи AuthByUsername
+        // eslint-disable-next-line i18next/no-literal-string
+        <DynamicModuleLoade asyncReducers={initialReducers} removeAfterUnmount={true}>
+            <div className={classNames(cls.LoginForm, {}, [className])}>
+                <Text title={t('Форма авторизации')} />
 
-            {error && <Text text={t('Вы ввели неверный логин или пароль')} theme={TextTheme.ERROR} />}
+                {error && <Text text={t('Вы ввели неверный логин или пароль')} theme={TextTheme.ERROR} />}
 
-            <Input
-                type="text"
-                className={cls.input}
-                placeholder={t('Введите имя')}
-                autofocus={true}
-                onChange={onChangeUsername}
-                value={username}
-            />
-            <Input
-                type="text"
-                className={cls.input}
-                placeholder={t('Введите пароль')}
-                onChange={onChangePassword}
-                value={password}
-            />
+                <Input
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Введите имя')}
+                    autofocus={true}
+                    onChange={onChangeUsername}
+                    value={username}
+                />
+                <Input
+                    type="text"
+                    className={cls.input}
+                    placeholder={t('Введите пароль')}
+                    onChange={onChangePassword}
+                    value={password}
+                />
 
-            <Button className={cls.loginBtn} theme={ButtonTheme.OUTLINE} onClick={onLoginClick} disabled={isLoading}>
-                {t('Войти')}
-            </Button>
-        </div>
+                <Button
+                    className={cls.loginBtn}
+                    theme={ButtonTheme.OUTLINE}
+                    onClick={onLoginClick}
+                    disabled={isLoading}
+                >
+                    {t('Войти')}
+                </Button>
+            </div>
+        </DynamicModuleLoade>
     )
 }
+
+export default LoginForm
