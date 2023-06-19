@@ -1,12 +1,13 @@
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Button } from 'shared/ui/Button'
 import { ButtonTheme } from 'shared/ui/Button/ui/Button'
 import { Input } from 'shared/ui/Input/Input'
 import { Text, TextTheme } from 'shared/ui/Text/Text'
-import { DynamicModuleLoade, TReducerLIst } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { DynamicModuleLoader, TReducerLIst } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { loginByUsername } from '../../services/loginByUsername/loginByUsername'
 import { loginActions, loginReducer } from '../../model/slice/loginSlice'
 import { getLoginUsername } from '../../model/selectors/getLoginUsername/getLoginUsername'
@@ -17,15 +18,16 @@ import cls from './LoginForm.module.scss'
 
 export interface ILoginFormProps {
     className?: string
+    onSuccess: () => void
 }
 
 const initialReducers: TReducerLIst = {
     loginForm: loginReducer,
 }
 
-const LoginForm = ({ className }: ILoginFormProps) => {
+const LoginForm = ({ className, onSuccess }: ILoginFormProps) => {
     const { t } = useTranslation()
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const username = useSelector(getLoginUsername)
     const password = useSelector(getLoginPassword)
     const isLoading = useSelector(getLoginIsLoading)
@@ -45,9 +47,14 @@ const LoginForm = ({ className }: ILoginFormProps) => {
         [dispatch],
     )
 
-    const onLoginClick = useCallback(() => {
-        dispatch(loginByUsername({ username, password }))
-    }, [dispatch, username, password])
+    const onLoginClick = useCallback(async () => {
+        const result = await dispatch(loginByUsername({ username, password }))
+
+        // Ранее модалка не скрывалась при закрытии, т.к. оставалась встроена в браузер. И после авторизации при нажатии на кнопку Выйти снова появляалсь модалка. ПОэтому после успешной авторизации мы вызываем onSuccess (куда передаем такой же колбэк onClose), чтобы убрать модлку из дом-дерева
+        if (result.meta.requestStatus === 'fulfilled') {
+            onSuccess()
+        }
+    }, [onSuccess, dispatch, username, password])
 
     return (
         // Асинхронная загрузка редюсора
@@ -55,7 +62,7 @@ const LoginForm = ({ className }: ILoginFormProps) => {
         // Т.к. LoginForm асинхронный, то и редюсор будет подгружаться асинхронно
         // loginReducer изолирован внутри фичи AuthByUsername
         // eslint-disable-next-line i18next/no-literal-string
-        <DynamicModuleLoade asyncReducers={initialReducers} removeAfterUnmount={true}>
+        <DynamicModuleLoader asyncReducers={initialReducers} removeAfterUnmount={true}>
             <div className={classNames(cls.LoginForm, {}, [className])}>
                 <Text title={t('Форма авторизации')} />
 
@@ -86,7 +93,7 @@ const LoginForm = ({ className }: ILoginFormProps) => {
                     {t('Войти')}
                 </Button>
             </div>
-        </DynamicModuleLoade>
+        </DynamicModuleLoader>
     )
 }
 

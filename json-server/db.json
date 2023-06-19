@@ -7,7 +7,16 @@
         { "id": "5", "title": "json-server 5", "author": "typicode" }
     ],
     "comments": [{ "id": "1", "body": "some comment", "postId": "1" }],
-    "profile": { "name": "typicode" },
+    "profile": {
+        "first": "Иван",
+        "lastname": "Иванов",
+        "age": 22,
+        "currency": "RUB",
+        "country": "Russia",
+        "city": "Moscow",
+        "username": "admin",
+        "avatar": "https://images.unsplash.com/photo-1529335764857-3f1164d1cb24?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=689&q=80"
+    },
     "users": [
         {
             "id": "1",

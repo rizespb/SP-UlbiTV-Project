@@ -14,14 +14,14 @@ interface IDynamicModuleLoaderProps {
     removeAfterUnmount?: boolean
 }
 
-export const DynamicModuleLoade: FC<IDynamicModuleLoaderProps> = (props) => {
+export const DynamicModuleLoader: FC<IDynamicModuleLoaderProps> = (props) => {
     const { asyncReducers, removeAfterUnmount, children } = props
 
     const dispatch = useDispatch()
     const store = useStore() as IReduxStoreWithManager
 
     // Асинхронная загрузка редюсора
-    // ТОлько при монтировании DynamicModuleLoade мы добавляем asycReducer в стор
+    // ТОлько при монтировании DynamicModuleLoader мы добавляем asycReducer в стор
     useEffect(() => {
         Object.entries(asyncReducers).forEach(([reducerKey, asyncReducer]: TReducerListEntry) => {
             store.reducerManager.add(reducerKey, asyncReducer)
