@@ -3,23 +3,25 @@
 export type BuildMode = 'production' | 'development'
 
 export interface BuildPath {
-  entry: string
-  // путь к папке со сборкой
-  build: string
-  // путь к index.html
-  html: string
-  // путь к папке src:
-  src: string
+    entry: string
+    // путь к папке со сборкой
+    build: string
+    // путь к index.html
+    html: string
+    // путь к папке src:
+    src: string
 }
 
 export interface BuildEnv {
-  mode: BuildMode
-  port: number
+    mode: BuildMode
+    port: number
+    apiUrl: string
 }
 
 export interface BuildOptions {
-  mode: BuildMode
-  paths: BuildPath
-  isDev: boolean
-  port: number
+    mode: BuildMode
+    paths: BuildPath
+    isDev: boolean
+    port: number
+    apiUrl: string
 }

@@ -4,7 +4,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import webpack from 'webpack'
 import { BuildOptions } from './types/config'
 
-export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPluginInstance[] {
+export function buildPlugins({ paths, isDev, apiUrl }: BuildOptions): webpack.WebpackPluginInstance[] {
     const plugins = [
         // Для генерации html-файлов с подключенными к скриптами
         new HtmlWebpackPlugin({
@@ -23,9 +23,10 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
         }),
 
         // Позволяет добавлять в сборку глобальные переменные
-        // По сути, заменняет при сборке указанную переменную переданным значением
+        // По сути, заменяет при сборке указанную переменную переданным значением
         new webpack.DefinePlugin({
             __IS_DEV__: JSON.stringify(isDev),
+            __API__: JSON.stringify(apiUrl),
         }),
     ]
 
