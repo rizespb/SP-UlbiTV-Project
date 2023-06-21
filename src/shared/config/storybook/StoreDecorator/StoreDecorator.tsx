@@ -1,11 +1,12 @@
 /* eslint-disable indent */
-import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit'
+import { ReducersMapObject } from '@reduxjs/toolkit'
 import { Story } from '@storybook/react'
 import { IStateSchema, StoreProvider } from 'app/providers/StoreProvider'
 import { profileReducer } from 'entities/Profile'
 import { loginReducer } from 'features/AuthByUsername/model/slice/loginSlice'
+import { TReducerLIst } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 
-const defaultAsyncReducers: DeepPartial<ReducersMapObject<IStateSchema>> = {
+const defaultAsyncReducers: TReducerLIst = {
     loginForm: loginReducer,
     profile: profileReducer,
 }

@@ -7,8 +7,6 @@ export type TReducerLIst = {
     [key in TStateSchemaKey]?: Reducer
 }
 
-type TReducerListEntry = [TStateSchemaKey, Reducer]
-
 interface IDynamicModuleLoaderProps {
     asyncReducers: TReducerLIst
     removeAfterUnmount?: boolean
@@ -23,16 +21,16 @@ export const DynamicModuleLoader: FC<IDynamicModuleLoaderProps> = (props) => {
     // Асинхронная загрузка редюсора
     // ТОлько при монтировании DynamicModuleLoader мы добавляем asycReducer в стор
     useEffect(() => {
-        Object.entries(asyncReducers).forEach(([reducerKey, asyncReducer]: TReducerListEntry) => {
-            store.reducerManager.add(reducerKey, asyncReducer)
+        Object.entries(asyncReducers).forEach(([reducerKey, asyncReducer]) => {
+            store.reducerManager.add(reducerKey as TStateSchemaKey, asyncReducer)
             // Чтобы в Redux DevTools мы могли отследить добавление редюсора
             dispatch({ type: `@INIT ${reducerKey}` })
         })
 
         return () => {
             if (removeAfterUnmount) {
-                Object.entries(asyncReducers).forEach(([reducerKey, _asyncReducer]: TReducerListEntry) => {
-                    store.reducerManager.remove(reducerKey)
+                Object.entries(asyncReducers).forEach(([reducerKey, _asyncReducer]) => {
+                    store.reducerManager.remove(reducerKey as TStateSchemaKey)
 
                     dispatch({ type: `@DESTROY ${reducerKey}` })
                 })

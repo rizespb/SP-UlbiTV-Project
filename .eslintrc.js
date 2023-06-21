@@ -53,6 +53,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'max-len': ['error', { ignoreComments: true, code: 120 }],
         'no-param-reassign': 'off',
+        'no-undef': 'off',
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],

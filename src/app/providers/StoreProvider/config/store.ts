@@ -4,7 +4,7 @@ import { userReducer } from 'entities/User'
 import { NavigateOptions, To } from 'react-router-dom'
 import { $api } from 'shared/api/api'
 import { createReducerManager } from './reducerManager'
-import { IStateSchema } from './stateSchema'
+import { IStateSchema, IThunkExtraArgument } from './stateSchema'
 
 // asyncReducers в качестве параметра функции createReduxStore добавили позже для того, чтобы при написании историй для асинхронных компоннентов можно было в StoreDecorator добавлять эти асинхронные редюсоры (которые используют асинхронные компоненты)
 export function createReduxStore(
@@ -22,6 +22,11 @@ export function createReduxStore(
 
     const reducerManager = createReducerManager(rootReducer)
 
+    const extraArg: IThunkExtraArgument = {
+        api: $api,
+        navigate,
+    }
+
     const store = configureStore({
         reducer: reducerManager.reduce as Reducer<CombinedState<IStateSchema>>,
         devTools: __IS_DEV__,
@@ -31,10 +36,7 @@ export function createReduxStore(
             getDefaultMiddleware({
                 thunk: {
                     // Третим аргументов в thunk будет передваться extraArgument
-                    extraArgument: {
-                        api: $api,
-                        navigate,
-                    },
+                    extraArgument: extraArg,
                 },
             }),
     })

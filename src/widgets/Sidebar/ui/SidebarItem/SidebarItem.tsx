@@ -6,7 +6,7 @@ import { ISidebarItemType } from '../../model/items'
 import cls from './SidebarItem.module.scss'
 
 interface ISidebarItemProps {
-    item?: ISidebarItemType
+    item: ISidebarItemType
     collapsed: boolean
 }
 

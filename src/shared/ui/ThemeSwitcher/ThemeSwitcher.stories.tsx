@@ -16,13 +16,9 @@ export default {
 const Template: ComponentStory<typeof ThemeSwitcher> = (args) => <ThemeSwitcher {...args} />
 
 export const Normal = Template.bind({})
-Normal.args = {
-    type: 'ring',
-}
+Normal.args = {}
 Normal.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Dark = Template.bind({})
-Dark.args = {
-    type: 'ring',
-}
+Dark.args = {}
 Dark.decorators = [ThemeDecorator(Theme.DARK)]
