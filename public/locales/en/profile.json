@@ -12,5 +12,10 @@
     "Укажите валюту": "Select currency",
     "Укажите страну": "Select country",
     "Произошла ошибка при загрузке профиля": "Something went wrong",
-    "Попробуйте обновить страницу": "Reload the page please"
+    "Попробуйте обновить страницу": "Reload the page please",
+    "Серверная ошибка при сохранении": "Server error during saving",
+    "Данные не указаны": "No data provided",
+    "Некорректный регион": "Incorrect region",
+    "Имя и фамилия обязательны": "First and last name are required",
+    "Некорректный возраст": "Incorrect age"
 }

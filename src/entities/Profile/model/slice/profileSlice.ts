@@ -23,6 +23,7 @@ export const profileSlice = createSlice({
 
             // Возвращаем в форму значения, которые мы получили с сервера
             state.form = state.data
+            state.validateErrors = undefined
         },
         updateProfile: (state, action: PayloadAction<IProfile>) => {
             state.form = {
@@ -50,7 +51,7 @@ export const profileSlice = createSlice({
                 state.error = action.payload
             })
             .addCase(updateProfileData.pending, (state) => {
-                state.error = undefined
+                state.validateErrors = undefined
                 state.isLoading = true
             })
             .addCase(updateProfileData.fulfilled, (state, action: PayloadAction<IProfile>) => {
@@ -61,10 +62,12 @@ export const profileSlice = createSlice({
                 // form - будет меняться при редактировании профиля
                 state.form = action.payload
                 state.readonly = true
+
+                state.validateErrors = undefined
             })
             .addCase(updateProfileData.rejected, (state, action) => {
                 state.isLoading = false
-                state.error = action.payload
+                state.validateErrors = action.payload
             })
     },
 })
