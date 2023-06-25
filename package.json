@@ -16,6 +16,7 @@
         "test:ui:ok": "loki approve",
         "comment for test:ui:ci": "test:ui:ci для запуска loki в GitCI. ЗАПУСКАТЬ после storybook:build",
         "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
+        "test:ui:ci:ok": "loki update --reactUri file:./storybook-static",
         "comment for test:ui:json/html": "test:ui:json для запуска scripts/generate-visual-json-report, а test:ui:html для конвертации полученного json-отчета в html. Подробности см. в файле scripts/generate-visual-json-report",
         "test:ui:json": "node scripts/generate-visual-json-report.js",
         "test:ui:html": "reg-cli --from .loki/report.json --report .loki/report.html",
