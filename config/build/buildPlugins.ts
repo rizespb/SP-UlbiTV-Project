@@ -2,6 +2,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import webpack from 'webpack'
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import { BuildOptions } from './types/config'
 
 export function buildPlugins(buildOptions: BuildOptions): webpack.WebpackPluginInstance[] {
@@ -34,6 +35,11 @@ export function buildPlugins(buildOptions: BuildOptions): webpack.WebpackPluginI
     ]
 
     if (isDev) {
+        // Обновление страницы без перезагрузки - более современный плагин, чем HotModuleReplacementPlugin
+        // Мы вначале подключили HotModuleReplacementPlugin, потом ReactRefreshWebpackPlugin
+        // Я не понял, почему при этом мы не отключили HotModuleReplacementPlugin
+        plugins.push(new ReactRefreshWebpackPlugin())
+
         plugins.push(
             // hot replacement (обновление страницы без перезагрузки) (некоторые изменения компонентов реакт все равно требуют перезагрузки. Лучше использовать React Refresh Webpack Plugin)
             new webpack.HotModuleReplacementPlugin(),
