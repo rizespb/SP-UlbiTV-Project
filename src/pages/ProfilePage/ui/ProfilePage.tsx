@@ -47,7 +47,10 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     }
 
     useEffect(() => {
-        dispatch(fetchProfileData())
+        // Чтобы в storybook запрос не отправлялся, а в Jest и во время разработки отправлялся
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchProfileData())
+        }
     }, [dispatch])
 
     const onChangeFirstname = useCallback(

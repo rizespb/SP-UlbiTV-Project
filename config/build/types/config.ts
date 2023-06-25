@@ -24,4 +24,7 @@ export interface BuildOptions {
     isDev: boolean
     port: number
     apiUrl: string
+
+    // Для того, что переопределять конфиги для каждой из сред
+    project: 'frontend' | 'storybook' | 'jest'
 }
