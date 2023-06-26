@@ -3,6 +3,7 @@ import { RoutePath } from 'shared/config/routerConfig/routerConfig'
 import MainIcon from 'shared/assets/icons/main-20-20.svg'
 import AboutIcon from 'shared/assets/icons/about-20-20.svg'
 import ProfileIcon from 'shared/assets/icons/profile-20-20.svg'
+import ArticleIcon from 'shared/assets/icons/article-20-20.svg'
 
 export interface ISidebarItemType {
     path: string
@@ -12,7 +13,28 @@ export interface ISidebarItemType {
 }
 
 export const SidebarItemList: ISidebarItemType[] = [
-    { path: RoutePath.main, text: 'Главная', Icon: MainIcon, authOnly: false },
-    { path: RoutePath.about, text: 'О сайте', Icon: AboutIcon, authOnly: false },
-    { path: RoutePath.profile, text: 'Профиль', Icon: ProfileIcon, authOnly: true },
+    {
+        path: RoutePath.main,
+        text: 'Главная',
+        Icon: MainIcon,
+        authOnly: false,
+    },
+    {
+        path: RoutePath.about,
+        text: 'О сайте',
+        Icon: AboutIcon,
+        authOnly: false,
+    },
+    {
+        path: RoutePath.profile,
+        text: 'Профиль',
+        Icon: ProfileIcon,
+        authOnly: true,
+    },
+    {
+        path: RoutePath.articles,
+        text: 'Статья',
+        Icon: ArticleIcon,
+        authOnly: true,
+    },
 ]

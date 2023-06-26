@@ -23,6 +23,8 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
             path: paths.build,
             // Удалять файлы предыдущей сборки во время сборки
             clean: true,
+            // Нужен для того, чтобы приложение искало бандлы вложенных роутов, например, /articles/:1 не по пути /articles/CHANK_NAME.js, а по пути /CHANK_NAME.js
+            publicPath: '/',
         },
 
         plugins: buildPlugins(options),
