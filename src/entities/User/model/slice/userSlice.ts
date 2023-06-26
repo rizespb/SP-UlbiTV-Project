@@ -2,7 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { USER_LOCALSTORAGE_KEY } from 'shared/const/localstorage'
 import { IUser, IUserSchema } from '../types/user'
 
-const initialState: IUserSchema = {}
+const initialState: IUserSchema = {
+    // AppRouеter вначале отрисовывается, а потом в App в useEffect происходит проветка в localStorage: авторизован пользователь или нет. То есть, внчале рисуются роуты, потом проверяется, авторизован ли пользователь. Поэтому все authOnly роуты будут редиректить на главную (как будто пользователь не авторизован). Решили, что будем отрисовывать роуты, только если _inited = true
+    _inited: false,
+}
 
 export const userSlice = createSlice({
     name: 'user',
@@ -18,6 +21,8 @@ export const userSlice = createSlice({
             if (user) {
                 state.authData = JSON.parse(user)
             }
+
+            state._inited = true
         },
         logout: (state) => {
             state.authData = undefined
