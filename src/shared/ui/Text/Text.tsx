@@ -2,31 +2,38 @@ import { memo } from 'react'
 import { classNames, TMods } from 'shared/lib/classNames/classNames'
 import cls from './Text.module.scss'
 
-export enum TextTheme {
+export enum ETextTheme {
     PRIMARY = 'primary',
     ERROR = 'error',
 }
 
-export enum TextAlign {
+export enum ETextAlign {
     RIGHT = 'right',
     LEFT = 'left',
     CENTER = 'center',
 }
 
-export interface TextProps {
+export enum ETextSize {
+    M = 'size_m',
+    L = 'size_l',
+}
+
+export interface ITextProps {
     className?: string
     title?: string
     text?: string
-    theme?: TextTheme
-    align?: TextAlign
+    theme?: ETextTheme
+    align?: ETextAlign
+    size?: ETextSize
 }
 
-export const Text = memo((props: TextProps) => {
-    const { className, title, text, theme = TextTheme.PRIMARY, align = TextAlign.LEFT } = props
+export const Text = memo((props: ITextProps) => {
+    const { className, title, text, theme = ETextTheme.PRIMARY, align = ETextAlign.LEFT, size = ETextSize.M } = props
 
     const mods: TMods = {
         [cls[theme]]: true,
         [cls[align]]: true,
+        [cls[size]]: true,
     }
 
     return (

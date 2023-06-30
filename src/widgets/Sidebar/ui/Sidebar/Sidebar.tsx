@@ -1,7 +1,7 @@
 import { memo, useMemo, useState } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Button } from 'shared/ui/Button'
-import { ButtonSize, ButtonTheme } from 'shared/ui/Button/ui/Button'
+import { EButtonSize, EButtonTheme } from 'shared/ui/Button/ui/Button'
 import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher'
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher/ThemeSwitcher'
 import { SidebarItemList } from 'widgets/Sidebar/model/items'
@@ -31,8 +31,8 @@ export const Sidebar = memo(({ className }: ISidebarProps) => {
                 type="button"
                 onClick={onToggle}
                 className={cls.collapseBtn}
-                theme={ButtonTheme.BACKGROUND_INVERTED}
-                size={ButtonSize.L}
+                theme={EButtonTheme.BACKGROUND_INVERTED}
+                size={EButtonSize.L}
                 square={true}
             >
                 {collapsed ? '>' : '<'}

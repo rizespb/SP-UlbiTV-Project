@@ -3,7 +3,7 @@ import { classNames, TMods } from 'shared/lib/classNames/classNames'
 import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { Input } from 'shared/ui/Input/Input'
 import { Loader } from 'shared/ui/Loader/Loader'
-import { Text, TextAlign, TextTheme } from 'shared/ui/Text/Text'
+import { Text, ETextAlign, ETextTheme } from 'shared/ui/Text/Text'
 import { CurrencySelect, ECurrency } from '../../../Currency'
 import { CountrySelect, ECountry } from '../../../Country'
 import { IProfile } from '../../model/types/profile'
@@ -56,10 +56,10 @@ export const ProfileCard = (props: ProfileCardProps) => {
         return (
             <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
                 <Text
-                    theme={TextTheme.ERROR}
+                    theme={ETextTheme.ERROR}
                     title={t('Произошла ошибка при загрузке профиля')}
                     text={t('Попробуйте обновить страницу')}
-                    align={TextAlign.CENTER}
+                    align={ETextAlign.CENTER}
                 />
             </div>
         )

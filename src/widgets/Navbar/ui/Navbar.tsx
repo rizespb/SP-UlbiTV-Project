@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Button } from 'shared/ui/Button'
-import { ButtonTheme } from 'shared/ui/Button/ui/Button'
+import { EButtonTheme } from 'shared/ui/Button/ui/Button'
 import cls from './Navbar.module.scss'
 
 interface NavbarProps {
@@ -33,7 +33,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     if (authData) {
         return (
             <div className={classNames(cls.Navbar, {}, [className])}>
-                <Button theme={ButtonTheme.CLEAR_INVERTED} className={cls.links} onClick={onLogOut}>
+                <Button theme={EButtonTheme.CLEAR_INVERTED} className={cls.links} onClick={onLogOut}>
                     {t('Выйти')}
                 </Button>
             </div>
@@ -42,7 +42,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
     return (
         <div className={classNames(cls.Navbar, {}, [className])}>
-            <Button theme={ButtonTheme.CLEAR_INVERTED} className={cls.links} onClick={onShowModal}>
+            <Button theme={EButtonTheme.CLEAR_INVERTED} className={cls.links} onClick={onShowModal}>
                 {t('Войти')}
             </Button>
 

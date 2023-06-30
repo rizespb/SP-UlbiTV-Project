@@ -8,7 +8,7 @@ import AvatarImg from 'shared/assets/test/storybook.png'
 import { ProfileCard } from './ProfileCard'
 
 export default {
-    title: 'entity/ProfileCard',
+    title: 'entities/ProfileCard',
     component: ProfileCard,
 } as ComponentMeta<typeof ProfileCard>
 

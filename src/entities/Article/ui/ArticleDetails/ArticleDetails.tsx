@@ -1,11 +1,17 @@
-import { memo, useEffect } from 'react'
+/* eslint-disable indent */
+import { memo, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { DynamicModuleLoader, TReducerLIst } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
+import { Avatar } from 'shared/ui/Avatar/Avatar'
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
-import { Text, TextAlign } from 'shared/ui/Text/Text'
+import { Text, ETextAlign, ETextSize } from 'shared/ui/Text/Text'
+import EyeIcon from 'shared/assets/icons/eye-20-20.svg'
+import CalendarIcon from 'shared/assets/icons/calendar-20-20.svg'
+import { Icon } from 'shared/ui/Icon/Icon'
+import { EArticleBlockType, IArticleBlock } from '../../model/types/article'
 import {
     getArticleDetailsData,
     getArticleDetailsError,
@@ -14,6 +20,9 @@ import {
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById'
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice'
 import cls from './ArticleDetails.module.scss'
+import { AtricleCodeBlockComponent } from '../AtricleCodeBlockComponent/AtricleCodeBlockComponent'
+import { AtricleImageBlockComponent } from '../AtricleImageBlockComponent/AtricleImageBlockComponent'
+import { AtricleTextBlockComponent } from '../AtricleTextBlockComponent/AtricleTextBlockComponent'
 
 interface IArticleDetailsProps {
     className?: string
@@ -34,8 +43,23 @@ export const ArticleDetails = memo((props: IArticleDetailsProps) => {
     const article = useSelector(getArticleDetailsData)
     const error = useSelector(getArticleDetailsError)
 
+    const renderBlock = useCallback((block: IArticleBlock) => {
+        switch (block.type) {
+            case EArticleBlockType.CODE:
+                return <AtricleCodeBlockComponent key={block.id} className={cls.block} block={block} />
+            case EArticleBlockType.IMAGE:
+                return <AtricleImageBlockComponent key={block.id} className={cls.block} block={block} />
+            case EArticleBlockType.TEXT:
+                return <AtricleTextBlockComponent key={block.id} block={block} className={cls.block} />
+            default:
+                return null
+        }
+    }, [])
+
     useEffect(() => {
-        dispatch(fetchArticleById(id))
+        if (__PROJECT__ !== 'storybook') {
+            dispatch(fetchArticleById(id))
+        }
     }, [dispatch, id])
 
     let content
@@ -51,9 +75,29 @@ export const ArticleDetails = memo((props: IArticleDetailsProps) => {
             </>
         )
     } else if (error) {
-        content = <Text align={TextAlign.CENTER} title={t('Произошла ошибка при загрузке статьи')} />
+        content = <Text align={ETextAlign.CENTER} title={t('Произошла ошибка при загрузке статьи')} />
     } else {
-        content = <div>ARTICLE DETAILS</div>
+        content = (
+            <>
+                <div className={cls.avatarWrapper}>
+                    <Avatar size={200} src={article?.img} className={cls.avatar} />
+                </div>
+
+                <Text className={cls.title} title={article?.title} text={article?.subtitle} size={ETextSize.L} />
+
+                <div className={cls.articleInfo}>
+                    <Icon Svg={EyeIcon} className={cls.icon} />
+                    <Text text={String(article?.views)} />
+                </div>
+
+                <div className={cls.articleInfo}>
+                    <Icon Svg={CalendarIcon} className={cls.icon} />
+                    <Text text={article?.createdAt} />
+                </div>
+
+                {article?.blocks.map(renderBlock)}
+            </>
+        )
     }
 
     return (

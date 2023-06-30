@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Button } from 'shared/ui/Button'
-import { ButtonTheme } from 'shared/ui/Button/ui/Button'
+import { EButtonTheme } from 'shared/ui/Button/ui/Button'
 import { Text } from 'shared/ui/Text/Text'
 import cls from './ProfilePageHeader.module.scss'
 
@@ -38,15 +38,15 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
             <Text title={t('Профиль')} />
 
             {readonly ? (
-                <Button theme={ButtonTheme.OUTLINE} className={cls.editBtn} onClick={onEdit}>
+                <Button theme={EButtonTheme.OUTLINE} className={cls.editBtn} onClick={onEdit}>
                     {t('Редактировать')}
                 </Button>
             ) : (
                 <>
-                    <Button theme={ButtonTheme.OUTLINE_RED} className={cls.editBtn} onClick={onCancelEdit}>
+                    <Button theme={EButtonTheme.OUTLINE_RED} className={cls.editBtn} onClick={onCancelEdit}>
                         {t('Отменить')}
                     </Button>
-                    <Button theme={ButtonTheme.OUTLINE} className={cls.saveBtn} onClick={onSave}>
+                    <Button theme={EButtonTheme.OUTLINE} className={cls.saveBtn} onClick={onSave}>
                         {t('Сохранить')}
                     </Button>
                 </>

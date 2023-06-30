@@ -17,7 +17,7 @@ import { ECountry } from 'entities/Country'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { DynamicModuleLoader, TReducerLIst } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { Text, TextTheme } from 'shared/ui/Text/Text'
+import { Text, ETextTheme } from 'shared/ui/Text/Text'
 import { useTranslation } from 'react-i18next'
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
 
@@ -109,7 +109,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
 
                 {validateErrors?.length &&
                     validateErrors.map((err) => (
-                        <Text theme={TextTheme.ERROR} text={validateErrorsTranslates[err]} key={err} />
+                        <Text theme={ETextTheme.ERROR} text={validateErrorsTranslates[err]} key={err} />
                     ))}
 
                 <ProfileCard
