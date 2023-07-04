@@ -29,6 +29,7 @@ export const fetchCommentsByArticleId = createAsyncThunk<IComment[], string | un
 
             return response.data
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.log(error)
 
             return rejectWithValue('Some error from fetchCommentsByArticleId')

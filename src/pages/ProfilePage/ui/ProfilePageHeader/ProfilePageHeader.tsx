@@ -1,4 +1,5 @@
-import { getProfileReadonly, profileActions, updateProfileData } from 'entities/Profile'
+import { getProfileData, getProfileReadonly, profileActions, updateProfileData } from 'entities/Profile'
+import { getUserAuthData } from 'entities/User'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -18,6 +19,12 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
 
     const { t } = useTranslation('profile')
 
+    const authData = useSelector(getUserAuthData)
+    const profileData = useSelector(getProfileData)
+
+    // Если id профайла, который просматриваем, и id авторизованного пользователя совпадают, значит просматриваем профиль текущего пользователя. Можно отобразить кнопку Редиктировать и пр.
+    const canEdit = authData?.id === profileData?.id
+
     const dispatch = useAppDispatch()
     const readonly = useSelector(getProfileReadonly)
 
@@ -36,20 +43,23 @@ export const ProfilePageHeader = (props: ProfilePageHeaderProps) => {
     return (
         <div className={classNames(cls.ProfilePageHeader, {}, [className])}>
             <Text title={t('Профиль')} />
-
-            {readonly ? (
-                <Button theme={EButtonTheme.OUTLINE} className={cls.editBtn} onClick={onEdit}>
-                    {t('Редактировать')}
-                </Button>
-            ) : (
-                <>
-                    <Button theme={EButtonTheme.OUTLINE_RED} className={cls.editBtn} onClick={onCancelEdit}>
-                        {t('Отменить')}
-                    </Button>
-                    <Button theme={EButtonTheme.OUTLINE} className={cls.saveBtn} onClick={onSave}>
-                        {t('Сохранить')}
-                    </Button>
-                </>
+            {canEdit && (
+                <div className={cls.btnsWrapper}>
+                    {readonly ? (
+                        <Button theme={EButtonTheme.OUTLINE} className={cls.editBtn} onClick={onEdit}>
+                            {t('Редактировать')}
+                        </Button>
+                    ) : (
+                        <>
+                            <Button theme={EButtonTheme.OUTLINE_RED} className={cls.editBtn} onClick={onCancelEdit}>
+                                {t('Отменить')}
+                            </Button>
+                            <Button theme={EButtonTheme.OUTLINE} className={cls.saveBtn} onClick={onSave}>
+                                {t('Сохранить')}
+                            </Button>
+                        </>
+                    )}
+                </div>
             )}
         </div>
     )

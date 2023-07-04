@@ -33,7 +33,6 @@ const articleDetailsCommentsSlice = createSlice({
             })
             .addCase(fetchCommentsByArticleId.fulfilled, (state, action: PayloadAction<IComment[]>) => {
                 state.isLoading = false
-                console.log('RESPONSE: ', action.payload)
 
                 // Далее Редакс самостоятельно нормализует данные и заполнит ids и entities
                 commentsAdapter.setAll(state, action.payload)

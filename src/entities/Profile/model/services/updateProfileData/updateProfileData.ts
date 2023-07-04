@@ -18,7 +18,7 @@ export const updateProfileData = createAsyncThunk<IProfile, void, IThunkConfig<E
         }
 
         try {
-            const response = await extra.api.put<IProfile>('/profile', formData)
+            const response = await extra.api.put<IProfile>(`/profile/${formData?.id}`, formData)
 
             if (!response.data) {
                 throw new Error()
@@ -26,6 +26,7 @@ export const updateProfileData = createAsyncThunk<IProfile, void, IThunkConfig<E
 
             return response.data
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.log(error)
 
             return rejectWithValue([EValidateProfileError.SERVER_ERROR])

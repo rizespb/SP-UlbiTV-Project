@@ -10,7 +10,7 @@ import {
     ProfileCard,
     profileReducer,
 } from 'entities/Profile'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { ECurrency } from 'entities/Currency'
 import { ECountry } from 'entities/Country'
@@ -19,6 +19,8 @@ import { DynamicModuleLoader, TReducerLIst } from 'shared/lib/components/Dynamic
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Text, ETextTheme } from 'shared/ui/Text/Text'
 import { useTranslation } from 'react-i18next'
+import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
+import { useParams } from 'react-router-dom'
 import { ProfilePageHeader } from './ProfilePageHeader/ProfilePageHeader'
 
 const asyncReducers: TReducerLIst = {
@@ -37,6 +39,7 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
     const error = useSelector(getProfileError)
     const readOnly = useSelector(getProfileReadonly)
     const validateErrors = useSelector(getProfileValidateErrors)
+    const { id } = useParams<{ id: string }>()
 
     const validateErrorsTranslates = {
         [EValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
@@ -46,12 +49,11 @@ const ProfilePage = ({ className }: ProfilePageProps) => {
         [EValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
     }
 
-    useEffect(() => {
-        // Чтобы в storybook запрос не отправлялся, а в Jest и во время разработки отправлялся
-        if (__PROJECT__ !== 'storybook') {
-            dispatch(fetchProfileData())
+    useInitialEffect(() => {
+        if (id) {
+            dispatch(fetchProfileData(id))
         }
-    }, [dispatch])
+    })
 
     const onChangeFirstname = useCallback(
         (value: string) => {

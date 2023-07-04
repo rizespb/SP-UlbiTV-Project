@@ -15,5 +15,7 @@
   "Вы ввели неверный логин или пароль": "You entered wrong username or password",
   "Выйти": "Log Out",
   "Статья не найдена": "Article not found",
-  "Комментарии отсутствуют": "No comments"
+  "Комментарии отсутствуют": "No comments",
+  "Введите текст комментария": "Input comment",
+  "Отправить": "Submit"
 }

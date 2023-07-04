@@ -30,6 +30,7 @@ export const loginByUsername = createAsyncThunk<IUser, ILoginByUsernameProps, IT
 
             return response.data
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.log(error)
 
             return rejectWithValue('Вы ввели неверный логин или пароль')

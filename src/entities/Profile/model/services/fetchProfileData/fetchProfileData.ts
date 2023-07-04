@@ -2,12 +2,12 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { IThunkConfig } from 'app/providers/StoreProvider'
 import { IProfile } from '../../types/profile'
 
-export const fetchProfileData = createAsyncThunk<IProfile, void, IThunkConfig<string>>(
+export const fetchProfileData = createAsyncThunk<IProfile, string, IThunkConfig<string>>(
     'profile/fetchProfileData',
-    async (_, thunkApi) => {
+    async (profileId, thunkApi) => {
         const { extra, rejectWithValue } = thunkApi
         try {
-            const response = await extra.api.get<IProfile>('/profile')
+            const response = await extra.api.get<IProfile>(`/profile/${profileId}`)
 
             if (!response.data) {
                 throw new Error()
@@ -15,6 +15,7 @@ export const fetchProfileData = createAsyncThunk<IProfile, void, IThunkConfig<st
 
             return response.data
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.log(error)
 
             return rejectWithValue('Some error from fetchProfileData')

@@ -15,6 +15,7 @@ export const fetchArticleById = createAsyncThunk<IArticle, string, IThunkConfig<
 
             return response.data
         } catch (error) {
+            // eslint-disable-next-line no-console
             console.log(error)
 
             return rejectWithValue('Some error from fetchProfileData')

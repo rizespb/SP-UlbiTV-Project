@@ -13,7 +13,7 @@ interface IDynamicModuleLoaderProps {
 }
 
 export const DynamicModuleLoader: FC<IDynamicModuleLoaderProps> = (props) => {
-    const { asyncReducers, removeAfterUnmount, children } = props
+    const { asyncReducers, removeAfterUnmount = true, children } = props
 
     const dispatch = useDispatch()
     const store = useStore() as IReduxStoreWithManager
