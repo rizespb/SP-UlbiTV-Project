@@ -20,9 +20,9 @@ import {
 import { fetchArticleById } from '../../model/services/fetchArticleById/fetchArticleById'
 import { articleDetailsReducer } from '../../model/slice/articleDetailsSlice'
 import cls from './ArticleDetails.module.scss'
-import { AtricleCodeBlockComponent } from '../AtricleCodeBlockComponent/AtricleCodeBlockComponent'
-import { AtricleImageBlockComponent } from '../AtricleImageBlockComponent/AtricleImageBlockComponent'
-import { AtricleTextBlockComponent } from '../AtricleTextBlockComponent/AtricleTextBlockComponent'
+import { ArticleCodeBlockComponent } from '../ArticleCodeBlockComponent/ArticleCodeBlockComponent'
+import { ArticleImageBlockComponent } from '../ArticleImageBlockComponent/ArticleImageBlockComponent'
+import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent'
 
 interface IArticleDetailsProps {
     className?: string
@@ -46,11 +46,11 @@ export const ArticleDetails = memo((props: IArticleDetailsProps) => {
     const renderBlock = useCallback((block: IArticleBlock) => {
         switch (block.type) {
             case EArticleBlockType.CODE:
-                return <AtricleCodeBlockComponent key={block.id} className={cls.block} block={block} />
+                return <ArticleCodeBlockComponent key={block.id} className={cls.block} block={block} />
             case EArticleBlockType.IMAGE:
-                return <AtricleImageBlockComponent key={block.id} className={cls.block} block={block} />
+                return <ArticleImageBlockComponent key={block.id} className={cls.block} block={block} />
             case EArticleBlockType.TEXT:
-                return <AtricleTextBlockComponent key={block.id} block={block} className={cls.block} />
+                return <ArticleTextBlockComponent key={block.id} block={block} className={cls.block} />
             default:
                 return null
         }

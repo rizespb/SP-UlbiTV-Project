@@ -2,18 +2,18 @@ import { memo } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { Text } from 'shared/ui/Text/Text'
 import { IArticleTextBlock } from '../../model/types/article'
-import cls from './AtricleTextBlockComponent.module.scss'
+import cls from './ArticleTextBlockComponent.module.scss'
 
-interface IAtricleTextBlockComponentProps {
+interface IArticleTextBlockComponentProps {
     className?: string
     block: IArticleTextBlock
 }
 
-export const AtricleTextBlockComponent = memo((props: IAtricleTextBlockComponentProps) => {
+export const ArticleTextBlockComponent = memo((props: IArticleTextBlockComponentProps) => {
     const { className, block } = props
 
     return (
-        <div className={classNames(cls.atricleTextBlockComponent, {}, [className])}>
+        <div className={classNames(cls.articleTextBlockComponent, {}, [className])}>
             {block.title && <Text title={block.title} className={cls.title} />}
 
             {block.paragraphs.map((paragraph) => (

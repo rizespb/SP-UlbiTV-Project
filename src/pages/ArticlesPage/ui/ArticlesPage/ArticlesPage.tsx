@@ -1,3 +1,4 @@
+import { ArticleList, EArticleView } from 'entities/Article'
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/classNames/classNames'
@@ -9,10 +10,14 @@ interface IArticlesPageProps {
 
 const ArticlesPage = (props: IArticlesPageProps) => {
     const { className } = props
-    const { t } = useTranslation('article')
+    const { t } = useTranslation('articles')
 
     // eslint-disable-next-line i18next/no-literal-string
-    return <div className={classNames(cls.articlesPage, {}, [className])}>ARTICLES PAGE</div>
+    return (
+        <div className={classNames(cls.articlesPage, {}, [className])}>
+            <ArticleList isLoading={true} view={EArticleView.BIG} articles={[]} />
+        </div>
+    )
 }
 
 export default memo(ArticlesPage)
