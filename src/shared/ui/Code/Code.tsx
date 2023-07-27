@@ -1,8 +1,7 @@
 import { useCallback } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
 import CopyIcon from '../../assets/icons/copy-20-20.svg'
-import { Button } from '../Button'
-import { EButtonTheme } from '../Button/ui/Button'
+import { Button, EButtonTheme } from '../Button'
 import cls from './Code.module.scss'
 
 interface ICodeProps {

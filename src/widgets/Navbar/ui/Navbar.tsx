@@ -4,8 +4,7 @@ import { memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { classNames } from 'shared/lib/classNames/classNames'
-import { Button } from 'shared/ui/Button'
-import { EButtonTheme } from 'shared/ui/Button/ui/Button'
+import { Button, EButtonTheme } from 'shared/ui/Button'
 import cls from './Navbar.module.scss'
 
 interface NavbarProps {

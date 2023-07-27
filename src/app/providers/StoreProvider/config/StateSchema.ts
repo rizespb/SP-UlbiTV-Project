@@ -7,6 +7,7 @@ import { IUserSchema } from 'entities/User'
 import { IAddCommentFormSchema } from 'features/addCommentForm'
 import { ILoginSchema } from 'features/AuthByUsername'
 import { IArticleDeatlsCommentsSchema } from 'pages/ArticleDetailsPage'
+import { IArticlesPageSchema } from 'pages/ArticlesPage'
 import { NavigateOptions, To } from 'react-router-dom'
 
 export interface IStateSchema {
@@ -19,6 +20,7 @@ export interface IStateSchema {
     articleDetails?: IArticleDetailsSchema
     articleDetailsComments?: IArticleDeatlsCommentsSchema
     addCommentForm?: IAddCommentFormSchema
+    articlesPage?: IArticlesPageSchema
 }
 
 export type TStateSchemaKey = keyof IStateSchema

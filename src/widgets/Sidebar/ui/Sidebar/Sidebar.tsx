@@ -1,7 +1,6 @@
 import { memo, useMemo, useState } from 'react'
 import { classNames } from 'shared/lib/classNames/classNames'
-import { Button } from 'shared/ui/Button'
-import { EButtonSize, EButtonTheme } from 'shared/ui/Button/ui/Button'
+import { Button, EButtonSize, EButtonTheme } from 'shared/ui/Button'
 import { LangSwitcher } from 'shared/ui/LangSwitcher/LangSwitcher'
 import { ThemeSwitcher } from 'shared/ui/ThemeSwitcher/ThemeSwitcher'
 import { useSelector } from 'react-redux'
