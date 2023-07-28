@@ -11,6 +11,7 @@ import { Text } from 'shared/ui/Text/Text'
 import { AddCommentForm } from 'features/addCommentForm'
 import { Button, EButtonTheme } from 'shared/ui/Button'
 import { RoutePath } from 'shared/config/routerConfig/routerConfig'
+import { Page } from 'shared/ui/Page/Page'
 import { addCommentForArticle } from '../../model/services/addCommentForArticle/addCommentForArticle'
 import { fetchCommentsByArticleId } from '../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId'
 import { getArticleCommentsIsLoading } from '../../model/selectors/comments'
@@ -51,12 +52,12 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
     })
 
     if (!id) {
-        return <div className={classNames(cls.articleDetailsPage, {}, [className])}>{t('Статья не найдена')}</div>
+        return <Page className={classNames(cls.articleDetailsPage, {}, [className])}>{t('Статья не найдена')}</Page>
     }
 
     return (
         <DynamicModuleLoader asyncReducers={asyncReducers} removeAfterUnmount={true}>
-            <div className={classNames(cls.articleDetailsPage, {}, [className])}>
+            <Page className={classNames(cls.articleDetailsPage, {}, [className])}>
                 <Button theme={EButtonTheme.OUTLINE} onClick={onBackToList}>
                     {t('Назад к списку')}
                 </Button>
@@ -68,7 +69,7 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
                 <AddCommentForm onSendComment={onSendComment} />
 
                 <CommentList isLoading={commentsIsLoading} comments={comments} />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     )
 }

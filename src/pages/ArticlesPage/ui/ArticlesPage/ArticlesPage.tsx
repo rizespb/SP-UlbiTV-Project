@@ -6,6 +6,8 @@ import { classNames } from 'shared/lib/classNames/classNames'
 import { DynamicModuleLoader, TReducerLIst } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
+import { Page } from 'shared/ui/Page/Page'
+import { fetchNextArticlesPage } from 'pages/ArticlesPage/model/services/fetchNextArticlesPage/fetchNextArticlesPage'
 import { fetchArticlesList } from '../../model/services/fetchArticlesList/fetchArticlesList'
 import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice'
 import {
@@ -40,19 +42,23 @@ const ArticlesPage = (props: IArticlesPageProps) => {
         [disptach],
     )
 
+    // Подгрузка статей при скролле
+    const onLoadNextPart = useCallback(() => {
+        disptach(fetchNextArticlesPage())
+    }, [disptach])
+
     useInitialEffect(() => {
-        disptach(fetchArticlesList())
         disptach(articlesPageActions.initState())
+        disptach(fetchArticlesList({ page: 1 }))
     })
 
-    // eslint-disable-next-line i18next/no-literal-string
     return (
         <DynamicModuleLoader asyncReducers={asyncReducers}>
-            <div className={classNames(cls.articlesPage, {}, [className])}>
+            <Page onScrollEnd={onLoadNextPart} className={classNames(cls.articlesPage, {}, [className])}>
                 <ArticleViewSelector view={view} onViewClick={onChangeView} />
 
                 <ArticleList isLoading={isLoading} view={view} articles={articles} />
-            </div>
+            </Page>
         </DynamicModuleLoader>
     )
 }
