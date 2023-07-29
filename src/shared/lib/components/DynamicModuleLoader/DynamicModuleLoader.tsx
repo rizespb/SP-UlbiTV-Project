@@ -21,10 +21,16 @@ export const DynamicModuleLoader: FC<IDynamicModuleLoaderProps> = (props) => {
     // Асинхронная загрузка редюсора
     // ТОлько при монтировании DynamicModuleLoader мы добавляем asycReducer в стор
     useEffect(() => {
+        const mountedReducers = store.reducerManager.getMountedReducers()
+
         Object.entries(asyncReducers).forEach(([reducerKey, asyncReducer]) => {
-            store.reducerManager.add(reducerKey as TStateSchemaKey, asyncReducer)
-            // Чтобы в Redux DevTools мы могли отследить добавление редюсора
-            dispatch({ type: `@INIT ${reducerKey}` })
+            const mounted = mountedReducers[reducerKey as TStateSchemaKey]
+
+            if (!mounted) {
+                store.reducerManager.add(reducerKey as TStateSchemaKey, asyncReducer)
+                // Чтобы в Redux DevTools мы могли отследить добавление редюсора
+                dispatch({ type: `@INIT ${reducerKey}` })
+            }
         })
 
         return () => {

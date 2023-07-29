@@ -10,4 +10,7 @@ export interface IArticlesPageSchema extends EntityState<IArticle> {
     page: number
     limit?: number
     hasMore: boolean
+
+    // Флаг, который после первого захода нас траницу статей меняется на true, чтобы если мы вернулись на эту страницу с другой страницы у нас не происходил повторный фетчинг статей с сервера
+    _inited: boolean
 }

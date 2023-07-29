@@ -1,5 +1,5 @@
 import { AnyAction, combineReducers, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
-import { IReducerManager, IStateSchema, TStateSchemaKey } from './stateSchema'
+import { IReducerManager, IStateSchema, TMountedReducers, TStateSchemaKey } from './stateSchema'
 
 // Фукнция создает корневой редюсор и позволяет удалить/добавить в него другие редюсоры в рантайме
 // Для асинхронной подгрузки редюсоров
@@ -13,8 +13,15 @@ export function createReducerManager(initialReducers: ReducersMapObject<IStateSc
     // Массив с названиями редюсоров, которые мы хотим удалить при первоначальной сборке и запуске приложения
     let keysToRemove: TStateSchemaKey[] = []
 
+    // Карта смонтированных редюсоров
+    // true - вмонтирован, false - не вмонитрован
+    const mountedReducers: TMountedReducers = {}
+
     return {
         getReducerMap: () => reducers,
+
+        // По сути, это дубль метода getReducerMap
+        getMountedReducers: () => mountedReducers,
 
         // РутРедюсор, которому будет передан стейт из из стейта будут удалены все слайсы, названия котороых мы поместили в keysToRemove
 
@@ -42,6 +49,9 @@ export function createReducerManager(initialReducers: ReducersMapObject<IStateSc
             // Добавляем в редюсоры новый редюсор по переданному ключу
             reducers[key] = reducer
 
+            // Обновляем инфу в карте смонтированных редюсоров
+            mountedReducers[key] = true
+
             // Создаем новый корневой редюсор
             combinedReducer = combineReducers(reducers)
         },
@@ -57,6 +67,9 @@ export function createReducerManager(initialReducers: ReducersMapObject<IStateSc
 
             // Add the key to the list of keys to clean up
             keysToRemove.push(key)
+
+            // Обновляем инфу в карте смонтированных редюсоров
+            mountedReducers[key] = false
 
             // Generate a new combined reducer
             combinedReducer = combineReducers(reducers)

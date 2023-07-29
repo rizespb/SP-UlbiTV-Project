@@ -25,9 +25,6 @@ export const loginByUsername = createAsyncThunk<IUser, ILoginByUsernameProps, IT
             localStorage.setItem(USER_LOCALSTORAGE_KEY, JSON.stringify(response.data))
             dispatch(userActions.setAuthData(response.data))
 
-            // У Ulbi эта строчка удалена
-            extra.navigate?.('/about')
-
             return response.data
         } catch (error) {
             // eslint-disable-next-line no-console
