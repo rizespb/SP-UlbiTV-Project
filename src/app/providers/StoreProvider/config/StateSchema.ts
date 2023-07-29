@@ -6,12 +6,15 @@ import { IProfileSchema } from 'entities/Profile'
 import { IUserSchema } from 'entities/User'
 import { IAddCommentFormSchema } from 'features/addCommentForm'
 import { ILoginSchema } from 'features/AuthByUsername'
+import { UISchema } from 'features/UI'
 import { IArticleDeatlsCommentsSchema } from 'pages/ArticleDetailsPage'
 import { IArticlesPageSchema } from 'pages/ArticlesPage'
 
 export interface IStateSchema {
     counter: ICounterSchema
     user: IUserSchema
+    // Слайс для хранения данных о позиции скролла на каждой странице (и, возможно, других Ui-фишках)
+    ui: UISchema
 
     // Асинхронные редюсоры
     loginForm?: ILoginSchema

@@ -1,7 +1,7 @@
 import { CombinedState, configureStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
 import { counterReducer } from 'entities/Counter'
 import { userReducer } from 'entities/User'
-import { NavigateOptions, To } from 'react-router-dom'
+import { uiReducer } from 'features/UI'
 import { $api } from 'shared/api/api'
 import { createReducerManager } from './reducerManager'
 import { IStateSchema, IThunkExtraArgument } from './stateSchema'
@@ -13,6 +13,7 @@ export function createReduxStore(initialState?: IStateSchema, asyncReducers?: Re
         ...asyncReducers,
         counter: counterReducer,
         user: userReducer,
+        ui: uiReducer,
     }
 
     const reducerManager = createReducerManager(rootReducer)
