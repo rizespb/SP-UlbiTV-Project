@@ -48,7 +48,7 @@ export const Page = (props: IPageProps) => {
         <section ref={wrapperRef} className={classNames(cls.page, {}, [className])} onScroll={onScroll}>
             {children}
             {/* Этот div для useInfiniteScroll - при достижении конца страницы  будет вызван onScrollEnd (например, при подгрузке списка статей) */}
-            <div ref={triggerRef} />
+            {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
         </section>
     )
 }

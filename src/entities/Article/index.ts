@@ -5,4 +5,8 @@ export { ArticleDetails } from './ui/ArticleDetails/ArticleDetails'
 export { IArticleDetailsSchema } from './model/types/articleDetailsSchema'
 
 export { getArticleDetailsData } from './model/selectors/articleDetails'
-export { EArticleView } from './model/types/article'
+export { EArticleView, EArticleType } from './model/types/article'
+
+export { EArticleSortField } from './model/types/article'
+export { ArticleSortSelector } from './ui/ArticleSortSelector/ArticleSortSelector'
+export { ArticleTypeTabs } from './ui/ArticleTypeTabs/ArticleTypeTabs'

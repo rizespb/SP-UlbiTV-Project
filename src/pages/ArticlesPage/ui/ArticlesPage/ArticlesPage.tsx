@@ -1,4 +1,4 @@
-import { ArticleList, ArticleViewSelector, EArticleView } from 'entities/Article'
+import { ArticleList } from 'entities/Article'
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -7,15 +7,17 @@ import { DynamicModuleLoader, TReducerLIst } from 'shared/lib/components/Dynamic
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { Page } from 'widgets/Page/Page'
+import { useSearchParams } from 'react-router-dom'
 import { fetchNextArticlesPage } from '../../model/services/fetchNextArticlesPage/fetchNextArticlesPage'
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage'
-import { articlesPageActions, articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice'
+import { articlesPageReducer, getArticles } from '../../model/slices/articlesPageSlice'
 import {
     getArticlesPageIsLoading,
     getArticlesPageView,
     getArticlesPageError,
 } from '../../model/selectors/articlesPageSelectors'
 import cls from './ArticlesPage.module.scss'
+import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters'
 
 interface IArticlesPageProps {
     className?: string
@@ -35,12 +37,7 @@ const ArticlesPage = (props: IArticlesPageProps) => {
     const view = useSelector(getArticlesPageView)
     const error = useSelector(getArticlesPageError)
 
-    const onChangeView = useCallback(
-        (view: EArticleView) => {
-            disptach(articlesPageActions.setView(view))
-        },
-        [disptach],
-    )
+    const [searchParams, setSearchParams] = useSearchParams()
 
     // Подгрузка статей при скролле
     const onLoadNextPart = useCallback(() => {
@@ -48,15 +45,15 @@ const ArticlesPage = (props: IArticlesPageProps) => {
     }, [disptach])
 
     useInitialEffect(() => {
-        disptach(initArticlesPage())
+        disptach(initArticlesPage(searchParams))
     })
 
     return (
         <DynamicModuleLoader asyncReducers={asyncReducers} removeAfterUnmount={false}>
             <Page onScrollEnd={onLoadNextPart} className={classNames(cls.articlesPage, {}, [className])}>
-                <ArticleViewSelector view={view} onViewClick={onChangeView} />
+                <ArticlesPageFilters />
 
-                <ArticleList isLoading={isLoading} view={view} articles={articles} />
+                <ArticleList isLoading={isLoading} view={view} articles={articles} className={cls.list} />
             </Page>
         </DynamicModuleLoader>
     )

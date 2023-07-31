@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/classNames/classNames'
+import { ETextSize, Text } from 'shared/ui/Text/Text'
 import { EArticleView, IArticle } from '../../model/types/article'
 import { ArticleListItem } from '../ArticleListItem/ArticleListItem'
 import { ArticleListItemSkeleton } from '../ArticleListItem/ArticleListItemSkeleton'
@@ -20,11 +21,19 @@ const getSkeletons = (view: EArticleView) =>
 
 export const ArticleList = memo((props: IArticleListProps) => {
     const { className, articles, isLoading, view = EArticleView.SMALL } = props
-    const { t } = useTranslation()
+    const { t } = useTranslation('articles')
 
     const renderArticle = (article: IArticle) => (
         <ArticleListItem article={article} view={view} key={article.id} className={cls.card} />
     )
+
+    if (!isLoading && !articles.length) {
+        return (
+            <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
+                <Text size={ETextSize.L} title={t('Статьи не найдены')} />
+            </div>
+        )
+    }
 
     return (
         <div className={classNames(cls.articleList, {}, [className, cls[view]])}>
