@@ -7,7 +7,7 @@ import { IUserSchema } from 'entities/User'
 import { IAddCommentFormSchema } from 'features/addCommentForm'
 import { ILoginSchema } from 'features/AuthByUsername'
 import { UISchema } from 'features/UI'
-import { IArticleDeatlsCommentsSchema } from 'pages/ArticleDetailsPage'
+import { IArticleDetailsPageSchema } from 'pages/ArticleDetailsPage'
 import { IArticlesPageSchema } from 'pages/ArticlesPage'
 
 export interface IStateSchema {
@@ -19,10 +19,12 @@ export interface IStateSchema {
     // Асинхронные редюсоры
     loginForm?: ILoginSchema
     profile?: IProfileSchema
+    // Это стайл Статьи (в часности, загрузка статьи по ID)
     articleDetails?: IArticleDetailsSchema
-    articleDetailsComments?: IArticleDeatlsCommentsSchema
     addCommentForm?: IAddCommentFormSchema
     articlesPage?: IArticlesPageSchema
+    // Это слайс с комментариями и рекомендациями
+    articleDetailsPage?: IArticleDetailsPageSchema
 }
 
 export type TStateSchemaKey = keyof IStateSchema
