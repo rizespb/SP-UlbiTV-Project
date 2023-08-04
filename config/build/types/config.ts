@@ -10,6 +10,10 @@ export interface BuildPath {
     html: string
     // путь к папке src:
     src: string
+    // путь до файлов с переводами
+    locales: string
+    // в какую папку при билде помещать переводы
+    buildLocales: string
 }
 
 export interface BuildEnv {

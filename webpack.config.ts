@@ -11,6 +11,10 @@ export default (env: BuildEnv) => {
         build: path.resolve(__dirname, 'build'),
         html: path.resolve(__dirname, 'public', 'index.html'),
         src: path.resolve(__dirname, 'src'),
+        // путь до файлов с переводами
+        locales: path.resolve(__dirname, 'public', 'locales'),
+        // в какую папку при билде помещать переводы
+        buildLocales: path.resolve(__dirname, 'build', 'locales'),
     }
 
     const mode = env.mode || 'development'
