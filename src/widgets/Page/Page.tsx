@@ -16,6 +16,8 @@ interface IPageProps {
     onScrollEnd?: () => void
 }
 
+export const PAGE_ID = 'PAGE_ID'
+
 export const Page = (props: IPageProps) => {
     const { className, children, onScrollEnd } = props
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>
@@ -45,7 +47,7 @@ export const Page = (props: IPageProps) => {
     }, 500)
 
     return (
-        <section ref={wrapperRef} className={classNames(cls.page, {}, [className])} onScroll={onScroll}>
+        <section ref={wrapperRef} className={classNames(cls.page, {}, [className])} onScroll={onScroll} id={PAGE_ID}>
             {children}
             {/* Этот div для useInfiniteScroll - при достижении конца страницы  будет вызван onScrollEnd (например, при подгрузке списка статей) */}
             {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
