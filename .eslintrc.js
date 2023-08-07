@@ -20,7 +20,7 @@ module.exports = {
         sourceType: 'module',
     },
     // i18next -будет указывать на, что требуется обернуть тектст в хук для перевода
-    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'prettier'],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'prettier', 'rizespb-fsd'],
     rules: {
         semi: ['error', 'never'],
 
@@ -58,6 +58,7 @@ module.exports = {
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+        'rizespb-fsd/path-checker': 'error',
     },
     globals: {
         __IS_DEV__: true,

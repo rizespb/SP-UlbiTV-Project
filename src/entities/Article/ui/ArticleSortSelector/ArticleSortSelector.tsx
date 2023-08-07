@@ -1,9 +1,9 @@
-import { EArticleSortField } from 'entities/Article/model/types/article'
 import { memo, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { TSortOrder } from 'shared/types'
 import { ISelectOption, Select } from 'shared/ui/Select/Select'
+import { EArticleSortField } from '../../model/types/article'
 import cls from './ArticleSortSelector.module.scss'
 
 interface IArticleSortSelectorProps {
