@@ -12,6 +12,9 @@ export default ({ config }: { config: webpack.Configuration }) => {
         html: '',
         entry: '',
         src: path.resolve(__dirname, '..', '..', 'src'),
+        // ВНИМАНИЕ! В storybook нам переводы особо не нужны, но если будет надо, тогда надо прописать пути до папки с переводами
+        locales: '',
+        buildLocales: '',
     }
 
     // Для понимания Сторибуком абсолютных импортов в проекте

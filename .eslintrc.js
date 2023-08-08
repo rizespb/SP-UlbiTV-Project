@@ -44,7 +44,13 @@ module.exports = {
         // Разрешаем нижние подчеркивания
         'no-underscore-dangle': 'off',
         // показывать ошибку, если строки в JSX не обернуты в хук для перевода. Игнорировать текст в аттрибутах data-testid, to...
-        'i18next/no-literal-string': ['error', { markupOnly: true, ignoreAttribute: ['data-testid', 'to', 'target'] }],
+        'i18next/no-literal-string': [
+            'error',
+            {
+                markupOnly: true,
+                ignoreAttribute: ['data-testid', 'to', 'target', 'direction', 'justify', 'align', 'gap'],
+            },
+        ],
         // Чтобы не конвертировал prop={true} в просто prop
         'react/jsx-boolean-value': 'off',
         'jsx-a11y/no-static-element-interactions': 'off',
