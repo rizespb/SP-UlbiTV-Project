@@ -66,3 +66,19 @@ SizeL.args = {
     size: ETextSize.L,
 }
 SizeL.decorators = [ThemeDecorator(Theme.LIGHT)]
+
+export const SizeM = Template.bind({})
+SizeM.args = {
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+    size: ETextSize.M,
+}
+SizeM.decorators = [ThemeDecorator(Theme.LIGHT)]
+
+export const SizeS = Template.bind({})
+SizeS.args = {
+    title: 'Title lorem ipsun',
+    text: 'Description Description Description Description',
+    size: ETextSize.S,
+}
+SizeS.decorators = [ThemeDecorator(Theme.LIGHT)]
