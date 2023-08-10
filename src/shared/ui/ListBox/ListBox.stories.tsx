@@ -10,28 +10,67 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
+    decorators: [
+        (Story) => (
+            <div style={{ padding: 100 }}>
+                <Story />
+            </div>
+        ),
+    ],
 } as ComponentMeta<typeof ListBox>
 
 const Template: ComponentStory<typeof ListBox> = (args) => <ListBox {...args} />
 
 export const Normal = Template.bind({})
 Normal.args = {
+    value: '123',
     items: [
-        { value: '1', content: 'Item 1' },
-        { value: '2', content: 'Item 2' },
-        { value: '3', content: 'Item 3' },
-        { value: '4', content: 'Item 4', disabled: true },
-        { value: '5', content: 'Item 5' },
-        { value: '6', content: 'Item 6' },
-        { value: '7', content: 'Item 7' },
+        { content: '1asfasfasf23', value: '123' },
+        { content: '1asfasfasf21233', value: '1232' },
     ],
-    // Какое значение выбирать, если пока ничего не выбрано
-    defaultValue: 'Выберите значение',
-    onChange: (value: string) => {
-        // eslint-disable-next-line no-console
-        console.log(value)
-    },
-    direction: 'bottom',
-    label: 'Это label',
 }
 Normal.decorators = [ThemeDecorator(Theme.LIGHT)]
+
+export const topLeft = Template.bind({})
+topLeft.args = {
+    direction: 'top left',
+    value: '123',
+    items: [
+        { content: '1asfasfasf23', value: '123' },
+        { content: '1asfasfasf21233', value: '1232' },
+    ],
+}
+topLeft.decorators = [ThemeDecorator(Theme.LIGHT)]
+
+export const topRight = Template.bind({})
+topRight.args = {
+    direction: 'top right',
+    value: '123',
+    items: [
+        { content: '1asfasfasf23', value: '123' },
+        { content: '1asfasfasf21233', value: '1232' },
+    ],
+}
+topRight.decorators = [ThemeDecorator(Theme.LIGHT)]
+
+export const bottomLeft = Template.bind({})
+bottomLeft.args = {
+    direction: 'bottom left',
+    value: '123',
+    items: [
+        { content: '1asfasfasf23', value: '123' },
+        { content: '1asfasfasf21233', value: '1232' },
+    ],
+}
+bottomLeft.decorators = [ThemeDecorator(Theme.LIGHT)]
+
+export const bottomRight = Template.bind({})
+bottomRight.args = {
+    direction: 'bottom right',
+    value: '123',
+    items: [
+        { content: '1asfasfasf23', value: '123' },
+        { content: '1asfasfasf21233', value: '1232' },
+    ],
+}
+bottomRight.decorators = [ThemeDecorator(Theme.LIGHT)]
