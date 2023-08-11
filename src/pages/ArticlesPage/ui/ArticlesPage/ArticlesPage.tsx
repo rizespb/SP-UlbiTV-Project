@@ -41,7 +41,10 @@ const ArticlesPage = (props: IArticlesPageProps) => {
 
     // Подгрузка статей при скролле
     const onLoadNextPart = useCallback(() => {
-        disptach(fetchNextArticlesPage())
+        // Мой код, чтобы избежать баг в Сторибуке
+        if (__PROJECT__ !== 'storybook') {
+            disptach(fetchNextArticlesPage())
+        }
     }, [disptach])
 
     useInitialEffect(() => {

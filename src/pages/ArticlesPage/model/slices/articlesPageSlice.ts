@@ -76,6 +76,7 @@ const articlesPageSlice = createSlice({
                 // Если пришло количество статей, меньше, чем limit, значит статьи на сервере закончились
                 state.hasMore = action.payload.length >= state.limit
 
+                // action.meta.arg будет содержать аргументы, переданные в функцию fetchArticlesList
                 if (action.meta.arg.replaced) {
                     // Если true, тогда перезаписываем имеющиеся данные (например, приизменении парметров сортировки)
                     articlesAdapter.setAll(state, action.payload)
