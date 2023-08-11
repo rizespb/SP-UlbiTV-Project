@@ -15,9 +15,11 @@
         "test:unit": "jest --config ./config/jest/jest.config.ts",
         "comment for test:ui": "Для выполнения тестов нужен запущенный Докер на компьютере",
         "test:ui": "loki test",
+        "comment for test:ui:ok": "подтверждение внесенных изменений, когда ui-тесты падают",
         "test:ui:ok": "loki approve",
         "comment for test:ui:ci": "test:ui:ci для запуска loki в GitCI. ЗАПУСКАТЬ после storybook:build",
         "test:ui:ci": "loki --requireReference --reactUri file:./storybook-static",
+        "comment for test:ui:ci:ok": "если ui-тесты в гите падают, можно поддтвердить внесенные изменения. Почему-то test:ui:ok недостаточно",
         "test:ui:ci:ok": "loki update --reactUri file:./storybook-static",
         "comment for test:ui:json/html": "test:ui:json для запуска scripts/generate-visual-json-report, а test:ui:html для конвертации полученного json-отчета в html. Подробности см. в файле scripts/generate-visual-json-report",
         "test:ui:json": "node scripts/generate-visual-json-report.js",
@@ -25,7 +27,9 @@
         "test:ui:report": "npm run test:ui:json & npm run test:ui:html",
         "storybook": "storybook dev -p 6006 -c ./config/storybook",
         "storybook:build": "storybook build -c ./config/storybook",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "comment for generate:slice": "команда для запуска скрипта автоматической генерации слайсов FSD (не redux-slice)",
+        "generate:slice": "node ./scripts/createSlice/index.js"
     },
     "keywords": [],
     "author": "",
