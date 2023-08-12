@@ -2,19 +2,23 @@ import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } f
 import { AxiosInstance } from 'axios'
 import { IArticleDetailsSchema } from 'entities/Article'
 import { ICounterSchema } from 'entities/Counter'
-import { IProfileSchema } from 'entities/Profile'
 import { IUserSchema } from 'entities/User'
 import { IAddCommentFormSchema } from 'features/addCommentForm'
 import { ILoginSchema } from 'features/AuthByUsername'
+import { IProfileSchema } from 'features/editableProfileCard'
 import { UISchema } from 'features/UI'
 import { IArticleDetailsPageSchema } from 'pages/ArticleDetailsPage'
 import { IArticlesPageSchema } from 'pages/ArticlesPage'
+import { rtkApi } from 'shared/api/rtkApi'
 
 export interface IStateSchema {
     counter: ICounterSchema
     user: IUserSchema
     // Слайс для хранения данных о позиции скролла на каждой странице (и, возможно, других Ui-фишках)
     ui: UISchema
+
+    // Подключаем RTK Query
+    [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
 
     // Асинхронные редюсоры
     loginForm?: ILoginSchema

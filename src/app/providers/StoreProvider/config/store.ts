@@ -3,6 +3,7 @@ import { counterReducer } from 'entities/Counter'
 import { userReducer } from 'entities/User'
 import { uiReducer } from 'features/UI'
 import { $api } from 'shared/api/api'
+import { rtkApi } from 'shared/api/rtkApi'
 import { createReducerManager } from './reducerManager'
 import { IStateSchema, IThunkExtraArgument } from './stateSchema'
 
@@ -14,6 +15,9 @@ export function createReduxStore(initialState?: IStateSchema, asyncReducers?: Re
         counter: counterReducer,
         user: userReducer,
         ui: uiReducer,
+
+        // Подключение RTK Query: Подключаем редюсор для RTK Query
+        [rtkApi.reducerPath]: rtkApi.reducer,
     }
 
     const reducerManager = createReducerManager(rootReducer)
@@ -33,7 +37,8 @@ export function createReduxStore(initialState?: IStateSchema, asyncReducers?: Re
                     // Третим аргументов в thunk будет передваться extraArgument
                     extraArgument: extraArg,
                 },
-            }),
+                // Подключение RTK Query:
+            }).concat(rtkApi.middleware),
     })
 
     // @ts-ignore

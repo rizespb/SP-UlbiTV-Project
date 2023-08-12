@@ -4,5 +4,6 @@
     "Все статьи": "All articles",
     "Экономика": "Economics",
     "Наука": "Science",
-    "Статьи не найдены": "No articles"
+    "Статьи не найдены": "No articles",
+    "Ошибка при загрузке статей": "Some error occured while loading articles"
 }

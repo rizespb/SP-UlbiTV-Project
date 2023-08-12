@@ -12,6 +12,9 @@ interface IDynamicModuleLoaderProps {
     removeAfterUnmount?: boolean
 }
 
+// Компонент осуществляет динамическую загрузку редюсора
+// То есть переданные редюсоры (asyncReducers) будут подключен к стейту только при монтировании компонента
+// Так же можно передать проп, который будет удалять или не удалять редюсор (и соответствующую часть стейта) из стейта после размонтирования компонента
 export const DynamicModuleLoader: FC<IDynamicModuleLoaderProps> = (props) => {
     const { asyncReducers, removeAfterUnmount = true, children } = props
 
