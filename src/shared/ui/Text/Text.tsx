@@ -27,6 +27,8 @@ export interface ITextProps {
     theme?: ETextTheme
     align?: ETextAlign
     size?: ETextSize
+
+    'data-testid'?: string
 }
 
 type THeaderTagType = 'h1' | 'h2' | 'h3'
@@ -38,7 +40,15 @@ const mapSizeToHeaderTag: Record<ETextSize, THeaderTagType> = {
 }
 
 export const Text = memo((props: ITextProps) => {
-    const { className, title, text, theme = ETextTheme.PRIMARY, align = ETextAlign.LEFT, size = ETextSize.M } = props
+    const {
+        className,
+        title,
+        text,
+        theme = ETextTheme.PRIMARY,
+        align = ETextAlign.LEFT,
+        size = ETextSize.M,
+        'data-testid': dataTestId = 'Text',
+    } = props
     const HeaderTag = mapSizeToHeaderTag[size]
 
     const mods: TMods = {
@@ -49,8 +59,17 @@ export const Text = memo((props: ITextProps) => {
 
     return (
         <div className={classNames(cls.Text, mods, [className])}>
-            {title && <HeaderTag className={cls.title}>{title}</HeaderTag>}
-            {text && <p className={cls.text}>{text}</p>}
+            {title && (
+                <HeaderTag className={cls.title} data-testid={`${dataTestId}.Header`}>
+                    {title}
+                </HeaderTag>
+            )}
+
+            {text && (
+                <p className={cls.text} data-testid={`${dataTestId}.Paragraph`}>
+                    {text}
+                </p>
+            )}
         </div>
     )
 })

@@ -13,8 +13,12 @@ interface IArticleListProps {
     className?: string
     articles: IArticle[]
     isLoading?: boolean
-    view?: EArticleView
+    // Открывать ссылки в новой вкладке или в текущей
     target?: HTMLAttributeAnchorTarget
+    view?: EArticleView
+    // Нужна или нет виртуализация в ArticleList
+    // Например, в случае, если используется в компоненте Рекомендаций, виртуализация не нужна
+    virtualized?: boolean
 }
 
 const getSkeletons = (view: EArticleView) =>
@@ -23,7 +27,7 @@ const getSkeletons = (view: EArticleView) =>
         .map((_item, index) => <ArticleListItemSkeleton className={cls.card} key={index} view={view} />)
 
 export const ArticleList = memo((props: IArticleListProps) => {
-    const { className, articles, isLoading, view = EArticleView.SMALL, target } = props
+    const { className, articles, isLoading, view = EArticleView.SMALL, target, virtualized = true } = props
     const { t } = useTranslation('articles')
 
     const isBig = view === EArticleView.BIG
@@ -69,18 +73,33 @@ export const ArticleList = memo((props: IArticleListProps) => {
         <WindowScroller scrollElement={document.getElementById(PAGE_ID) as Element}>
             {({ height, width, registerChild, onChildScroll, isScrolling, scrollTop }) => (
                 <div ref={registerChild} className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-                    <List
-                        height={height ?? 700}
-                        rowCount={rowCount}
-                        // 700 и 330 подобрали на глаз, чтобы смотрелось адекватно
-                        rowHeight={isBig ? 700 : 330}
-                        rowRenderer={rowRender}
-                        width={width ? width - 80 : 700}
-                        autoHeight
-                        onScroll={onChildScroll}
-                        isScrolling={isScrolling}
-                        scrollTop={scrollTop}
-                    />
+                    
+                    {/* используем список с виртуализацией или обычный */}
+                    {virtualized ? (
+                        <List
+                            height={height ?? 700}
+                            rowCount={rowCount}
+                            // 700 и 330 подобрали на глаз, чтобы смотрелось адекватно
+                            rowHeight={isBig ? 700 : 330}
+                            rowRenderer={rowRender}
+                            width={width ? width - 80 : 700}
+                            autoHeight
+                            onScroll={onChildScroll}
+                            isScrolling={isScrolling}
+                            scrollTop={scrollTop}
+                        />
+                    ) : (
+                        articles.map((item) => (
+                            <ArticleListItem
+                                article={item}
+                                view={view}
+                                target={target}
+                                key={item.id}
+                                className={cls.card}
+                            />
+                        ))
+                    )}
+
                     {isLoading && getSkeletons(view)}
                 </div>
             )}

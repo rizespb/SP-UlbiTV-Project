@@ -17,7 +17,7 @@ export const ArticleRecommendationsList = memo((props: IArticleRecommendationsLi
     // Передаем limit в useArticleRecommendationsList
     const { isLoading, data: articles, error } = useArticleRecommendationsList(3)
 
-    if (isLoading || error) {
+    if (isLoading || error || !articles) {
         return null
     }
 
@@ -26,7 +26,7 @@ export const ArticleRecommendationsList = memo((props: IArticleRecommendationsLi
             <div className={classNames('', {}, [className])}>
                 <Text size={ETextSize.L} title={t('Рекомендуем')} />
 
-                <ArticleList articles={articles} target="_blank" />
+                <ArticleList articles={articles} target="_blank" virtualized={false} />
             </div>
         </VStack>
     )
