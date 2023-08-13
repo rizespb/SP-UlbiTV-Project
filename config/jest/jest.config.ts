@@ -61,6 +61,22 @@ export default {
         '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
     },
 
+    // Подключаем отчеты о прохождении тестов
+    reporters: [
+        'default',
+        [
+            'jest-html-reporters',
+            {
+                publicPath: '<rootDir>/reports/unit',
+                filename: 'report.html',
+                openReport: true,
+                // не будут гененрироваться отдельные js-файлы отчета
+                // Весь код будет в report.html без доп файлов
+                inlineSource: true,
+            },
+        ],
+    ],
+
     // Indicates whether the coverage information should be collected while executing the test
     // collectCoverage: false,
 
