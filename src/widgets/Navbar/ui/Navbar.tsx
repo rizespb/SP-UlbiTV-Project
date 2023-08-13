@@ -1,4 +1,5 @@
-import { getUserAuthData, userActions } from 'entities/User'
+/* eslint-disable indent */
+import { getUserAuthData, isUserAdmin, isUserManager, userActions } from 'entities/User'
 import { LoginModal } from 'features/AuthByUsername'
 import { memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -22,6 +23,9 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const authData = useSelector(getUserAuthData)
     const dispatch = useDispatch()
 
+    const isAdmin = useSelector(isUserAdmin)
+    const isManager = useSelector(isUserManager)
+
     const onCloseModal = useCallback(() => {
         setIsAuthModal(false)
     }, [])
@@ -33,6 +37,8 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     const onLogOut = useCallback(() => {
         dispatch(userActions.logout())
     }, [dispatch])
+
+    const isAdminPanelAvailable = isAdmin || isManager
 
     if (authData) {
         return (
@@ -47,6 +53,15 @@ export const Navbar = memo(({ className }: NavbarProps) => {
                     className={cls.dropdown}
                     direction="bottom left"
                     items={[
+                        // Если позователю доступна админ панель, то отрисовываем ссылку, если нет, то не отрисовываем
+                        ...(isAdminPanelAvailable
+                            ? [
+                                  {
+                                      content: t('Админка'),
+                                      href: RoutePath.admin_panel,
+                                  },
+                              ]
+                            : []),
                         {
                             content: t('Профиль пользователя'),
                             href: RoutePath.profile + authData.id,
