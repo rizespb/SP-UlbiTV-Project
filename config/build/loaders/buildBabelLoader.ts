@@ -1,8 +1,15 @@
+/* eslint-disable indent */
 import { BuildOptions } from '../types/config'
+import babelRemovePropsPlugin from '../../babel/babelRemovePropsPlugin'
 
-export function buildBabelLoader({ isDev }: BuildOptions) {
+interface BuildBabelLoaderProps extends BuildOptions {
+    isTsx?: boolean
+}
+
+export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
     return {
-        test: /\.(js|jsx|ts|tsx)$/,
+        // Обрабатываем или только файлы с JSX (TSX), или только файлы JS(TS)
+        test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
         exclude: /node_modules/,
         use: {
             loader: 'babel-loader',
@@ -19,6 +26,27 @@ export function buildBabelLoader({ isDev }: BuildOptions) {
                             keyAsDefaultValue: true,
                         },
                     ],
+                    // Добавилли при отказе от typeScriptLoader-а и замены его функций babelLoader-ом
+                    // Важно! После отключения typescriptLoader у нас не будет происходить проверка типов: babelLoader это не может делать. Для проверки типов надо добавить плагин fork-ts-checker-webpack-plugin в buildPlugins
+                    [
+                        // Поддержка синтаксиса TS
+                        '@babel/plugin-transform-typescript',
+                        {
+                            // Парсить JSX или нет
+                            isTsx,
+                        },
+                    ],
+                    // Добавилли при отказе от typeScriptLoader-а и замены его функций babelLoader-ом
+                    '@babel/plugin-transform-runtime',
+                    // Подключаем самописный плагин для удаления data-testid из кода JSX (*.) в нЕ dev-режиме
+                    !isDev &&
+                        isTsx && [
+                            babelRemovePropsPlugin,
+                            {
+                                props: ['data-testid'],
+                            },
+                        ],
+
                     // Это часть подключения React-refresh-plugin
                     // обновление страницы без перезагрузки а DEV-режиме
                     isDev && require.resolve('react-refresh/babel'),

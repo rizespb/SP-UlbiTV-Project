@@ -4,7 +4,10 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import webpack from 'webpack'
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin'
 import CopyPlugin from 'copy-webpack-plugin'
+// Проверка кольцевых зависимостей
 import CircularDependencyPlugin from 'circular-dependency-plugin'
+// Проверка типов TS (потребовалось после отключения typeScriptLoader)
+import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin'
 import { BuildOptions } from './types/config'
 
 export function buildPlugins(buildOptions: BuildOptions): webpack.WebpackPluginInstance[] {
@@ -42,6 +45,16 @@ export function buildPlugins(buildOptions: BuildOptions): webpack.WebpackPluginI
         new CircularDependencyPlugin({
             exclude: /node_modules/,
             failOnError: true,
+        }),
+        // Важно! После отключения typescriptLoader у нас не будет происходить проверка типов: babelLoader это не может делать. Для проверки типов надо добавить плагин fork-ts-checker-webpack-plugin
+        new ForkTsCheckerWebpackPlugin({
+            typescript: {
+                diagnosticOptions: {
+                    semantic: true,
+                    syntactic: true,
+                },
+                mode: 'write-references',
+            },
         }),
     ]
 
