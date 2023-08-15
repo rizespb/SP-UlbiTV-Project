@@ -27,7 +27,7 @@ import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleT
 
 interface IArticleDetailsProps {
     className?: string
-    id: string
+    id?: string
 }
 
 const asyncReducers: TReducerLIst = {

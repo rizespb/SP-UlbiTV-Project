@@ -72,8 +72,9 @@ export const ArticleList = memo((props: IArticleListProps) => {
     return (
         <WindowScroller scrollElement={document.getElementById(PAGE_ID) as Element}>
             {({ height, width, registerChild, onChildScroll, isScrolling, scrollTop }) => (
+                // Баг связан с тем, что переехали на React 18, а react-virtualized старая библиотека. И типы немного не совпадают
+                // @ts-ignore
                 <div ref={registerChild} className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-                    
                     {/* используем список с виртуализацией или обычный */}
                     {virtualized ? (
                         <List

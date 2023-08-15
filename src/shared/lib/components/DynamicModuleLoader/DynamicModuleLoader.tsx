@@ -1,6 +1,6 @@
 import { Reducer } from '@reduxjs/toolkit'
 import { IReduxStoreWithManager, TStateSchemaKey } from 'app/providers/StoreProvider'
-import { FC, useEffect } from 'react'
+import { FC, ReactNode, useEffect } from 'react'
 import { useDispatch, useStore } from 'react-redux'
 
 export type TReducerLIst = {
@@ -10,6 +10,7 @@ export type TReducerLIst = {
 interface IDynamicModuleLoaderProps {
     asyncReducers: TReducerLIst
     removeAfterUnmount?: boolean
+    children: ReactNode
 }
 
 // Компонент осуществляет динамическую загрузку редюсора
