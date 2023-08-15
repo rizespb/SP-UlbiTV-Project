@@ -3,7 +3,7 @@ import { memo } from 'react'
 import { Card } from 'shared/ui/Card/Card'
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton'
 import cls from './ArticleListItem.module.scss'
-import { EArticleView } from '../../model/types/article'
+import { EArticleView } from '../../model/consts/articleConsts'
 
 interface IArticleListItemSkeletonProps {
     className?: string

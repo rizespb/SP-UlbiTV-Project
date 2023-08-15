@@ -33,7 +33,11 @@
         // import * as React from 'react';
         // можно писать такой
         // import React from 'react';
-        "allowSyntheticDefaultImports": true
+        "allowSyntheticDefaultImports": true,
+        // При эспорте типов будем получать указание использовать слово type
+        // Это помогает babel и другим компиляторам отделять типы от js-кода при компиляции
+        // Помогает немного ускорить сборку проекта
+        "isolatedModules": true
     },
     // Добавили по документации Configuration Languages webpack, чтобы не падали импорты в конфигах при использовании расширения webpack.config.ts
     "ts-node": {

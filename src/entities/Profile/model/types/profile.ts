@@ -1,5 +1,5 @@
-import { ECountry } from '../../../Country'
-import { ECurrency } from '../../../Currency'
+import { ECountry } from 'entities/Country'
+import { ECurrency } from 'entities/Currency'
 
 export interface IProfile {
     id?: string
