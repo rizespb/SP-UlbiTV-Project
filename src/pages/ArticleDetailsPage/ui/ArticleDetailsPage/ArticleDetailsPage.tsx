@@ -1,6 +1,5 @@
 import { ArticleDetails } from 'entities/Article'
 import { memo } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import { classNames } from 'shared/lib/classNames/classNames'
 import { DynamicModuleLoader, TReducerLIst } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
@@ -22,7 +21,7 @@ const asyncReducers: TReducerLIst = {
 
 const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
     const { className } = props
-    const { t } = useTranslation('article-details')
+    // const { t } = useTranslation('article-details')
     const { id } = useParams<{ id: string }>()
 
     return (

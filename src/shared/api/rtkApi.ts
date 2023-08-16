@@ -15,5 +15,6 @@ export const rtkApi = createApi({
         },
     }),
     // Оставляем пустую функцию. Будем инжектить эндпоинты при необходимости в тех местах, где они нужны
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     endpoints: (builder) => ({}),
 })

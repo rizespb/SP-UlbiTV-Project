@@ -48,7 +48,18 @@ module.exports = {
             'error',
             {
                 markupOnly: true,
-                ignoreAttribute: ['role', 'as', 'data-testid', 'to', 'target', 'direction', 'justify', 'align', 'gap'],
+                ignoreAttribute: [
+                    'role',
+                    'as',
+                    'data-testid',
+                    'to',
+                    'target',
+                    'direction',
+                    'justify',
+                    'align',
+                    'gap',
+                    'border',
+                ],
             },
         ],
         // Чтобы не конвертировал prop={true} в просто prop

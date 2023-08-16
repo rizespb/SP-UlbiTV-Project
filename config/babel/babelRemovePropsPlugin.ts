@@ -2,6 +2,7 @@ import { PluginItem } from '@babel/core'
 
 // Самописный плагин для удаления data-testid из кода
 // Работает с нодами АСТ
+// eslint-disable-next-line func-names
 export default function (): PluginItem {
     return {
         visitor: {

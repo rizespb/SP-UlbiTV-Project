@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { Theme } from 'app/providers/ThemeProvider'
-import { IArticle } from 'entities/Article'
+// import { IArticle } from 'entities/Article'
 import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator'
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator'
 // import withMock from 'storybook-addon-mock'
@@ -23,17 +23,17 @@ export default {
 
 const Template: ComponentStory<typeof ArticleRecommendationsList> = (args) => <ArticleRecommendationsList {...args} />
 
-const article: IArticle = {
-    id: '1',
-    img: '',
-    createdAt: '',
-    views: 123,
-    user: { id: '1', username: '123' },
-    blocks: [],
-    type: [],
-    title: '123',
-    subtitle: 'asfsa',
-}
+// const article: IArticle = {
+//     id: '1',
+//     img: '',
+//     createdAt: '',
+//     views: 123,
+//     user: { id: '1', username: '123' },
+//     blocks: [],
+//     type: [],
+//     title: '123',
+//     subtitle: 'asfsa',
+// }
 
 export const Normal = Template.bind({})
 Normal.args = {}
