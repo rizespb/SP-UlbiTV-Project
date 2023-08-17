@@ -1,7 +1,7 @@
 import { useTheme } from 'app/providers/ThemeProvider'
-import React, { MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState } from 'react'
-import { APP_CONTAINER_ID } from 'shared/const/app'
+import { ReactNode } from 'react'
 import { classNames, TMods } from 'shared/lib/classNames/classNames'
+import { useModal } from 'shared/lib/hooks/useModal/useModal'
 import { Overlay } from '../Overlay/Overlay'
 import { Portal } from '../Portal/Portal'
 import cls from './Modal.module.scss'
@@ -19,42 +19,9 @@ const ANIMATION_DELAY = 300
 export const Modal = (props: ModalProps) => {
     const { className, children, isOpen, onClose, lazy } = props
 
-    const [isClosing, setIsClosing] = useState(false)
-    const [isMounted, setIsMounted] = useState(false)
-    const timerRef = useRef<ReturnType<typeof setTimeout>>() as MutableRefObject<ReturnType<typeof setTimeout>>
+    const { close, isClosing, isMounted } = useModal({ animationDelay: ANIMATION_DELAY, onClose, isOpen })
+
     const { theme } = useTheme()
-
-    const closeHandler = useCallback(() => {
-        setIsClosing(true)
-
-        if (onClose) {
-            timerRef.current = setTimeout(() => {
-                onClose()
-                setIsClosing(false)
-            }, ANIMATION_DELAY)
-        }
-    }, [onClose])
-
-    const onKeyDown = useCallback(
-        (e: KeyboardEvent) => {
-            if (e.key === 'Escape') {
-                closeHandler()
-            }
-        },
-        [closeHandler],
-    )
-
-    useEffect(() => {
-        if (isOpen) {
-            window.addEventListener('keydown', onKeyDown)
-        }
-
-        return () => {
-            clearTimeout(timerRef.current)
-
-            window.removeEventListener('keydown', onKeyDown)
-        }
-    }, [isOpen, onKeyDown])
 
     const mods: TMods = {
         [cls.opened]: isOpen,
@@ -67,12 +34,6 @@ export const Modal = (props: ModalProps) => {
     // z-index: -1;
     // мы полностью ее скрываем ПОД остальным сайтом. Но тогда инпут сразу присутствует в ДОМ. И при клике на кнопку Войти он не получает фокус (автофокус устанавливается при первоначальном рендере)
 
-    useEffect(() => {
-        if (isOpen) {
-            setIsMounted(true)
-        }
-    }, [isOpen])
-
     if (lazy && !isMounted) {
         return null
     }
@@ -80,8 +41,8 @@ export const Modal = (props: ModalProps) => {
     return (
         <Portal>
             <div className={classNames(cls.modal, mods, [className, theme, 'app_modal'])}>
-                <Overlay onClick={closeHandler} />
-                
+                <Overlay onClick={close} />
+
                 <div className={cls.content}>{children}</div>
             </div>
         </Portal>
