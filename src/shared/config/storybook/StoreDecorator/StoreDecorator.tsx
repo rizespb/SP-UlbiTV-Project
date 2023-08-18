@@ -1,13 +1,13 @@
 /* eslint-disable indent */
 import { ReducersMapObject } from '@reduxjs/toolkit'
 import { Story } from '@storybook/react'
-import { IStateSchema, StoreProvider } from 'app/providers/StoreProvider'
-import { articleDetailsReducer } from 'entities/Article/model/slice/articleDetailsSlice'
-import { addCommentFormReducer } from 'features/addCommentForm/model/slices/addCommentFormSlice'
-import { loginReducer } from 'features/AuthByUsername/model/slice/loginSlice'
-import { profileReducer } from 'features/editableProfileCard/model/slice/profileSlice'
-import { articleDetailsPageReducer } from 'pages/ArticleDetailsPage/model/slices'
-import { TReducerLIst } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import { IStateSchema, StoreProvider } from '@/app/providers/StoreProvider'
+import { articleDetailsReducer } from '@/entities/Article/model/slice/articleDetailsSlice'
+import { addCommentFormReducer } from '@/features/addCommentForm/model/slices/addCommentFormSlice'
+import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice'
+import { profileReducer } from '@/features/editableProfileCard/model/slice/profileSlice'
+import { articleDetailsPageReducer } from '@/pages/ArticleDetailsPage/model/slices'
+import { TReducerLIst } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 
 const defaultAsyncReducers: TReducerLIst = {
     loginForm: loginReducer,

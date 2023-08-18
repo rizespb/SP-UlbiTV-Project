@@ -1,7 +1,7 @@
 // Добавление енд-поинтов: добавляем в тех модулях, где мы их сипользуем
 
-import { IArticle } from 'entities/Article'
-import { rtkApi } from 'shared/api/rtkApi'
+import { IArticle } from '@/entities/Article'
+import { rtkApi } from '@/shared/api/rtkApi'
 
 // Этот ендпоинт в главный чанк не попадает. Попадет в чанк с ArticleRecommendationsList
 const recommendationsApi = rtkApi.injectEndpoints({

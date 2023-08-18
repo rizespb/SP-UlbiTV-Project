@@ -1,6 +1,6 @@
-import { IStateSchema } from 'app/providers/StoreProvider'
-import { ECountry } from 'entities/Country'
-import { ECurrency } from 'entities/Currency'
+import { IStateSchema } from '@/app/providers/StoreProvider'
+import { ECountry } from '@/entities/Country'
+import { ECurrency } from '@/entities/Currency'
 import { getProfileData } from './getProfileData'
 
 describe('getProfileData.test', () => {

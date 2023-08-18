@@ -1,5 +1,5 @@
-import { IStateSchema } from 'app/providers/StoreProvider'
 import { createSelector } from '@reduxjs/toolkit'
+import { IStateSchema } from '@/app/providers/StoreProvider'
 
 export const getUIScroll = (state: IStateSchema) => state.ui.scroll
 
