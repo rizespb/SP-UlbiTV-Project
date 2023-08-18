@@ -26,7 +26,7 @@ export const ArticleRecommendationsList = memo((props: IArticleRecommendationsLi
             <div className={classNames('', {}, [className])}>
                 <Text size={ETextSize.L} title={t('Рекомендуем')} />
 
-                <ArticleList articles={articles} target="_blank" virtualized={false} />
+                <ArticleList articles={articles} target="_blank" />
             </div>
         </VStack>
     )
