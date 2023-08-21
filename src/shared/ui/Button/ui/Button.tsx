@@ -24,6 +24,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     size?: EButtonSize
     disabled?: boolean
     children?: ReactNode
+    fullWidth?: boolean
 }
 
 export const Button = memo((props: IButtonProps) => {
@@ -32,24 +33,22 @@ export const Button = memo((props: IButtonProps) => {
         children,
         theme = EButtonTheme.OUTLINE,
         square,
-        size = EButtonSize.M,
         disabled,
+        fullWidth,
+        size = EButtonSize.M,
         ...otherProps
     } = props
 
     const mods: TMods = {
+        [cls[theme]]: true,
         [cls.square]: square,
+        [cls[size]]: true,
         [cls.disabled]: disabled,
+        [cls.fullWidth]: fullWidth,
     }
 
     return (
-        <button
-            type="button"
-            className={classNames(cls.Button, mods, [className, cls[theme], cls[size]])}
-            disabled={disabled}
-            // eslint-disable-next-line react/jsx-props-no-spreading
-            {...otherProps}
-        >
+        <button type="button" className={classNames(cls.Button, mods, [className])} disabled={disabled} {...otherProps}>
             {children}
         </button>
     )

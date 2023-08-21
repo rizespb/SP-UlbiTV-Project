@@ -9,7 +9,21 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     // Если файл имеет расширение svg, использовать @svgr/webpack
     const svgLoader = {
         test: /\.svg$/,
-        use: ['@svgr/webpack'],
+        // Самостоятельно подключил настройку, чтобы при загрузке svg не удалялся аттрибут viewBox из svg (рендерилось некорректно)
+        // use: ['@svgr/webpack'],
+        use: {
+            loader: '@svgr/webpack',
+            options: {
+                svgoConfig: {
+                    plugins: [
+                        {
+                            name: 'removeViewBox',
+                            active: false,
+                        },
+                    ],
+                },
+            },
+        },
     }
 
     // Вначале использовали typescriptLoader и babelLoader одновременно. Потом отказались от typescriptLoader ит донастроили babelLoader, заменив его двумя лоадерами: codeBabelLoader и tsxCodeBabelLoader
