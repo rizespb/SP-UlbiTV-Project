@@ -17,7 +17,7 @@ export const StarRating = memo((props: StarRatingProps) => {
     const { className, size = 30, selectedStars = 0, onSelect } = props
 
     // Текущая звезда, над которой находится мышь (надо подкрашивать эту звезду и предыдущие)
-    const [currentStarsCount, setCurrentStarsCount] = useState(0)
+    const [currentStarsCount, setCurrentStarsCount] = useState(selectedStars)
 
     // Выбран ли уже рейтинг
     const [isSelected, setIsSelected] = useState(Boolean(selectedStars))

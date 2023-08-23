@@ -10,6 +10,7 @@ import { articleDetailsPageReducer } from '../../model/slices'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader'
 import { ArticleDetailsComment } from '../ArticleDetailsComment/ArticleDetailsComment'
 import cls from './ArticleDetailsPage.module.scss'
+import { ArticleRating } from '@/features/articleRating'
 
 interface IArticleDetailsPageProps {
     className?: string
@@ -24,6 +25,10 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
     // const { t } = useTranslation('article-details')
     const { id } = useParams<{ id: string }>()
 
+    if (!id) {
+        return null
+    }
+
     return (
         <DynamicModuleLoader asyncReducers={asyncReducers} removeAfterUnmount={true}>
             <Page className={classNames(cls.articleDetailsPage, {}, [className])}>
@@ -31,6 +36,8 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
                     <ArticleDetailsPageHeader />
 
                     <ArticleDetails id={id} />
+
+                    <ArticleRating articleId={id} />
 
                     <ArticleRecommendationsList />
 
