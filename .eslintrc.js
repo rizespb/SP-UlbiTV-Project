@@ -76,7 +76,14 @@ module.exports = {
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
         'rizespb-fsd/path-checker': ['error', { alias: '@' }],
-        'rizespb-fsd/public-api-imports': ['error', { alias: '@' }],
+        'rizespb-fsd/public-api-imports': [
+            'error',
+            {
+                alias: '@',
+                // Файлы с тестовыми данными (тесты, моки и пр, экспортируемые из testing public API), из которых мы не должны импортировать что-то либо в рабочие файлы с кодом и которые могу 
+                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+            },
+        ],
     },
     globals: {
         __IS_DEV__: true,

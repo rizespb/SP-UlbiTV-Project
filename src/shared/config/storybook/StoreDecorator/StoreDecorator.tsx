@@ -2,16 +2,11 @@
 import { ReducersMapObject } from '@reduxjs/toolkit'
 import { Story } from '@storybook/react'
 import { IStateSchema, StoreProvider } from '@/app/providers/StoreProvider'
-// eslint-disable-next-line rizespb-fsd/public-api-imports
-import { articleDetailsReducer } from '@/entities/Article/model/slice/articleDetailsSlice'
-// eslint-disable-next-line rizespb-fsd/public-api-imports
-import { addCommentFormReducer } from '@/features/addCommentForm/model/slices/addCommentFormSlice'
-// eslint-disable-next-line rizespb-fsd/public-api-imports
-import { loginReducer } from '@/features/AuthByUsername/model/slice/loginSlice'
-// eslint-disable-next-line rizespb-fsd/public-api-imports
-import { profileReducer } from '@/features/editableProfileCard/model/slice/profileSlice'
-// eslint-disable-next-line rizespb-fsd/public-api-imports
-import { articleDetailsPageReducer } from '@/pages/ArticleDetailsPage/model/slices'
+import { articleDetailsReducer } from '@/entities/Article/testing'
+import { addCommentFormReducer } from '@/features/addCommentForm/testing'
+import { loginReducer } from '@/features/AuthByUsername/testing'
+import { profileReducer } from '@/features/editableProfileCard/testing'
+import { articleDetailsPageReducer } from '@/pages/ArticleDetailsPage/testing'
 import { TReducerLIst } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 
 const defaultAsyncReducers: TReducerLIst = {
