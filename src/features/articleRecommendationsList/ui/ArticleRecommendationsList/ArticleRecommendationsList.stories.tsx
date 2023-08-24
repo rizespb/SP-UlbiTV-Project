@@ -13,12 +13,13 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-    decorators: [
-        // @TODO-Storybook Не получилось настроить моки запросов с помощью попробовать после обновления storybook до актуальной версии
-        // Декоратор, которые мокает запросы api (storybook-addon-mock)
-        // Ниже надо указать mockData в parameters
-        //     withMock,
-    ],
+    // @TODO-Storybook Не получилось настроить моки запросов с помощью storybook-addon-mock
+    // попробовать после обновления storybook до актуальной версии
+    // Декоратор, которые мокает запросы api (storybook-addon-mock)
+    // Ниже надо указать mockData в parameters
+    // decorators: [
+    //     withMock,
+    // ],
 } as ComponentMeta<typeof ArticleRecommendationsList>
 
 const Template: ComponentStory<typeof ArticleRecommendationsList> = (args) => <ArticleRecommendationsList {...args} />

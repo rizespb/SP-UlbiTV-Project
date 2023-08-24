@@ -22,11 +22,10 @@ export default ({ config }: { config: webpack.Configuration }) => {
     config.resolve?.modules?.unshift(paths.src)
     config.resolve?.extensions?.push('.ts', '.tsx')
 
-    // Самостоятельно добавил алиасы в Storybook после того, как добавили алиасы в проект и в настройки webpack (buildResolvers.ts)
-    if (config.resolve) {
-        config.resolve.alias = {
-            '@': path.resolve(__dirname, '..', '..', 'src'),
-        }
+    // Алиасы в Storybook. Добавили после того, как добавили алиасы в проект и в настройки webpack (buildResolvers.ts)
+    config.resolve!.alias = {
+        ...config.resolve?.alias,
+        '@': paths.src,
     }
 
     // Настраиваем обработку svg
