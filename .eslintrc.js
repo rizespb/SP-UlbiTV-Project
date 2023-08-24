@@ -75,7 +75,7 @@ module.exports = {
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-        'rizespb-fsd/path-checker': 'error',
+        'rizespb-fsd/path-checker': ['error', { alias: '@' }],
     },
     globals: {
         __IS_DEV__: true,
