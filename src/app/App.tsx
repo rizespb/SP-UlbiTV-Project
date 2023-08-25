@@ -6,7 +6,7 @@ import { Sidebar } from '@/widgets/Sidebar'
 import { getUserInited, userActions } from '@/entities/User'
 import { APP_CONTAINER_ID } from '@/shared/const/app'
 import { AppRouter } from './providers/router'
-import { useTheme } from './providers/ThemeProvider'
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
 
 function App() {
     const dispatch = useDispatch()

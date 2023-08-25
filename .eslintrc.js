@@ -75,13 +75,28 @@ module.exports = {
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+
+        // Правило, которое проверяет, что импорты в рамках одного слайса (слайс, например, entities/User или entities/Profile) должны быть относительными
         'rizespb-fsd/path-checker': ['error', { alias: '@' }],
+
+        // Правило проверяет, что все абсолютные импорты должны осуществляться из public API (index.ts) или из testing.ts (для тестовых данных)
         'rizespb-fsd/public-api-imports': [
             'error',
             {
                 alias: '@',
-                // Файлы с тестовыми данными (тесты, моки и пр, экспортируемые из testing public API), из которых мы не должны импортировать что-то либо в рабочие файлы с кодом и которые могу 
+                // Файлы с тестовыми данными (тесты, моки и пр, экспортируемые из testing public API), из которых мы не должны импортировать что-то либо в рабочие файлы с кодом и которые могу
                 testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+            },
+        ],
+
+        // Правило проверяет, что нижележащие слои (например, fetaures) не должны импортировать из вышележащих (например, из widgets)
+        'rizespb-fsd/layer-imports': [
+            'error',
+            {
+                // Используемый в проекте алиас
+                alias: '@',
+                // Импорты, которые не надо проверять ( в тестовом public API и в StoreProvider из слоя app (часто на других слоях использем IStateSchema))
+                ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
             },
         ],
     },

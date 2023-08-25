@@ -1,4 +1,5 @@
 import { RouteProps } from 'react-router-dom'
+// eslint-disable-next-line rizespb-fsd/layer-imports
 import { EUserRole } from '@/entities/User'
 
 export type TAppRoutesProps = RouteProps & {
