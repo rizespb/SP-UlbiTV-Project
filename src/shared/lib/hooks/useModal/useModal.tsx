@@ -3,9 +3,16 @@ import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'reac
 interface UseModalProps {
     onClose?: () => void
     isOpen?: boolean
-// Длительность закрытия: в течение какого времени будут применяться классы isClosing или подобные
+    // Длительность закрытия: в течение какого времени будут применяться классы isClosing или подобные
     animationDelay: number
 }
+
+/**
+ * Переиспользуемый хук для модальных компонентов (drawer/modal)
+ * @param animationDelay
+ * @param isOpen
+ * @param onClose
+ */
 
 export function useModal({ animationDelay, isOpen, onClose }: UseModalProps) {
     // Состояние закрытия модалки для анимации
