@@ -20,7 +20,7 @@ module.exports = {
         sourceType: 'module',
     },
     // i18next -будет указывать на, что требуется обернуть тектст в хук для перевода
-    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'prettier', 'rizespb-fsd'],
+    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'prettier', 'rizespb-fsd', 'unused-imports'],
     rules: {
         semi: ['error', 'never'],
 
@@ -29,6 +29,7 @@ module.exports = {
         indent: [2, 4],
         'react/jsx-indent': ['error', 4],
         'react/jsx-indent-props': [2, 4],
+        'unused-imports/no-unused-imports': 'error',
         // Указываем расширения для файлов Реакт
         'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
         'react/react-in-jsx-scope': 'off',
