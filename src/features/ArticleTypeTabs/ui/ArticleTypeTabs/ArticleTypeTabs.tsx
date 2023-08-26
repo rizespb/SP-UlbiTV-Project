@@ -2,7 +2,7 @@ import { memo, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { ITabItem, Tabs } from '@/shared/ui/Tabs'
-import { EArticleType } from '../../model/consts/articleConsts'
+import { EArticleType } from '@/entities/Article'
 
 interface IArticleTypeTabsProps {
     className?: string

@@ -15,5 +15,4 @@ export default {
 const Template: ComponentStory<typeof ${componentName}> = (args) => <${componentName} {...args} />
 
 export const Normal = Template.bind({})
-Normal.args = {}
-Normal.decorators = [ThemeDecorator(Theme.LIGHT)]`
+Normal.args = {}`
