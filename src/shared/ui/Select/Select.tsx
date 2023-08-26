@@ -2,6 +2,7 @@ import { ChangeEvent, useMemo } from 'react'
 import { classNames, TMods } from '@/shared/lib/classNames/classNames'
 import cls from './Select.module.scss'
 
+// В 100 уроке переделывали Select на дженерик. У меня это было сделано ранее, поэтому никаких изменений не вносил
 export interface ISelectOption<T extends string> {
     value: T
     content: string
