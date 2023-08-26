@@ -1,6 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 
 import { CurrencySelect } from './CurrencySelect'
 
@@ -17,4 +15,3 @@ const Template: ComponentStory<typeof CurrencySelect> = (args) => <CurrencySelec
 
 export const Primary = Template.bind({})
 Primary.args = {}
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]

@@ -18,7 +18,6 @@ Primary.args = {
     children:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis cum totam modi dolor, tempore quam officiis expedita libero ipsam fuga repellendus odio enim nostrum asperiores odit adipisci suscipit eum? Molestias?',
 }
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Dark = Template.bind({})
 Dark.args = {

@@ -1,6 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 
 import { Select } from './Select'
 
@@ -29,4 +27,3 @@ Primary.args = {
         },
     ],
 }
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]

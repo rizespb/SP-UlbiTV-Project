@@ -1,6 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 
 import { Input } from './Input'
 
@@ -17,4 +15,3 @@ Primary.args = {
     placeholder: 'Type text',
     value: '1234567',
 }
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]

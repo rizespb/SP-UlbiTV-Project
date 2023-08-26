@@ -16,28 +16,24 @@ export const Primary = Template.bind({})
 Primary.args = {
     children: 'Text',
 }
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Clear = Template.bind({})
 Clear.args = {
     children: 'Text',
     theme: EButtonTheme.CLEAR,
 }
-Clear.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const ClearInverted = Template.bind({})
 ClearInverted.args = {
     children: 'Text',
     theme: EButtonTheme.CLEAR_INVERTED,
 }
-ClearInverted.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Outline = Template.bind({})
 Outline.args = {
     children: 'Text',
     theme: EButtonTheme.OUTLINE,
 }
-Outline.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const OutlineDark = Template.bind({})
 OutlineDark.args = {
@@ -51,14 +47,12 @@ BackgroundTheme.args = {
     children: 'Text',
     theme: EButtonTheme.BACKGROUND,
 }
-BackgroundTheme.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const BackgroundInvertedTheme = Template.bind({})
 BackgroundInvertedTheme.args = {
     children: 'Text',
     theme: EButtonTheme.BACKGROUND_INVERTED,
 }
-BackgroundInvertedTheme.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Square = Template.bind({})
 Square.args = {
@@ -66,7 +60,6 @@ Square.args = {
     theme: EButtonTheme.BACKGROUND_INVERTED,
     square: true,
 }
-Square.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const SquareSizeL = Template.bind({})
 SquareSizeL.args = {
@@ -75,7 +68,6 @@ SquareSizeL.args = {
     square: true,
     size: EButtonSize.L,
 }
-SquareSizeL.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const SquareSizeXL = Template.bind({})
 SquareSizeXL.args = {
@@ -84,7 +76,6 @@ SquareSizeXL.args = {
     square: true,
     size: EButtonSize.XL,
 }
-SquareSizeXL.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Disabled = Template.bind({})
 Disabled.args = {
@@ -92,4 +83,3 @@ Disabled.args = {
     theme: EButtonTheme.OUTLINE,
     disabled: true,
 }
-Disabled.decorators = [ThemeDecorator(Theme.LIGHT)]

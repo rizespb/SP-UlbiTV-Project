@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { CommentCard } from './CommentCard'
 
 export default {
@@ -22,7 +20,6 @@ Normal.args = {
         user: { id: '1', username: 'Vasya' },
     },
 }
-Normal.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Loading = Template.bind({})
 Loading.args = {
@@ -33,4 +30,3 @@ Loading.args = {
     },
     isLoading: true,
 }
-Loading.decorators = [ThemeDecorator(Theme.LIGHT)]

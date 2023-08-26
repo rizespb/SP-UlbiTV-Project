@@ -18,7 +18,6 @@ Primary.args = {
     title: 'Title lorem ipsun',
     text: 'Description Description Description Description',
 }
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Error = Template.bind({})
 Error.args = {
@@ -26,19 +25,16 @@ Error.args = {
     text: 'Description Description Description Description',
     theme: ETextTheme.ERROR,
 }
-Error.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const onlyTitle = Template.bind({})
 onlyTitle.args = {
     title: 'Title lorem ipsun',
 }
-onlyTitle.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const onlyText = Template.bind({})
 onlyText.args = {
     text: 'Description Description Description Description',
 }
-onlyText.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const PrimaryDark = Template.bind({})
 PrimaryDark.args = {
@@ -65,7 +61,6 @@ SizeL.args = {
     text: 'Description Description Description Description',
     size: ETextSize.L,
 }
-SizeL.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const SizeM = Template.bind({})
 SizeM.args = {
@@ -73,7 +68,6 @@ SizeM.args = {
     text: 'Description Description Description Description',
     size: ETextSize.M,
 }
-SizeM.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const SizeS = Template.bind({})
 SizeS.args = {
@@ -81,4 +75,3 @@ SizeS.args = {
     text: 'Description Description Description Description',
     size: ETextSize.S,
 }
-SizeS.decorators = [ThemeDecorator(Theme.LIGHT)]

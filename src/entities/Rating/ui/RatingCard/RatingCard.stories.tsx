@@ -1,6 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { RatingCard } from './RatingCard'
 
 export default {
@@ -15,4 +13,3 @@ const Template: ComponentStory<typeof RatingCard> = (args) => <RatingCard {...ar
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [ThemeDecorator(Theme.LIGHT)]

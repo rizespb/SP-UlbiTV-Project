@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Flex } from './Flex'
 
 export default {
@@ -25,7 +23,6 @@ Row.args = {
         </>
     ),
 }
-Row.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const RowGap4 = Template.bind({})
 RowGap4.args = {
@@ -39,7 +36,6 @@ RowGap4.args = {
         </>
     ),
 }
-RowGap4.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const RowGap8 = Template.bind({})
 RowGap8.args = {
@@ -53,7 +49,6 @@ RowGap8.args = {
         </>
     ),
 }
-RowGap8.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const RowGap16 = Template.bind({})
 RowGap16.args = {
@@ -67,7 +62,6 @@ RowGap16.args = {
         </>
     ),
 }
-RowGap16.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Column = Template.bind({})
 Column.args = {
@@ -81,7 +75,6 @@ Column.args = {
         </>
     ),
 }
-Column.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const ColumnGap16 = Template.bind({})
 ColumnGap16.args = {
@@ -96,7 +89,6 @@ ColumnGap16.args = {
         </>
     ),
 }
-ColumnGap16.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const ColumnAlignEnd = Template.bind({})
 ColumnAlignEnd.args = {
@@ -111,4 +103,3 @@ ColumnAlignEnd.args = {
         </>
     ),
 }
-ColumnAlignEnd.decorators = [ThemeDecorator(Theme.LIGHT)]

@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { EArticleView } from '../../model/consts/articleConsts'
 import { IArticle } from '../../model/types/article'
 import { ArticleListItem } from './ArticleListItem'
@@ -96,11 +94,9 @@ Big.args = {
     view: EArticleView.BIG,
     article,
 }
-Big.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Small = Template.bind({})
 Small.args = {
     view: EArticleView.SMALL,
     article,
 }
-Small.decorators = [ThemeDecorator(Theme.LIGHT)]

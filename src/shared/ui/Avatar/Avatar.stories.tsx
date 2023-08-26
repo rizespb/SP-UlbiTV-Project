@@ -1,6 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 
 import { Avatar } from './Avatar'
 import AvatarImg from '../../assets/test/storybook.png'
@@ -21,11 +19,9 @@ Primary.args = {
     size: 150,
     src: AvatarImg,
 }
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Small = Template.bind({})
 Small.args = {
     size: 50,
     src: AvatarImg,
 }
-Small.decorators = [ThemeDecorator(Theme.LIGHT)]

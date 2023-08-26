@@ -19,7 +19,6 @@ export const Ring = Template.bind({})
 Ring.args = {
     type: 'ring',
 }
-Ring.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const RingDark = Template.bind({})
 RingDark.args = {
@@ -31,7 +30,6 @@ export const Ellipsis = Template.bind({})
 Ellipsis.args = {
     type: 'ellipsis',
 }
-Ellipsis.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const EllipsisDark = Template.bind({})
 EllipsisDark.args = {

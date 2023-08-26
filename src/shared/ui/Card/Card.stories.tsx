@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Text } from '../Text/Text'
 import { Card } from './Card'
 
@@ -19,4 +17,3 @@ export const Normal = Template.bind({})
 Normal.args = {
     children: <Text title="Test" text="text text" />,
 }
-Normal.decorators = [ThemeDecorator(Theme.LIGHT)]

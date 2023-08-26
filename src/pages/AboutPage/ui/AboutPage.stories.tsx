@@ -14,7 +14,6 @@ const Template: ComponentStory<typeof AboutPage> = () => <AboutPage />
 
 export const Light = Template.bind({})
 Light.args = {}
-Light.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Dark = Template.bind({})
 Dark.args = {}

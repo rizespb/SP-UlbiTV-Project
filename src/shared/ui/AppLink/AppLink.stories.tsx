@@ -20,7 +20,6 @@ Primary.args = {
     theme: EAppLinkTheme.PRIMARY,
     children: 'Text',
 }
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const PrimaryDark = Template.bind({})
 PrimaryDark.args = {
@@ -34,7 +33,6 @@ Secondary.args = {
     theme: EAppLinkTheme.SECONDARY,
     children: 'Text',
 }
-Secondary.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const SecondaryDark = Template.bind({})
 SecondaryDark.args = {
@@ -48,7 +46,6 @@ Red.args = {
     theme: EAppLinkTheme.RED,
     children: 'Text',
 }
-Red.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const RedDark = Template.bind({})
 RedDark.args = {

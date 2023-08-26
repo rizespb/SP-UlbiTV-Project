@@ -1,8 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
-import { Theme } from '@/shared/const/theme'
 import { NotificationItem } from './NotificationItem'
 
 export default {
@@ -17,4 +15,4 @@ const Template: ComponentStory<typeof NotificationItem> = (args) => <Notificatio
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [ThemeDecorator(Theme.LIGHT), StoreDecorator({})]
+Normal.decorators = [StoreDecorator({})]

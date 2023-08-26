@@ -1,10 +1,8 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { IArticle } from '../../model/types/article'
 import { EArticleView } from '../../model/consts/articleConsts'
 import { ArticleList } from './ArticleList'
-import { Theme } from '@/shared/const/theme'
 
 export default {
     title: 'entities/Article/ArticleList',
@@ -97,7 +95,6 @@ LoadingBig.args = {
     isLoading: true,
     view: EArticleView.BIG,
 }
-LoadingBig.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const LoadingSmall = Template.bind({})
 LoadingSmall.args = {
@@ -105,7 +102,6 @@ LoadingSmall.args = {
     isLoading: true,
     view: EArticleView.SMALL,
 }
-LoadingSmall.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const ListSmall = Template.bind({})
 ListSmall.args = {
@@ -116,7 +112,6 @@ ListSmall.args = {
     isLoading: false,
     view: EArticleView.SMALL,
 }
-ListSmall.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const ListBig = Template.bind({})
 ListBig.args = {
@@ -127,4 +122,3 @@ ListBig.args = {
     isLoading: false,
     view: EArticleView.BIG,
 }
-ListBig.decorators = [ThemeDecorator(Theme.LIGHT)]

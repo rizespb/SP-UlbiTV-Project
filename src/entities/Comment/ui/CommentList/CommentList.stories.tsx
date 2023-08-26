@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { CommentList } from './CommentList'
 
 export default {
@@ -29,11 +27,9 @@ Normal.args = {
         },
     ],
 }
-Normal.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const Loading = Template.bind({})
 Loading.args = {
     comments: [],
     isLoading: true,
 }
-Loading.decorators = [ThemeDecorator(Theme.LIGHT)]

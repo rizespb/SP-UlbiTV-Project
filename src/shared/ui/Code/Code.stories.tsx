@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Code } from './Code'
 
 export default {
@@ -29,4 +27,3 @@ Normal.args = {
         '\n' +
         'export const Normal = Template.bind({});',
 }
-Normal.decorators = [ThemeDecorator(Theme.LIGHT)]

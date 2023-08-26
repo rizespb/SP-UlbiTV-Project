@@ -1,8 +1,6 @@
 import React from 'react'
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
-import { Theme } from '@/shared/const/theme'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
 import { NotificationList } from './NotificationList'
 // import withMock from 'storybook-addon-mock'
@@ -26,7 +24,7 @@ const Template: ComponentStory<typeof NotificationList> = (args) => <Notificatio
 
 export const Normal = Template.bind({})
 Normal.args = {}
-Normal.decorators = [ThemeDecorator(Theme.LIGHT), StoreDecorator({})]
+Normal.decorators = [StoreDecorator({})]
 
 // Моки запросов api
 // @TODO-Storybook Не получилось настроить моки запросов с помощью попробовать после обновления storybook до актуальной версии

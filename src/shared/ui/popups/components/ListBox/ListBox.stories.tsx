@@ -1,7 +1,5 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { ListBox } from './ListBox'
 
 export default {
@@ -29,7 +27,6 @@ Normal.args = {
         { content: '1asfasfasf21233', value: '1232' },
     ],
 }
-Normal.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const topLeft = Template.bind({})
 topLeft.args = {
@@ -40,7 +37,6 @@ topLeft.args = {
         { content: '1asfasfasf21233', value: '1232' },
     ],
 }
-topLeft.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const topRight = Template.bind({})
 topRight.args = {
@@ -51,7 +47,6 @@ topRight.args = {
         { content: '1asfasfasf21233', value: '1232' },
     ],
 }
-topRight.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const bottomLeft = Template.bind({})
 bottomLeft.args = {
@@ -62,7 +57,6 @@ bottomLeft.args = {
         { content: '1asfasfasf21233', value: '1232' },
     ],
 }
-bottomLeft.decorators = [ThemeDecorator(Theme.LIGHT)]
 
 export const bottomRight = Template.bind({})
 bottomRight.args = {
@@ -73,4 +67,3 @@ bottomRight.args = {
         { content: '1asfasfasf21233', value: '1232' },
     ],
 }
-bottomRight.decorators = [ThemeDecorator(Theme.LIGHT)]

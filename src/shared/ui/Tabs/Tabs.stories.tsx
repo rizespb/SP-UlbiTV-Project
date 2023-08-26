@@ -1,8 +1,6 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { action } from '@storybook/addon-actions'
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Tabs } from './Tabs'
 
 export default {
@@ -34,4 +32,3 @@ Normal.args = {
     value: 'tab 2',
     onTabClick: action('onTabClick'),
 }
-Normal.decorators = [ThemeDecorator(Theme.LIGHT)]

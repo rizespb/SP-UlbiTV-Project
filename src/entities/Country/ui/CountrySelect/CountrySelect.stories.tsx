@@ -1,6 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Theme } from '@/shared/const/theme'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 
 import { CountrySelect } from './CountrySelect'
 
@@ -17,4 +15,3 @@ const Template: ComponentStory<typeof CountrySelect> = (args) => <CountrySelect 
 
 export const Primary = Template.bind({})
 Primary.args = {}
-Primary.decorators = [ThemeDecorator(Theme.LIGHT)]
