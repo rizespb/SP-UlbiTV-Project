@@ -8,11 +8,11 @@ import { Card } from '@/shared/ui/Card'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Button, EButtonTheme } from '@/shared/ui/Button'
 import { AppLink } from '@/shared/ui/AppLink'
-import { RoutePath } from '@/shared/const/router'
 import { IArticle, IArticleTextBlock } from '../../model/types/article'
 import { EArticleBlockType, EArticleView } from '../../model/consts/articleConsts'
 import cls from './ArticleListItem.module.scss'
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent'
+import { getRouteArticleDetails } from '@/shared/const/router'
 
 interface IArticleListItemProps {
     className?: string
@@ -56,7 +56,7 @@ export const ArticleListItem = memo((props: IArticleListItemProps) => {
                     {textBlock && <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />}
 
                     <div className={cls.footer}>
-                        <AppLink target={target} to={RoutePath.article_details + article.id}>
+                        <AppLink target={target} to={getRouteArticleDetails(article.id)}>
                             <Button theme={EButtonTheme.OUTLINE}>{t('Читать далее')}</Button>
                         </AppLink>
 
@@ -70,7 +70,7 @@ export const ArticleListItem = memo((props: IArticleListItemProps) => {
     return (
         <AppLink
             target={target}
-            to={RoutePath.article_details + article.id}
+            to={getRouteArticleDetails(article.id)}
             className={classNames(cls.articleListItem, {}, [className, cls[view]])}
         >
             <Card className={cls.card}>

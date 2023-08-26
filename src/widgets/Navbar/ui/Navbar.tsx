@@ -4,7 +4,6 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { LoginModal } from '@/features/AuthByUsername'
 import { getUserAuthData } from '@/entities/User'
-import { RoutePath } from '@/shared/const/router'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { AppLink, EAppLinkTheme } from '@/shared/ui/AppLink'
 import { Button, EButtonTheme } from '@/shared/ui/Button'
@@ -13,6 +12,7 @@ import { ETextTheme, Text } from '@/shared/ui/Text'
 import { NotificationButton } from '@/features/notificationButton'
 import { AvatarDropdown } from '@/features/avatarDropdown'
 import cls from './Navbar.module.scss'
+import { getRouteArticleCreate } from '@/shared/const/router'
 
 interface NavbarProps {
     className?: string
@@ -36,7 +36,7 @@ export const Navbar = memo(({ className }: NavbarProps) => {
             <header className={classNames(cls.Navbar, {}, [className])}>
                 <Text className={cls.appName} title={t('Interesting App')} theme={ETextTheme.INVERTED} />
 
-                <AppLink to={RoutePath.article_create} theme={EAppLinkTheme.SECONDARY} className={cls.createBtn}>
+                <AppLink to={getRouteArticleCreate()} theme={EAppLinkTheme.SECONDARY} className={cls.createBtn}>
                     {t('Создать статью')}
                 </AppLink>
 
