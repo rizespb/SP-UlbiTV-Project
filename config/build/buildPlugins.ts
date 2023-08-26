@@ -13,6 +13,8 @@ import { BuildOptions } from './types/config'
 export function buildPlugins(buildOptions: BuildOptions): webpack.WebpackPluginInstance[] {
     const { paths, isDev, apiUrl, project } = buildOptions
 
+    const isProd = !isDev
+
     const plugins = [
         // Для генерации html-файлов с подключенными к скриптами
         new HtmlWebpackPlugin({
@@ -23,13 +25,6 @@ export function buildPlugins(buildOptions: BuildOptions): webpack.WebpackPluginI
         // Отображение процентов - прогресса сборки во время выполнения сборки
         new webpack.ProgressPlugin(),
 
-        // Без MiniCssExtractPlugin стили конвертируются в JS. Он создает отдельный файл со стилями. // Работает вместе с лоадером MiniCssExtractPlugin.loader
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].[contenthash:8].css',
-            // Имена для чанков, когда мы будем разбивать файлы на чанки и подгружать асинхронно
-            chunkFilename: 'css/[name].[contenthash:8].css',
-        }),
-
         // Позволяет добавлять в сборку глобальные переменные
         // По сути, заменяет при сборке указанную переменную переданным значением
         new webpack.DefinePlugin({
@@ -37,10 +32,7 @@ export function buildPlugins(buildOptions: BuildOptions): webpack.WebpackPluginI
             __API__: JSON.stringify(apiUrl),
             __PROJECT__: JSON.stringify(project),
         }),
-        // При сборке перемещать переводы из path.locales в paths.buildLocales
-        new CopyPlugin({
-            patterns: [{ from: paths.locales, to: paths.buildLocales }],
-        }),
+
         // Плагин для отслеживания кольцевых зависимостей
         new CircularDependencyPlugin({
             exclude: /node_modules/,
@@ -75,6 +67,24 @@ export function buildPlugins(buildOptions: BuildOptions): webpack.WebpackPluginI
                 // Страница с анализатором не будет автоматически открываться в браузере
                 // Но в терминале будет указан сервер, по которому она запущена - http://127.0.0.1:8888
                 openAnalyzer: false,
+            }),
+        )
+    }
+
+    if (isProd) {
+        plugins.push(
+            // Без MiniCssExtractPlugin стили конвертируются в JS. Он создает отдельный файл со стилями. // Работает вместе с лоадером MiniCssExtractPlugin.loader
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].[contenthash:8].css',
+                // Имена для чанков, когда мы будем разбивать файлы на чанки и подгружать асинхронно
+                chunkFilename: 'css/[name].[contenthash:8].css',
+            }),
+        )
+
+        plugins.push(
+            // При сборке перемещать переводы из path.locales в paths.buildLocales
+            new CopyPlugin({
+                patterns: [{ from: paths.locales, to: paths.buildLocales }],
             }),
         )
     }

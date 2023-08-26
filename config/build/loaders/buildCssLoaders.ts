@@ -5,6 +5,8 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 export function buildCssLoaders(isDev: boolean) {
     return {
         test: /\.s[ac]ss$/i,
+        // Исключаем node_modules
+        exclude: /node_modules/,
         use: [
             // Создает стили из JS-строк
             // style-loader конвертирует в JS (более быстро при dev)
@@ -21,9 +23,7 @@ export function buildCssLoaders(isDev: boolean) {
                         // Counter.module.scss - применяется
                         auto: (resPath: string) => Boolean(resPath.includes('.module.')),
                         // В дев-режиме имя класса будет состоять из пути к файлу-имени-класса-хэша - в прод будет хэш
-                        localIdentName: isDev
-                            ? '"[path][name]__[local]--[hash:base64:5]"'
-                            : '[hash:base64:8]',
+                        localIdentName: isDev ? '"[path][name]__[local]--[hash:base64:5]"' : '[hash:base64:8]',
                     },
                 },
             },

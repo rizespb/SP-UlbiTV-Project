@@ -32,7 +32,9 @@
         "storybook:build": "storybook build -c ./config/storybook",
         "prepare": "husky install",
         "comment for generate:slice": "команда для запуска скрипта автоматической генерации слайсов FSD (не redux-slice)",
-        "generate:slice": "node ./scripts/createSlice/index.js"
+        "generate:slice": "node ./scripts/createSlice/index.js",
+        "comment for postinstall": "автоматически должен запускаться после установки новой зависимости. Но у меня так и не стал запускаться автоматически. Можно запустить вручную",
+        "postinstall": "node ./scripts/clear-cache.js"
     },
     "keywords": [],
     "author": "",
@@ -127,6 +129,7 @@
         "i18next": "^21.9.0",
         "i18next-browser-languagedetector": "^6.1.3",
         "i18next-http-backend": "^1.3.2",
+        "isnumber": "^1.0.0",
         "react": "^18.2.0",
         "react-device-detect": "^2.2.2",
         "react-dom": "^18.2.0",

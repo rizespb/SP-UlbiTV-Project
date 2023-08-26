@@ -39,7 +39,8 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
         // Указывает сборщику, как генерировать sourcemap (карту соответствия исходного кода и скомпилированного кода).
         // Чтобы в случае ошибки мы могли найти ее в коде, а не только в огромном бандле
         // 'inline-source-map' больше для разработки, не не для прода. Есть другие варианты
-        devtool: isDev ? 'inline-source-map' : undefined,
+        // Потом поменяли 'inline-source-map' на 'eval-cheap-module-source-map', т.к.  документация рекомендует этот режим для более быстрого ребилда во время разработки
+        devtool: isDev ? 'eval-cheap-module-source-map' : undefined,
 
         // Пересборка проекта во время разработки
         devServer: isDev ? buildDevServer(options) : undefined,

@@ -7,6 +7,8 @@ interface BuildBabelLoaderProps extends BuildOptions {
 }
 
 export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
+    const isProd = !isDev
+
     return {
         // Обрабатываем или только файлы с JSX (TSX), или только файлы JS(TS)
         test: isTsx ? /\.(jsx|tsx)$/ : /\.(js|ts)$/,
@@ -14,10 +16,13 @@ export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
         use: {
             loader: 'babel-loader',
             options: {
+                // Куски кода, которые редко меняются, будут сохраняться в кэш и будут реже перебилдиваться
+                // Общая папка для кэше библиотек node_modules/.cache
+                cacheDirectory: true,
                 // preset-env для перевода JS в более старые стандарты
                 presets: ['@babel/preset-env'],
                 plugins: [
-                    // Подлючаем для работы с i18n, чтобы вебпак при сборке порбегался по всем файлам и вытаскивал все ключи для переводов в один объект, помещая их в папку extractedTranslations
+                    // Подлючаем для работы с i18n, чтобы вебпак при сборке пробегался по всем файлам и вытаскивал все ключи для переводов в один объект, помещая их в папку extractedTranslations
                     [
                         'i18next-extract',
                         {
@@ -39,7 +44,7 @@ export function buildBabelLoader({ isDev, isTsx }: BuildBabelLoaderProps) {
                     // Добавилли при отказе от typeScriptLoader-а и замены его функций babelLoader-ом
                     '@babel/plugin-transform-runtime',
                     // Подключаем самописный плагин для удаления data-testid из кода JSX (*.) в нЕ dev-режиме
-                    !isDev &&
+                    isProd &&
                         isTsx && [
                             babelRemovePropsPlugin,
                             {
