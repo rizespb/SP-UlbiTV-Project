@@ -1,11 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
-import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { IArticle } from '../../model/types/article'
 import { EArticleBlockType, EArticleType } from '../../model/consts/articleConsts'
 import { ArticleDetails } from './ArticleDetails'
-import { Theme } from '@/shared/const/theme'
 
 export default {
     title: 'entities/Article/ArticleDetails',
@@ -94,7 +92,6 @@ const article: IArticle = {
 export const Normal = Template.bind({})
 Normal.args = {}
 Normal.decorators = [
-    ThemeDecorator(Theme.LIGHT),
     StoreDecorator({
         articleDetails: {
             data: article,
@@ -105,7 +102,6 @@ Normal.decorators = [
 export const Loading = Template.bind({})
 Loading.args = {}
 Loading.decorators = [
-    ThemeDecorator(Theme.LIGHT),
     StoreDecorator({
         articleDetails: {
             isLoading: true,
@@ -115,7 +111,6 @@ Loading.decorators = [
 export const Error = Template.bind({})
 Error.args = {}
 Error.decorators = [
-    ThemeDecorator(Theme.LIGHT),
     StoreDecorator({
         articleDetails: {
             error: 'error',
