@@ -36,6 +36,10 @@
         "comment for postinstall": "автоматически должен запускаться после установки новой зависимости. Но у меня так и не стал запускаться автоматически. Можно запустить вручную",
         "postinstall": "node ./scripts/clear-cache.js"
     },
+    "comment for lint-staged": "Библотека, которая с precommit хуками (husky) будет прогонять линтер только для измененных файлов (для ts,tsx файлов)",
+    "lint-staged": {
+        "**/*.{ts,tsx}": "eslint"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",
@@ -96,6 +100,7 @@
         "jest": "^27.5.1",
         "jest-html-reporters": "^3.0.10",
         "json-server": "^0.17.0",
+        "lint-staged": "^13.0.3",
         "loki": "^0.32.0",
         "mini-css-extract-plugin": "^2.5.3",
         "prettier": "^2.8.8",
