@@ -13,6 +13,8 @@ import { EArticleBlockType, EArticleView } from '../../model/consts/articleConst
 import cls from './ArticleListItem.module.scss'
 import { ArticleTextBlockComponent } from '../ArticleTextBlockComponent/ArticleTextBlockComponent'
 import { getRouteArticleDetails } from '@/shared/const/router'
+import { AppImage } from '@/shared/ui/AppImage'
+import { Skeleton } from '@/shared/ui/Skeleton'
 
 interface IArticleListItemProps {
     className?: string
@@ -75,7 +77,12 @@ export const ArticleListItem = memo((props: IArticleListItemProps) => {
         >
             <Card className={cls.card}>
                 <div className={cls.imageWrapper}>
-                    <img src={article.img} className={cls.img} alt={article.title} />
+                    <AppImage
+                        fallback={<Skeleton width="100%" height={250} />}
+                        src={article.img}
+                        className={cls.img}
+                        alt={article.title}
+                    />
 
                     <Text text={article.createdAt} className={cls.date} />
                 </div>
