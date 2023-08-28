@@ -44,12 +44,18 @@
 #               run: npm run storybook:build
 #               if: always()
 
-#             # Запускать после storybook:build, т.к. loki работает со storybook. Команда взята из доки loki. Локально эта команда не сработает и не должна
+#             # Запускать после storybook:build, т.к. loki работает со storybook. Команда взята из доки loki
 #             - name: Screenshot testing (Loki)
 #               run: npm run test:ui:ci
 #               if: always()
+###########################################################################
+
+#
+#
+#
 
 # В определенный момент разделили одну джобу на две, которые должны выполняться параллельно и не влиять друг на друга. Сделали из-за того, что скриншотные тесты не всегда проходили на сервере test:ui:ci (хотя мне кажется, это из-за того, что у Ulbi были ошибки в самом story-кейсах)
+# Можно удалить эту джобу и расскоментировать ту, что выше (была изначально)
 # Большиснство настроек джобы взяты из документации
 # Важно! Для работы этой джобы надо включить GitHub Actions
 # Settings -> Pages -> Source -> Github Actions (работает только для публичный или платных репозиториев)
@@ -90,14 +96,29 @@ jobs:
             - name: build storybook
               run: npm run storybook:build
               if: always()
-              # Выолняем UI-тесты
+
+            # Выолняем UI-тесты
             - name: screenshot testing
               run: npm run test:ui:ci
               if: always()
-              # Настраиваем, что в .loki лежат отчеты
-              # Генерируем отчеты
+
+            # Выполняем unit-тесты
+            # Отчет генерируется автоматически- так указали в настройках jest
+             # Отчет хранится reports/unit/report.html
+            - name: unit testing
+              if: always()
+              run: npm run test:unit
+
+            # Настраиваем, что в .loki лежат отчеты report.html
+            # Генерируем отчеты
             - name: Generate HTML report
               run: npm run test:ui:report
+              if: always()
+
+            # Lokш генерирует отчет в папку .loki в корне
+            # Перенсим ее в папку reports/, т.к. сюда же попадают отчеты jest (reports/unit/report.html)
+            - name: move loki
+              run: mv .loki reports/
               if: always()
             - name: Setup Pages
               uses: actions/configure-pages@v2
@@ -106,7 +127,7 @@ jobs:
               uses: actions/upload-pages-artifact@v1
               if: always()
               with:
-                  path: '.loki'
+                  path: 'reports'
             - name: Deploy to GitHub Pages
               id: deployment
               if: always()
@@ -130,6 +151,3 @@ jobs:
               if: always()
             - name: linting css
               run: npm run lint:scss
-            - name: unit testing
-              if: always()
-              run: npm run test:unit

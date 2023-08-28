@@ -1,12 +1,9 @@
-/* eslint-disable i18next/no-literal-string */
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
 import { Button } from '@/shared/ui/Button'
 import { useCounterValue } from '../model/selectors/getCounterValue/getCounterValue'
 import { useCounterActions } from '../model/slice/counterSlice'
 
 export const Counter = () => {
-    const dispatch = useDispatch()
     const counterValue = useCounterValue()
     const { t } = useTranslation()
     const { decrement, increment, add } = useCounterActions()

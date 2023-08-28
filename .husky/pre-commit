@@ -1,15 +1,15 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm run build:prod
-#npm run lint:ts
-# Вместо npm run lint:ts запускает библиотеку lint-staged, которая запустит еслинт только для измененных файлов
-npx lint-staged
-npm run lint:scss
-npm run test:unit
-npm run storybook:build
-npm run test:ui:ci
-# postinstall удаляет папку node_modules/cache (см. package.json и scripts)
-# Должен выполняться автоматически после установки каждой библиотеки, но у меня не запускается
-# решил добавить его сюда
-npm run postinstall
+# npm run build:prod
+# #npm run lint:ts
+# # Вместо npm run lint:ts запускает библиотеку lint-staged, которая запустит еслинт только для измененных файлов
+# npx lint-staged
+# npm run lint:scss
+# npm run test:unit
+# npm run storybook:build
+# npm run test:ui:ci
+# # postinstall удаляет папку node_modules/cache (см. package.json и scripts)
+# # Должен выполняться автоматически после установки каждой библиотеки, но у меня не запускается
+# # решил добавить его сюда
+# npm run postinstall
