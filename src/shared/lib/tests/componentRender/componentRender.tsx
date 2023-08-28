@@ -7,6 +7,7 @@ import { IStateSchema, StoreProvider } from '@/app/providers/StoreProvider'
 import i18nForTest from '@/shared/config/i18n/i18nForTest'
 
 export interface ComponentRenderOptions {
+    // Initila route для роутера
     route?: string
     initialState?: DeepPartial<IStateSchema>
 

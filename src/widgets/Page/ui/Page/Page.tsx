@@ -9,8 +9,9 @@ import { useInfiniteScroll } from '@/shared/lib/hooks/useInfiniteScroll/useInfin
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { useThrottle } from '@/shared/lib/hooks/useThrottle/useThrottle'
 import cls from './Page.module.scss'
+import { ITestProps } from '@/shared/types/tests'
 
-interface IPageProps {
+interface IPageProps extends ITestProps {
     className?: string
     children: ReactNode
     onScrollEnd?: () => void
@@ -47,7 +48,14 @@ export const Page = (props: IPageProps) => {
     }, 500)
 
     return (
-        <main ref={wrapperRef} className={classNames(cls.page, {}, [className])} onScroll={onScroll} id={PAGE_ID}>
+        <main
+            // eslint-disable-next-line react/destructuring-assignment
+            data-testid={props['data-testid'] ?? 'Page'}
+            ref={wrapperRef}
+            className={classNames(cls.page, {}, [className])}
+            onScroll={onScroll}
+            id={PAGE_ID}
+        >
             {children}
             {/* Этот div для useInfiniteScroll - при достижении конца страницы  будет вызван onScrollEnd (например, при подгрузке списка статей) */}
             {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
