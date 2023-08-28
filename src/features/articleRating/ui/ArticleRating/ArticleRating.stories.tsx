@@ -11,10 +11,8 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-    // @TODO-Storybook Не получилось настроить моки запросов с помощью storybook-addon-mock
-    // попробовать после обновления storybook до актуальной версии
-    // Декоратор, которые мокает запросы api (storybook-addon-mock)
-    // Ниже надо указать mockData в parameters
+    // Моки запросов api
+    // Способ от UlbiTV (не работало, сделал немного по другому)
     // decorators: [
     //     withMock,
     // ],
@@ -34,23 +32,21 @@ Normal.decorators = [
         },
     }),
 ]
-
-// Моки запросов api
-// @TODO-Storybook Не получилось настроить моки запросов с помощью попробовать после обновления storybook до актуальной версии
-// Normal.parameters = {
-//     mockData: [
-//         {
-//             url: `${__API__}/article-ratings?userId=1&articleId=1`,
-//             method: 'GET',
-//             status: 200,
-//             response: [
-//                 {
-//                     rate: 4,
-//                 },
-//             ],
-//         },
-//     ],
-// }
+Normal.parameters = {
+    // Моки запросов api
+    mockData: [
+        {
+            url: `${__API__}/article-ratings?userId=1&articleId=1`,
+            method: 'GET',
+            status: 200,
+            response: [
+                {
+                    rate: 4,
+                },
+            ],
+        },
+    ],
+}
 
 export const WithoutRate = Template.bind({})
 WithoutRate.args = {
@@ -64,15 +60,15 @@ WithoutRate.decorators = [
         },
     }),
 ]
-// Моки запросов api
-// @TODO-Storybook Не получилось настроить моки запросов с помощью попробовать после обновления storybook до актуальной версии
-// WithoutRate.parameters = {
-//     mockData: [
-//         {
-//             url: `${__API__}/article-ratings?userId=1&articleId=1`,
-//             method: 'GET',
-//             status: 200,
-//             response: [],
-//         },
-//     ],
-// }
+
+WithoutRate.parameters = {
+    // Моки запросов api
+    mockData: [
+        {
+            url: `${__API__}/article-ratings?userId=1&articleId=1`,
+            method: 'GET',
+            status: 200,
+            response: [],
+        },
+    ],
+}

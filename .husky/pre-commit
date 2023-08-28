@@ -7,5 +7,9 @@ npm run build:prod
 npx lint-staged
 npm run lint:scss
 npm run test:unit
-# npm run storybook:build
-# npm run test:ui:ci
+npm run storybook:build
+npm run test:ui:ci
+# postinstall удаляет папку node_modules/cache (см. package.json и scripts)
+# Должен выполняться автоматически после установки каждой библиотеки, но у меня не запускается
+# решил добавить его сюда
+npm run postinstall
