@@ -1,50 +1,135 @@
-name: Linting, testing, building
+# name: Linting, testing, building
+# on:
+#     push:
+#         branches: [master]
+#     pull_request:
+#         branches: [master]
+# jobs:
+#     pipeline:
+#         runs-on: ubuntu-latest
+#         strategy:
+#             matrix:
+#                 node-version: [16.x]
+
+#         steps:
+#             - uses: actions/checkout@v3
+
+#             - name: Installing Node.js ${{ matrix.node-version}}
+#               uses: actions/setup-node@v1
+#               with:
+#                   node-version: ${{ matrix.node-version}}
+
+#             # --force добавил, т.к. loki (для скришотного тестирования) без него не ставится
+#             - name: Installing node_modules
+#               run: npm ci --force
+
+#             - name: Build production project
+#               run: npm run build:prod
+#               # Запускать job, даже если предыдущая job упала (чтобы выполнились все job-ы, независимо от того, выполнилась ли предыдущая)
+#               if: always()
+
+#             - name: Linting TypeScript
+#               run: npm run lint:ts
+#               if: always()
+
+#             - name: Linting CSS
+#               run: npm run lint:scss
+#               if: always()
+
+#             - name: Unit testing
+#               run: npm run test:unit
+#               if: always()
+
+#             - name: Build Storybook
+#               run: npm run storybook:build
+#               if: always()
+
+#             # Запускать после storybook:build, т.к. loki работает со storybook. Команда взята из доки loki. Локально эта команда не сработает и не должна
+#             - name: Screenshot testing (Loki)
+#               run: npm run test:ui:ci
+#               if: always()
+
+# В определенный момент разделили одну джобу на две, которые должны выполняться параллельно и не влиять друг на друга. Сделали из-за того, что скриншотные тесты не всегда проходили на сервере test:ui:ci (хотя мне кажется, это из-за того, что у Ulbi были ошибки в самом story-кейсах)
+# Большиснство настроек джобы взяты из документации
+# Важно! Для работы этой джобы надо включить GitHub Actions
+# Settings -> Pages -> Source -> Github Actions (работает только для публичный или платных репозиториев)
+name: linting, testing, building
 on:
     push:
         branches: [master]
     pull_request:
         branches: [master]
+permissions:
+    contents: write
+    pages: write
+    id-token: write
+concurrency:
+    group: 'pages'
+    cancel-in-progress: true
 jobs:
-    pipeline:
+    build-and-ui-testing:
+        runs-on: ubuntu-latest
+        concurrency: ci-${{ github.ref }}
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        strategy:
+            matrix:
+                node-version: [17.x]
+        steps:
+            - uses: actions/checkout@v2
+            - name: Staring Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: install modules
+              run: npm ci --force
+            - name: build production project
+              run: npm run build:prod
+              if: always()
+            - name: build storybook
+              run: npm run storybook:build
+              if: always()
+              # Выолняем UI-тесты
+            - name: screenshot testing
+              run: npm run test:ui:ci
+              if: always()
+              # Настраиваем, что в .loki лежат отчеты
+              # Генерируем отчеты
+            - name: Generate HTML report
+              run: npm run test:ui:report
+              if: always()
+            - name: Setup Pages
+              uses: actions/configure-pages@v2
+              if: always()
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v1
+              if: always()
+              with:
+                  path: '.loki'
+            - name: Deploy to GitHub Pages
+              id: deployment
+              if: always()
+              uses: actions/deploy-pages@v1
+
+    checks:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                node-version: [16.x]
-
+                node-version: [17.x]
         steps:
-            - uses: actions/checkout@v3
-
-            - name: Installing Node.js ${{ matrix.node-version}}
+            - uses: actions/checkout@v2
+            - name: Staring Node.js ${{ matrix.node-version }}
               uses: actions/setup-node@v1
               with:
-                  node-version: ${{ matrix.node-version}}
-
-            # --force добавил, т.к. loki (для скришотного тестирования) без него не ставится
-            - name: Installing node_modules
+                  node-version: ${{ matrix.node-version }}
+            - name: install modules
               run: npm ci --force
-
-            - name: Build production project
-              run: npm run build:prod
-              # Запускать job, даже если предыдущая job упала (чтобы выполнились все job-ы, независимо от того, выполнилась ли предыдущая)
-              if: always()
-
-            - name: Linting TypeScript
+            - name: linting typescript
               run: npm run lint:ts
               if: always()
-
-            - name: Linting CSS
+            - name: linting css
               run: npm run lint:scss
+            - name: unit testing
               if: always()
-
-            - name: Unit testing
               run: npm run test:unit
-              if: always()
-
-            - name: Build Storybook
-              run: npm run storybook:build
-              if: always()
-
-            # Запускать после storybook:build, т.к. loki работает со storybook. Команда взята из доки loki. Локально эта команда не сработает и не должна
-            - name: Screenshot testing (Loki)
-              run: npm run test:ui:ci
-              if: always()
