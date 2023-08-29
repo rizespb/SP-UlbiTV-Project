@@ -1,0 +1,12 @@
+// В соответсвии с докой вручную создаем ts-конфиг для cypress и расширяем его дефолтными настройками проекта ("extends": "../tsconfig.json",)
+{
+    "compilerOptions": {
+        "target": "es5",
+        "lib": ["es5", "dom"],
+        "types": ["cypress", "node"],
+        "allowJs": true,
+        "isolatedModules": false
+    },
+    "extends": "../tsconfig.json",
+    "include": ["**/*.ts", "../cypress.config.ts"]
+}
