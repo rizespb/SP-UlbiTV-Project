@@ -2,7 +2,6 @@ import { ComponentStory, ComponentMeta } from '@storybook/react'
 
 import { IArticle } from '@/entities/Article'
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator'
-// import withMock from 'storybook-addon-mock'
 import { ArticleRecommendationsList } from './ArticleRecommendationsList'
 
 export default {
@@ -11,11 +10,6 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-    // Моки запросов api
-    // Способ от UlbiTV (не работало, сделал немного по другому)
-    // decorators: [
-    //     withMock,
-    // ],
 } as ComponentMeta<typeof ArticleRecommendationsList>
 
 const Template: ComponentStory<typeof ArticleRecommendationsList> = (args) => <ArticleRecommendationsList {...args} />

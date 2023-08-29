@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react'
-// import withMock from 'storybook-addon-mock'
 import ArticleRating from './ArticleRating'
 import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDecorator'
 import { Theme } from '@/shared/const/theme'
@@ -11,11 +10,6 @@ export default {
     argTypes: {
         backgroundColor: { control: 'color' },
     },
-    // Моки запросов api
-    // Способ от UlbiTV (не работало, сделал немного по другому)
-    // decorators: [
-    //     withMock,
-    // ],
 } as ComponentMeta<typeof ArticleRating>
 
 const Template: ComponentStory<typeof ArticleRating> = (args) => <ArticleRating {...args} />
