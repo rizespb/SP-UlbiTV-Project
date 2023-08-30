@@ -9,12 +9,10 @@ export const Counter = () => {
     const { decrement, increment, add } = useCounterActions()
 
     const handleInc = () => {
-        console.log('INCREMENT!!!!!!!!!')
         increment()
     }
 
     const handleDec = () => {
-        console.log('DECREMENT!!!!!!!!!')
         decrement()
     }
 

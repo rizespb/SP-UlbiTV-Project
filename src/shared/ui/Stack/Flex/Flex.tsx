@@ -44,7 +44,16 @@ export interface IFlexProps extends TDivProps {
 }
 
 export const Flex = (props: IFlexProps) => {
-    const { className, children, justify = 'start', align = 'center', direction = 'row', gap, max } = props
+    const {
+        className,
+        children,
+        justify = 'start',
+        align = 'center',
+        direction = 'row',
+        gap,
+        max,
+        ...otherProps
+    } = props
 
     const classes = [
         className,
@@ -58,5 +67,9 @@ export const Flex = (props: IFlexProps) => {
         [cls.max]: max,
     }
 
-    return <div className={classNames(cls.flex, mods, classes)}>{children}</div>
+    return (
+        <div className={classNames(cls.flex, mods, classes)} {...otherProps}>
+            {children}
+        </div>
+    )
 }
