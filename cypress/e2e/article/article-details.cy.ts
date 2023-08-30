@@ -47,6 +47,24 @@ describe('Пользователь заходит на страницу стат
         cy.getByTestId('RatingCard').scrollIntoView()
 
         cy.setRate(4, 'feedback')
+
+        // Должно быть выбрано 4 звезды
+        cy.get('[data-selected=true]').should('have.length', 4)
+    })
+
+    // Пример выставления рейтинга на фикстурах (см. cypress/fixxtures/README.md)
+    it('И ставит оценку (пример с стабом на фикстурах)', () => {
+        // Перехватываем запрос и возвращаем фикстуру
+        cy.intercept('GET', '**/articles/*', { fixture: 'article-details.json' })
+        cy.getByTestId('ArticleDetails.Info')
+
+        // Скроллим до рейтинга
+        cy.getByTestId('RatingCard').scrollIntoView()
+
+        // Ставим оценку и пишем фидбэк
+        cy.setRate(4, 'feedback')
+
+        // Должно быть выбрано 4 звезды
         cy.get('[data-selected=true]').should('have.length', 4)
     })
 })
