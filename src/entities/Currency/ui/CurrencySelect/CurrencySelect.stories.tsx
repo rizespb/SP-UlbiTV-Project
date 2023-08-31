@@ -11,7 +11,9 @@ export default {
 } as ComponentMeta<typeof CurrencySelect>
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-const Template: ComponentStory<typeof CurrencySelect> = (args) => <CurrencySelect {...args} />
+const Template: ComponentStory<typeof CurrencySelect> = (args) => (
+    <CurrencySelect {...args} />
+)
 
 export const Primary = Template.bind({})
 Primary.args = {}

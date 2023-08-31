@@ -1,7 +1,11 @@
 import { Reducer } from '@reduxjs/toolkit'
 import { FC, ReactNode, useEffect } from 'react'
 import { useDispatch, useStore } from 'react-redux'
-import { IReduxStoreWithManager, IStateSchema, TStateSchemaKey } from '@/app/providers/StoreProvider'
+import {
+    IReduxStoreWithManager,
+    IStateSchema,
+    TStateSchemaKey,
+} from '@/app/providers/StoreProvider'
 
 export type TReducerLIst = {
     [key in TStateSchemaKey]?: Reducer<NonNullable<IStateSchema[key]>>
@@ -31,7 +35,10 @@ export const DynamicModuleLoader: FC<IDynamicModuleLoaderProps> = (props) => {
             const mounted = mountedReducers[reducerKey as TStateSchemaKey]
 
             if (!mounted) {
-                store.reducerManager.add(reducerKey as TStateSchemaKey, asyncReducer)
+                store.reducerManager.add(
+                    reducerKey as TStateSchemaKey,
+                    asyncReducer,
+                )
                 // Чтобы в Redux DevTools мы могли отследить добавление редюсора
                 dispatch({ type: `@INIT ${reducerKey}` })
             }
@@ -39,11 +46,15 @@ export const DynamicModuleLoader: FC<IDynamicModuleLoaderProps> = (props) => {
 
         return () => {
             if (removeAfterUnmount) {
-                Object.entries(asyncReducers).forEach(([reducerKey, _asyncReducer]) => {
-                    store.reducerManager.remove(reducerKey as TStateSchemaKey)
+                Object.entries(asyncReducers).forEach(
+                    ([reducerKey, _asyncReducer]) => {
+                        store.reducerManager.remove(
+                            reducerKey as TStateSchemaKey,
+                        )
 
-                    dispatch({ type: `@DESTROY ${reducerKey}` })
-                })
+                        dispatch({ type: `@DESTROY ${reducerKey}` })
+                    },
+                )
             }
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -15,6 +15,7 @@
         "lint:scss:fix": "stylelint **/*.scss --fix",
         "lint": "npm run lint:ts & npm run lint:scss",
         "lint:fix": "npm run lint:ts:fix & npm run lint:scss:fix",
+        "prettier": "npx prettier --write **/*.{ts,tsx,json}",
         "test:unit": "jest --config ./config/jest/jest.config.ts",
         "test:e2e": "cypress open",
         "comment for test:ui": "Для выполнения тестов нужен запущенный Докер на компьютере",

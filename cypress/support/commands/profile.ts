@@ -20,7 +20,8 @@ export const resetProfile = (profileId: string) =>
         url: `http://localhost:8000/profile/${profileId}`,
         headers: { Authorization: 'asasf' },
         body: {
-            description: 'Профиль для тестового пользователя (используем в e2e)',
+            description:
+                'Профиль для тестового пользователя (используем в e2e)',
             id: '4',
             first: 'test',
             lastname: 'user',

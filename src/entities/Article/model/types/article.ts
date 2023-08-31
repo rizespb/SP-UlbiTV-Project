@@ -23,7 +23,10 @@ export interface IArticleTextBlock extends IArticleBlockBase {
     title?: string
 }
 
-export type IArticleBlock = IArticleCodeBlock | IArticleImageBlock | IArticleTextBlock
+export type IArticleBlock =
+    | IArticleCodeBlock
+    | IArticleImageBlock
+    | IArticleTextBlock
 
 export interface IArticle {
     id: string

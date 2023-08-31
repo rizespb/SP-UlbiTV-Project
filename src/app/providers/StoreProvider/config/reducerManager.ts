@@ -1,10 +1,22 @@
-import { AnyAction, combineReducers, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
-import { IReducerManager, IStateSchema, TMountedReducers, TStateSchemaKey } from './stateSchema'
+import {
+    AnyAction,
+    combineReducers,
+    Reducer,
+    ReducersMapObject,
+} from '@reduxjs/toolkit'
+import {
+    IReducerManager,
+    IStateSchema,
+    TMountedReducers,
+    TStateSchemaKey,
+} from './stateSchema'
 
 // Фукнция создает корневой редюсор и позволяет удалить/добавить в него другие редюсоры в рантайме
 // Для асинхронной подгрузки редюсоров
 // Принимает дефолтные редюсоры
-export function createReducerManager(initialReducers: ReducersMapObject<IStateSchema>): IReducerManager {
+export function createReducerManager(
+    initialReducers: ReducersMapObject<IStateSchema>,
+): IReducerManager {
     const reducers = { ...initialReducers }
 
     // Создаем начальный корневой редюсор

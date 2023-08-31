@@ -42,7 +42,10 @@ describe('loginByUsername.test', () => {
     test('error login', async () => {
         const thunk = new TestAsyncThunk(loginByUsername)
 
-        const result = await thunk.callThunk({ username: '123', password: '123' })
+        const result = await thunk.callThunk({
+            username: '123',
+            password: '123',
+        })
         // Мокаем наш инстанс axios
         thunk.api.post.mockReturnValue(Promise.resolve({ status: 403 }))
 
@@ -60,9 +63,14 @@ describe('loginByUsername.test', () => {
         // Мокаем наш инстанс axios
         thunk.api.post.mockReturnValue(Promise.resolve({ data: userValue }))
 
-        const result = await thunk.callThunk({ username: '123', password: '123' })
+        const result = await thunk.callThunk({
+            username: '123',
+            password: '123',
+        })
 
-        expect(thunk.dispatch).toHaveBeenCalledWith(userActions.setAuthData(userValue))
+        expect(thunk.dispatch).toHaveBeenCalledWith(
+            userActions.setAuthData(userValue),
+        )
 
         // @TODO прояснить
         // Первый вызов dispatch происходит в момент вызова loginByUsername (не понял,почему так)

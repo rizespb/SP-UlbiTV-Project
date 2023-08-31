@@ -1,7 +1,10 @@
 import { memo, useCallback } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { DynamicModuleLoader, TReducerLIst } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import {
+    DynamicModuleLoader,
+    TReducerLIst,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { Page } from '@/widgets/Page'
@@ -41,7 +44,10 @@ const ArticlesPage = (props: IArticlesPageProps) => {
     })
 
     return (
-        <DynamicModuleLoader asyncReducers={asyncReducers} removeAfterUnmount={false}>
+        <DynamicModuleLoader
+            asyncReducers={asyncReducers}
+            removeAfterUnmount={false}
+        >
             <Page
                 data-testid="ArticlesPage"
                 onScrollEnd={onLoadNextPart}

@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { memo, useCallback, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -34,9 +33,17 @@ export const Navbar = memo(({ className }: NavbarProps) => {
     if (authData) {
         return (
             <header className={classNames(cls.Navbar, {}, [className])}>
-                <Text className={cls.appName} title={t('Interesting App')} theme={ETextTheme.INVERTED} />
+                <Text
+                    className={cls.appName}
+                    title={t('Interesting App')}
+                    theme={ETextTheme.INVERTED}
+                />
 
-                <AppLink to={getRouteArticleCreate()} theme={EAppLinkTheme.SECONDARY} className={cls.createBtn}>
+                <AppLink
+                    to={getRouteArticleCreate()}
+                    theme={EAppLinkTheme.SECONDARY}
+                    className={cls.createBtn}
+                >
                     {t('Создать статью')}
                 </AppLink>
 
@@ -51,11 +58,17 @@ export const Navbar = memo(({ className }: NavbarProps) => {
 
     return (
         <header className={classNames(cls.Navbar, {}, [className])}>
-            <Button theme={EButtonTheme.CLEAR_INVERTED} className={cls.links} onClick={onShowModal}>
+            <Button
+                theme={EButtonTheme.CLEAR_INVERTED}
+                className={cls.links}
+                onClick={onShowModal}
+            >
                 {t('Войти')}
             </Button>
 
-            {isAuthModal && <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />}
+            {isAuthModal && (
+                <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+            )}
         </header>
     )
 })

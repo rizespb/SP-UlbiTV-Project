@@ -6,7 +6,10 @@ describe('getProfileValidateErrors.test', () => {
     test('should work with filled state', () => {
         const state: DeepPartial<IStateSchema> = {
             profile: {
-                validateErrors: [EValidateProfileError.SERVER_ERROR, EValidateProfileError.INCORRECT_AGE],
+                validateErrors: [
+                    EValidateProfileError.SERVER_ERROR,
+                    EValidateProfileError.INCORRECT_AGE,
+                ],
             },
         }
         expect(getProfileValidateErrors(state as IStateSchema)).toEqual([
@@ -16,6 +19,8 @@ describe('getProfileValidateErrors.test', () => {
     })
     test('should work with empty state', () => {
         const state: DeepPartial<IStateSchema> = {}
-        expect(getProfileValidateErrors(state as IStateSchema)).toEqual(undefined)
+        expect(getProfileValidateErrors(state as IStateSchema)).toEqual(
+            undefined,
+        )
     })
 })

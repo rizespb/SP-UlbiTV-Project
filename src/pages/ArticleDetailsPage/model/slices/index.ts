@@ -4,7 +4,8 @@ import { articleDetailsPageRecommendationsReducer } from './articleDetailsPageRe
 import { articleDetailsCommentsReducer } from './articleDetailsCommentsSlice'
 
 // Группируем редюсоры
-export const articleDetailsPageReducer = combineReducers<IArticleDetailsPageSchema>({
-    recommendations: articleDetailsPageRecommendationsReducer,
-    comments: articleDetailsCommentsReducer,
-})
+export const articleDetailsPageReducer =
+    combineReducers<IArticleDetailsPageSchema>({
+        recommendations: articleDetailsPageRecommendationsReducer,
+        comments: articleDetailsCommentsReducer,
+    })

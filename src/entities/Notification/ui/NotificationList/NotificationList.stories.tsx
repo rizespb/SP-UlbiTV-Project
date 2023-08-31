@@ -20,17 +20,20 @@ export default {
                     {
                         id: '1',
                         title: 'Уведомление',
-                        description: 'Поставь лайк и оставь комментарий под Ulbi TV 1',
+                        description:
+                            'Поставь лайк и оставь комментарий под Ulbi TV 1',
                     },
                     {
                         id: '2',
                         title: 'Уведомление 2',
-                        description: 'Поставь лайк и оставь комментарий под Ulbi TV 2',
+                        description:
+                            'Поставь лайк и оставь комментарий под Ulbi TV 2',
                     },
                     {
                         id: '3',
                         title: 'Уведомление 3',
-                        description: 'Поставь лайк и оставь комментарий под Ulbi TV 3',
+                        description:
+                            'Поставь лайк и оставь комментарий под Ulbi TV 3',
                     },
                 ],
             },
@@ -38,7 +41,9 @@ export default {
     },
 } as ComponentMeta<typeof NotificationList>
 
-const Template: ComponentStory<typeof NotificationList> = (args) => <NotificationList {...args} />
+const Template: ComponentStory<typeof NotificationList> = (args) => (
+    <NotificationList {...args} />
+)
 
 export const Normal = Template.bind({})
 Normal.args = {}

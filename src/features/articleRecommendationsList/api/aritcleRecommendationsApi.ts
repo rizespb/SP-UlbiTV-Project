@@ -23,4 +23,5 @@ const recommendationsApi = rtkApi.injectEndpoints({
 })
 
 // RTQ автоматически генерирует хук для работы с ендпоинтом
-export const useArticleRecommendationsList = recommendationsApi.useGetArticleRecommendationsListQuery
+export const useArticleRecommendationsList =
+    recommendationsApi.useGetArticleRecommendationsListQuery

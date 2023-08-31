@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { useContext } from 'react'
 import { LOCAL_STORAGE_THEME_KEY } from '../../../const/localstorage'
 import { Theme } from '../../../const/theme'

@@ -18,7 +18,11 @@ export const Code = (props: ICodeProps) => {
 
     return (
         <pre className={classNames(cls.code, {}, [className])}>
-            <Button onClick={onCopy} className={cls.copyBtn} theme={EButtonTheme.CLEAR}>
+            <Button
+                onClick={onCopy}
+                className={cls.copyBtn}
+                theme={EButtonTheme.CLEAR}
+            >
                 <CopyIcon className={cls.copyIcon} />
             </Button>
             <code>{text}</code>

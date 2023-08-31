@@ -5,4 +5,9 @@ export type { IArticleDetailsSchema } from './model/types/articleDetailsSchema'
 
 export { getArticleDetailsData } from './model/selectors/articleDetails'
 
-export { EArticleView, EArticleType, EArticleSortField, EArticleBlockType } from './model/consts/articleConsts'
+export {
+    EArticleView,
+    EArticleType,
+    EArticleSortField,
+    EArticleBlockType,
+} from './model/consts/articleConsts'

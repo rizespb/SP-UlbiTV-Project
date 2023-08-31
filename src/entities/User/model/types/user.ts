@@ -1,6 +1,5 @@
 import { EUserRole } from '../consts/consts'
 
-
 export interface IUser {
     id: string
     username: string

@@ -28,7 +28,13 @@ export function Dropdown(props: IDropdownProps) {
     const menuClasses = [mapDirectionClass[direction]]
 
     return (
-        <Menu as="div" className={classNames(cls.dropdown, {}, [className, popupCls.popup])}>
+        <Menu
+            as="div"
+            className={classNames(cls.dropdown, {}, [
+                className,
+                popupCls.popup,
+            ])}
+        >
             <Menu.Button className={popupCls.trigger}>{trigger}</Menu.Button>
             <Menu.Items className={classNames(cls.menu, {}, menuClasses)}>
                 {items.map((item, index) => {
@@ -37,7 +43,9 @@ export function Dropdown(props: IDropdownProps) {
                             type="button"
                             disabled={item.disabled}
                             onClick={item.onClick}
-                            className={classNames(cls.item, { [popupCls.active]: active })}
+                            className={classNames(cls.item, {
+                                [popupCls.active]: active,
+                            })}
                         >
                             {item.content}
                         </button>
@@ -57,7 +65,11 @@ export function Dropdown(props: IDropdownProps) {
                     }
 
                     return (
-                        <Menu.Item as={Fragment} disabled={item.disabled} key={`dropdown-key-${index}`}>
+                        <Menu.Item
+                            as={Fragment}
+                            disabled={item.disabled}
+                            key={`dropdown-key-${index}`}
+                        >
                             {content}
                         </Menu.Item>
                     )

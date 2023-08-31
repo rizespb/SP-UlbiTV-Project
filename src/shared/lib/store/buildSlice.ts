@@ -5,9 +5,11 @@ import { useMemo } from 'react'
 
 // CreateSliceOptions - тип для аргумента createSlice, дженерик
 // State, CaseReducers extends SliceCaseReducers<State>, Name extends string = string - это описание дженерика для createSlice из самого redux
-export function buildSlice<State, CaseReducers extends SliceCaseReducers<State>, Name extends string = string>(
-    options: CreateSliceOptions<State, CaseReducers, Name>,
-) {
+export function buildSlice<
+    State,
+    CaseReducers extends SliceCaseReducers<State>,
+    Name extends string = string,
+>(options: CreateSliceOptions<State, CaseReducers, Name>) {
     // Создаем слайл
     const slice = createSlice(options)
 
@@ -20,7 +22,11 @@ export function buildSlice<State, CaseReducers extends SliceCaseReducers<State>,
         // хук, который возвращает функцию для диспатча actions
         // Чтобы иметь возможность вызывать action-ы без диспатча
         // @ts-ignore
-        return useMemo(() => bindActionCreators(slice.actions, dispatch), [dispatch])
+        return useMemo(
+            // @ts-ignore
+            () => bindActionCreators(slice.actions, dispatch),
+            [dispatch],
+        )
     }
 
     // Возвращаем сам слайс, как обычно

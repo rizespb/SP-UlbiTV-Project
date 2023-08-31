@@ -1,11 +1,15 @@
-/* eslint-disable indent */
 import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Dropdown } from '@/shared/ui/popups'
-import { getUserAuthData, isUserAdmin, isUserManager, userActions } from '@/entities/User'
+import {
+    getUserAuthData,
+    isUserAdmin,
+    isUserManager,
+    userActions,
+} from '@/entities/User'
 import { getRouteAdmin, getRouteProfile } from '@/shared/const/router'
 
 interface AvatarDropdownProps {

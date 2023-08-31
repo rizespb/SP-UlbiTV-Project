@@ -10,5 +10,10 @@ interface IOverlayProps {
 export const Overlay = memo((props: IOverlayProps) => {
     const { className, onClick } = props
 
-    return <div onClick={onClick} className={classNames(cls.overlay, {}, [className])} />
+    return (
+        <div
+            onClick={onClick}
+            className={classNames(cls.overlay, {}, [className])}
+        />
+    )
 })

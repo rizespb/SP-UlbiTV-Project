@@ -58,13 +58,19 @@ export default {
         if (config.module) {
             // Если правило (а более точно лоадер) содержит регулярку, указываюшщую на svg, то исключаем файлы svg из обработки этим лоадером
             // eslint-disable-next-line no-param-reassign
-            config.module.rules = config.module.rules?.map((rule: RuleSetRule | '...') => {
-                if (rule !== '...' && rule.test instanceof RegExp && rule.test.toString().includes('svg')) {
-                    return { ...rule, exclude: /\.svg$/i }
-                }
+            config.module.rules = config.module.rules?.map(
+                (rule: RuleSetRule | '...') => {
+                    if (
+                        rule !== '...' &&
+                        rule.test instanceof RegExp &&
+                        rule.test.toString().includes('svg')
+                    ) {
+                        return { ...rule, exclude: /\.svg$/i }
+                    }
 
-                return rule
-            })
+                    return rule
+                },
+            )
         }
 
         // Вторым шагом добавляем новое правило (новый нужный лоадер) для обработки svg

@@ -1,4 +1,10 @@
-import { ImgHTMLAttributes, memo, ReactElement, useLayoutEffect, useState } from 'react'
+import {
+    ImgHTMLAttributes,
+    memo,
+    ReactElement,
+    useLayoutEffect,
+    useState,
+} from 'react'
 
 interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
     className?: string
@@ -9,7 +15,14 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
 }
 
 export const AppImage = memo((props: AppImageProps) => {
-    const { className, src, alt = 'image', errorFallback, fallback, ...otherProps } = props
+    const {
+        className,
+        src,
+        alt = 'image',
+        errorFallback,
+        fallback,
+        ...otherProps
+    } = props
     // Изображение еще загружается или уже загрузилось
     const [isLoading, setIsLoading] = useState(true)
     const [hasError, setHasError] = useState(false)

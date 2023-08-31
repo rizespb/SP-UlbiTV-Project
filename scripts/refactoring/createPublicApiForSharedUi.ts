@@ -42,7 +42,9 @@ componentsDirs?.forEach((directory) => {
         const sourceCode = `export * from './${directory.getBaseName()}'`
 
         // Создаем файл index.ts с "export * from './ComponentName"
-        const file = directory.createSourceFile(indexFilePath, sourceCode, { overwrite: true })
+        const file = directory.createSourceFile(indexFilePath, sourceCode, {
+            overwrite: true,
+        })
 
         file.save()
     }

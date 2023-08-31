@@ -1,4 +1,12 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import {
+    createContext,
+    ReactNode,
+    useContext,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react'
 
 type SpringType = typeof import('@react-spring/web')
 type GestureType = typeof import('@use-gesture/react')
@@ -18,12 +26,14 @@ const AnimationContext = createContext<IAnimationContextPayload>({})
 // Сильно не разбирали, как именно работают @use-gesture/react и @react-spring/web. Упор на линивую загрузку библиотек
 // Ссылка на документацию https://use-gesture.netlify.app/docs/gestures/
 // https://codesandbox.io/s/github/pmndrs/use-gesture/tree/main/demo/src/sandboxes/action-sheet?file=/src/App.jsx
-const getAsyncAnimationModules = async () => Promise.all([import('@react-spring/web'), import('@use-gesture/react')])
+const getAsyncAnimationModules = async () =>
+    Promise.all([import('@react-spring/web'), import('@use-gesture/react')])
 
 // При первом рендере Gesture и Spring еще не загружены (useEffect выполнится после отрисовки)
 // Поэтому кастуем тип к Required<IAnimationContextPayload>, чтобы каждый раз не проверять в TS: есть ли там значение
 // О том, что библиотеки еще не загружены, будет говорить флаг isLoaded = false
-export const useAnimationLibs = () => useContext(AnimationContext) as Required<IAnimationContextPayload>
+export const useAnimationLibs = () =>
+    useContext(AnimationContext) as Required<IAnimationContextPayload>
 
 export const AnimationProvider = ({ children }: { children: ReactNode }) => {
     const SpringRef = useRef<SpringType>()
@@ -50,5 +60,9 @@ export const AnimationProvider = ({ children }: { children: ReactNode }) => {
         [isLoaded],
     )
 
-    return <AnimationContext.Provider value={value}>{children}</AnimationContext.Provider>
+    return (
+        <AnimationContext.Provider value={value}>
+            {children}
+        </AnimationContext.Provider>
+    )
 }

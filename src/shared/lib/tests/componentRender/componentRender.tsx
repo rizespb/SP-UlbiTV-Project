@@ -30,11 +30,19 @@ interface ITestProviderProps {
 
 export function TestProvider(props: ITestProviderProps) {
     const { children, options = {} } = props
-    const { route = '/', initialState, asyncReducers, theme = Theme.LIGHT } = options
+    const {
+        route = '/',
+        initialState,
+        asyncReducers,
+        theme = Theme.LIGHT,
+    } = options
 
     return (
         <MemoryRouter initialEntries={[route]}>
-            <StoreProvider asyncReducers={asyncReducers} initialState={initialState}>
+            <StoreProvider
+                asyncReducers={asyncReducers}
+                initialState={initialState}
+            >
                 <I18nextProvider i18n={i18nForTest}>
                     {/* Тему добавили для изолированных тестов компонентов в cypress // Чтобы отрисовывались все стили 
                     Но стили темы так и не подгружаются 
@@ -51,6 +59,9 @@ export function TestProvider(props: ITestProviderProps) {
     )
 }
 
-export function componentRender(component: ReactNode, options: IComponentRenderOptions = {}) {
+export function componentRender(
+    component: ReactNode,
+    options: IComponentRenderOptions = {},
+) {
     return render(<TestProvider options={options}>{component}</TestProvider>)
 }

@@ -20,18 +20,24 @@ module.exports = {
         sourceType: 'module',
     },
     // i18next -будет указывать на, что требуется обернуть тектст в хук для перевода
-    plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks', 'prettier', 'rizespb-fsd', 'unused-imports'],
+    plugins: [
+        'react',
+        '@typescript-eslint',
+        'i18next',
+        'react-hooks',
+        'rizespb-fsd',
+        'unused-imports',
+        'prettier',
+    ],
     rules: {
         semi: ['error', 'never'],
 
-        // Настраиваем количество пробелов в отсутпах на первом месте:
-        // 2 === error, 1 === warn, 0 === off
-        indent: [2, 4],
-        'react/jsx-indent': ['error', 4],
-        'react/jsx-indent-props': [2, 4],
         'unused-imports/no-unused-imports': 'error',
         // Указываем расширения для файлов Реакт
-        'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
+        'react/jsx-filename-extension': [
+            2,
+            { extensions: ['.js', '.jsx', '.tsx'] },
+        ],
         'react/react-in-jsx-scope': 'off',
         'import/no-unresolved': 'off',
         'import/extensions': 'off',
@@ -75,7 +81,10 @@ module.exports = {
         'react/no-array-index-key': 'off',
         // Два правила, чтобы была возможность писать неиспользуемые переменные начиная с _
         'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+        '@typescript-eslint/no-unused-vars': [
+            'warn',
+            { argsIgnorePattern: '^_' },
+        ],
 
         // Правило, которое проверяет, что импорты в рамках одного слайса (слайс, например, entities/User или entities/Profile) должны быть относительными
         'rizespb-fsd/path-checker': ['error', { alias: '@' }],
@@ -86,7 +95,11 @@ module.exports = {
             {
                 alias: '@',
                 // Файлы с тестовыми данными (тесты, моки и пр, экспортируемые из testing public API), из которых мы не должны импортировать что-то либо в рабочие файлы с кодом и которые могу
-                testFilesPatterns: ['**/*.test.*', '**/*.story.*', '**/StoreDecorator.tsx'],
+                testFilesPatterns: [
+                    '**/*.test.*',
+                    '**/*.story.*',
+                    '**/StoreDecorator.tsx',
+                ],
             },
         ],
 
@@ -100,6 +113,8 @@ module.exports = {
                 ignoreImportPatterns: ['**/StoreProvider', '**/testing'],
             },
         ],
+        // Максимальное количество пропсов, после которого пропсы переносятся каждый на отдельную строку
+        'react/jsx-max-props-per-line': ['error', { maximum: 4 }],
     },
     globals: {
         __IS_DEV__: true,

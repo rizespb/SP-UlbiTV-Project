@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { ReducersMapObject } from '@reduxjs/toolkit'
 import { Story } from '@storybook/react'
 import { IStateSchema, StoreProvider } from '@/app/providers/StoreProvider'
@@ -18,7 +17,10 @@ const defaultAsyncReducers: TReducerLIst = {
 }
 
 export const StoreDecorator =
-    (initialState: DeepPartial<IStateSchema>, asyncReducers?: DeepPartial<ReducersMapObject<IStateSchema>>) =>
+    (
+        initialState: DeepPartial<IStateSchema>,
+        asyncReducers?: DeepPartial<ReducersMapObject<IStateSchema>>,
+    ) =>
     (StoryComponent: Story) =>
         (
             <StoreProvider

@@ -4,7 +4,10 @@ import { USER_LOCALSTORAGE_KEY } from '../../../src/shared/const/localstorage'
 
 // Описываем запрос, который выполнит cyress и в then пишем, что сделать, если получен успешный ответ от сервера
 // В базе данных на сервере надо заранее создать тестового пользователя testuser, чтобы запрос выолнялся успешно
-export const login = (username: string = 'testuser', password: string = '123') => {
+export const login = (
+    username: string = 'testuser',
+    password: string = '123',
+) => {
     // мокаем запрос - буквально создаем запрос, который cypress отправит к запущенному (нашему рабочему) дев-серверу
     cy.request({
         method: 'POST',

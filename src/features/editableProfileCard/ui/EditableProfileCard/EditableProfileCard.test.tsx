@@ -43,22 +43,31 @@ describe('features/EditableProfileCard', () => {
 
         // Нажимае на кнопку редактировать
         // Начиная с определенного момента userEvent стал асинхронным
-        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'))
+        await userEvent.click(
+            screen.getByTestId('EditableProfileCardHeader.EditButton'),
+        )
 
         // Должна появиться кнопка Отменить
-        expect(screen.getByTestId('EditableProfileCardHeader.CancelButton')).toBeInTheDocument()
+        expect(
+            screen.getByTestId('EditableProfileCardHeader.CancelButton'),
+        ).toBeInTheDocument()
     })
 
     test('При отмене значения должны обнуляться', async () => {
         componentRender(<EditableProfileCard id="1" />, options)
-        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'))
+        await userEvent.click(
+            screen.getByTestId('EditableProfileCardHeader.EditButton'),
+        )
 
         // Очищаем значения в интпутах Имя и Фамилия
         await userEvent.clear(screen.getByTestId('ProfileCard.firstname'))
         await userEvent.clear(screen.getByTestId('ProfileCard.lastname'))
 
         // Печатаем в интпутах Имя и Фамилия
-        await userEvent.type(screen.getByTestId('ProfileCard.firstname'), 'user')
+        await userEvent.type(
+            screen.getByTestId('ProfileCard.firstname'),
+            'user',
+        )
         await userEvent.type(screen.getByTestId('ProfileCard.lastname'), 'user')
 
         // Проверяем, что напечатанное значение попало в инпут
@@ -66,7 +75,9 @@ describe('features/EditableProfileCard', () => {
         expect(screen.getByTestId('ProfileCard.lastname')).toHaveValue('user')
 
         // Нажимаем кнопку Отменить (без сохранения)
-        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.CancelButton'))
+        await userEvent.click(
+            screen.getByTestId('EditableProfileCardHeader.CancelButton'),
+        )
 
         // Должны вернуться прежние значения
         expect(screen.getByTestId('ProfileCard.firstname')).toHaveValue('admin')
@@ -75,16 +86,22 @@ describe('features/EditableProfileCard', () => {
 
     test('Должна появиться ошибка', async () => {
         componentRender(<EditableProfileCard id="1" />, options)
-        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'))
+        await userEvent.click(
+            screen.getByTestId('EditableProfileCardHeader.EditButton'),
+        )
 
         // Очищаем поле Фамилия
         await userEvent.clear(screen.getByTestId('ProfileCard.firstname'))
 
         // Нажимаем сохранить
-        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.SaveButton'))
+        await userEvent.click(
+            screen.getByTestId('EditableProfileCardHeader.SaveButton'),
+        )
 
         // Должна отобразиться ошибка (из-за того, что обязательное поле не заполнено)
-        expect(screen.getByTestId('EditableProfileCard.Error.Paragraph')).toBeInTheDocument()
+        expect(
+            screen.getByTestId('EditableProfileCard.Error.Paragraph'),
+        ).toBeInTheDocument()
     })
 
     test('Если нет ошибок валидации, то на сервер должен уйти PUT запрос', async () => {
@@ -93,13 +110,20 @@ describe('features/EditableProfileCard', () => {
 
         componentRender(<EditableProfileCard id="1" />, options)
 
-        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.EditButton'))
+        await userEvent.click(
+            screen.getByTestId('EditableProfileCardHeader.EditButton'),
+        )
 
         // Вводим новое значение
-        await userEvent.type(screen.getByTestId('ProfileCard.firstname'), 'user')
+        await userEvent.type(
+            screen.getByTestId('ProfileCard.firstname'),
+            'user',
+        )
 
         // Сохраняем
-        await userEvent.click(screen.getByTestId('EditableProfileCardHeader.SaveButton'))
+        await userEvent.click(
+            screen.getByTestId('EditableProfileCardHeader.SaveButton'),
+        )
 
         expect(mockPutReq).toHaveBeenCalled()
     })

@@ -1,7 +1,11 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { EArticleSortField, EArticleView, EArticleType } from '@/entities/Article'
+import {
+    EArticleSortField,
+    EArticleView,
+    EArticleType,
+} from '@/entities/Article'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Card } from '@/shared/ui/Card'
@@ -99,10 +103,18 @@ export const ArticlesPageFilters = memo((props: IArticlesPageFiltersProps) => {
             </div>
 
             <Card className={cls.search}>
-                <Input onChange={onChangeSearch} value={search} placeholder={t('Поиск')} />
+                <Input
+                    onChange={onChangeSearch}
+                    value={search}
+                    placeholder={t('Поиск')}
+                />
             </Card>
 
-            <ArticleTypeTabs value={type} onChangeType={onChangeType} className={cls.tabs} />
+            <ArticleTypeTabs
+                value={type}
+                onChangeType={onChangeType}
+                className={cls.tabs}
+            />
         </div>
     )
 })

@@ -5,37 +5,38 @@ import { IComment } from '@/entities/Comment'
 import { getUserAuthData } from '@/entities/User'
 import { fetchCommentsByArticleId } from '../fetchCommentsByArticleId/fetchCommentsByArticleId'
 
-export const addCommentForArticle = createAsyncThunk<IComment, string, IThunkConfig<string>>(
-    'articleDetails/addCommentForArticle',
-    async (text, thunkApi) => {
-        const { dispatch, extra, rejectWithValue, getState } = thunkApi
+export const addCommentForArticle = createAsyncThunk<
+    IComment,
+    string,
+    IThunkConfig<string>
+>('articleDetails/addCommentForArticle', async (text, thunkApi) => {
+    const { dispatch, extra, rejectWithValue, getState } = thunkApi
 
-        const userData = getUserAuthData(getState())
-        const article = getArticleDetailsData(getState())
+    const userData = getUserAuthData(getState())
+    const article = getArticleDetailsData(getState())
 
-        if (!userData || !text || !article) {
-            return rejectWithValue('Error from addCommentForArticle: NO DATA')
+    if (!userData || !text || !article) {
+        return rejectWithValue('Error from addCommentForArticle: NO DATA')
+    }
+
+    try {
+        const response = await extra.api.post<IComment>('/comments', {
+            articleId: article?.id,
+            userId: userData.id,
+            text,
+        })
+
+        if (!response.data) {
+            throw new Error()
         }
 
-        try {
-            const response = await extra.api.post<IComment>('/comments', {
-                articleId: article?.id,
-                userId: userData.id,
-                text,
-            })
+        dispatch(fetchCommentsByArticleId(article.id))
 
-            if (!response.data) {
-                throw new Error()
-            }
+        return response.data
+    } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error)
 
-            dispatch(fetchCommentsByArticleId(article.id))
-
-            return response.data
-        } catch (error) {
-            // eslint-disable-next-line no-console
-            console.log(error)
-
-            return rejectWithValue('Error from addCommentForArticle')
-        }
-    },
-)
+        return rejectWithValue('Error from addCommentForArticle')
+    }
+})

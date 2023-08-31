@@ -1,9 +1,11 @@
-/* eslint-disable indent */
 import { memo, useCallback, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { DynamicModuleLoader, TReducerLIst } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import {
+    DynamicModuleLoader,
+    TReducerLIst,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Avatar } from '@/shared/ui/Avatar'
 import { Skeleton } from '@/shared/ui/Skeleton'
@@ -48,11 +50,29 @@ export const ArticleDetails = memo((props: IArticleDetailsProps) => {
     const renderBlock = useCallback((block: IArticleBlock) => {
         switch (block.type) {
             case EArticleBlockType.CODE:
-                return <ArticleCodeBlockComponent key={block.id} className={cls.block} block={block} />
+                return (
+                    <ArticleCodeBlockComponent
+                        key={block.id}
+                        className={cls.block}
+                        block={block}
+                    />
+                )
             case EArticleBlockType.IMAGE:
-                return <ArticleImageBlockComponent key={block.id} className={cls.block} block={block} />
+                return (
+                    <ArticleImageBlockComponent
+                        key={block.id}
+                        className={cls.block}
+                        block={block}
+                    />
+                )
             case EArticleBlockType.TEXT:
-                return <ArticleTextBlockComponent key={block.id} block={block} className={cls.block} />
+                return (
+                    <ArticleTextBlockComponent
+                        key={block.id}
+                        block={block}
+                        className={cls.block}
+                    />
+                )
             default:
                 return null
         }
@@ -69,7 +89,12 @@ export const ArticleDetails = memo((props: IArticleDetailsProps) => {
     if (isLoading) {
         content = (
             <>
-                <Skeleton className={cls.avatar} width={200} height={200} border="50%" />
+                <Skeleton
+                    className={cls.avatar}
+                    width={200}
+                    height={200}
+                    border="50%"
+                />
                 <Skeleton className={cls.title} width={300} height={32} />
                 <Skeleton className={cls.skeleton} width={600} height={24} />
                 <Skeleton className={cls.skeleton} width="100%" height={200} />
@@ -77,16 +102,30 @@ export const ArticleDetails = memo((props: IArticleDetailsProps) => {
             </>
         )
     } else if (error) {
-        content = <Text align={ETextAlign.CENTER} title={t('Произошла ошибка при загрузке статьи')} />
+        content = (
+            <Text
+                align={ETextAlign.CENTER}
+                title={t('Произошла ошибка при загрузке статьи')}
+            />
+        )
     } else {
         content = (
             <>
                 <HStack justify="center" max className={cls.avatarWrapper}>
-                    <Avatar size={200} src={article?.img} className={cls.avatar} />
+                    <Avatar
+                        size={200}
+                        src={article?.img}
+                        className={cls.avatar}
+                    />
                 </HStack>
 
                 <VStack gap="4" max data-testid="ArticleDetails.Info">
-                    <Text className={cls.title} title={article?.title} text={article?.subtitle} size={ETextSize.L} />
+                    <Text
+                        className={cls.title}
+                        title={article?.title}
+                        text={article?.subtitle}
+                        size={ETextSize.L}
+                    />
 
                     <HStack gap="8" className={cls.articleInfo}>
                         <Icon Svg={EyeIcon} className={cls.icon} />
@@ -105,8 +144,15 @@ export const ArticleDetails = memo((props: IArticleDetailsProps) => {
     }
 
     return (
-        <DynamicModuleLoader asyncReducers={asyncReducers} removeAfterUnmount={true}>
-            <VStack gap="16" max className={classNames(cls.articleDetails, {}, [className])}>
+        <DynamicModuleLoader
+            asyncReducers={asyncReducers}
+            removeAfterUnmount={true}
+        >
+            <VStack
+                gap="16"
+                max
+                className={classNames(cls.articleDetails, {}, [className])}
+            >
                 {content}
             </VStack>
         </DynamicModuleLoader>

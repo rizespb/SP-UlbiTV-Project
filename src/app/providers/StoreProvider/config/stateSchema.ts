@@ -1,4 +1,10 @@
-import { AnyAction, CombinedState, EnhancedStore, Reducer, ReducersMapObject } from '@reduxjs/toolkit'
+import {
+    AnyAction,
+    CombinedState,
+    EnhancedStore,
+    Reducer,
+    ReducersMapObject,
+} from '@reduxjs/toolkit'
 import { AxiosInstance } from 'axios'
 import { IArticleDetailsSchema } from '@/entities/Article'
 import { ICounterSchema } from '@/entities/Counter'
@@ -37,7 +43,10 @@ export type TMountedReducers = OptionalRecord<TStateSchemaKey, boolean>
 
 export interface IReducerManager {
     getReducerMap: () => ReducersMapObject<IStateSchema>
-    reduce: (state: IStateSchema, action: AnyAction) => CombinedState<IStateSchema>
+    reduce: (
+        state: IStateSchema,
+        action: AnyAction,
+    ) => CombinedState<IStateSchema>
     add: (key: TStateSchemaKey, reducer: Reducer) => void
     remove: (key: TStateSchemaKey) => void
 

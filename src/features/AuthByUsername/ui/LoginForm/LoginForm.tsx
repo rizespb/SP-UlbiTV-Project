@@ -5,7 +5,10 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { Button, EButtonTheme } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
 import { Text, ETextTheme } from '@/shared/ui/Text'
-import { DynamicModuleLoader, TReducerLIst } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import {
+    DynamicModuleLoader,
+    TReducerLIst,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { loginByUsername } from '../../model/services/loginByUsername/loginByUsername'
 import { loginActions, loginReducer } from '../../model/slice/loginSlice'
@@ -61,11 +64,19 @@ const LoginForm = ({ className, onSuccess }: ILoginFormProps) => {
         // Т.к. LoginForm асинхронный, то и редюсор будет подгружаться асинхронно
         // loginReducer изолирован внутри фичи AuthByUsername
         // eslint-disable-next-line i18next/no-literal-string
-        <DynamicModuleLoader asyncReducers={initialReducers} removeAfterUnmount={true}>
+        <DynamicModuleLoader
+            asyncReducers={initialReducers}
+            removeAfterUnmount={true}
+        >
             <div className={classNames(cls.LoginForm, {}, [className])}>
                 <Text title={t('Форма авторизации')} />
 
-                {error && <Text text={t('Вы ввели неверный логин или пароль')} theme={ETextTheme.ERROR} />}
+                {error && (
+                    <Text
+                        text={t('Вы ввели неверный логин или пароль')}
+                        theme={ETextTheme.ERROR}
+                    />
+                )}
 
                 <Input
                     type="text"

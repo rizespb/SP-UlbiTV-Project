@@ -47,7 +47,15 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     if (isLoading) {
         return (
-            <HStack justify="center" max className={classNames(cls.ProfileCard, { [cls.loading]: true }, [className])}>
+            <HStack
+                justify="center"
+                max
+                className={classNames(
+                    cls.ProfileCard,
+                    { [cls.loading]: true },
+                    [className],
+                )}
+            >
                 <Loader type="ellipsis" />
             </HStack>
         )
@@ -55,7 +63,14 @@ export const ProfileCard = (props: ProfileCardProps) => {
 
     if (error) {
         return (
-            <HStack justify="center" max className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
+            <HStack
+                justify="center"
+                max
+                className={classNames(cls.ProfileCard, {}, [
+                    className,
+                    cls.error,
+                ])}
+            >
                 <Text
                     theme={ETextTheme.ERROR}
                     title={t('Произошла ошибка при загрузке профиля')}
@@ -71,7 +86,11 @@ export const ProfileCard = (props: ProfileCardProps) => {
     }
 
     return (
-        <VStack gap="8" max className={classNames(cls.ProfileCard, mods, [className])}>
+        <VStack
+            gap="8"
+            max
+            className={classNames(cls.ProfileCard, mods, [className])}
+        >
             {data?.avatar && (
                 <HStack justify="center" max className={cls.avatarWrapper}>
                     <Avatar src={data?.avatar} alt="" />
@@ -130,7 +149,12 @@ export const ProfileCard = (props: ProfileCardProps) => {
                 readOnly={readOnly}
             />
 
-            <CountrySelect className={cls.input} value={data?.country} onChange={onChangeCountry} readOnly={readOnly} />
+            <CountrySelect
+                className={cls.input}
+                value={data?.country}
+                onChange={onChangeCountry}
+                readOnly={readOnly}
+            />
         </VStack>
     )
 }

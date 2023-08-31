@@ -47,5 +47,9 @@
     },
     // Добавили setupTests, чтобы заработал jest-dom, хотя вроде бы нет необходимости, т.к. setupTests подключается в setupFilesAfterEnv в jest.config.ts
     // Т.к. заюзали include, пришлось добавить ./src/**/*.ts(tsx), чтобы TS увидел все остальные файлы
-    "include": ["./config/jest/setupTests.ts", "./src/**/*.ts", "./src/**/*.tsx"]
+    "include": [
+        "./config/jest/setupTests.ts",
+        "./src/**/*.ts",
+        "./src/**/*.tsx"
+    ]
 }

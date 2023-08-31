@@ -25,7 +25,9 @@ export const Page = (props: IPageProps) => {
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>
     const dispatch = useAppDispatch()
     const { pathname } = useLocation()
-    const scrollPosition = useSelector((state: IStateSchema) => getUIScrollByPath(state, pathname))
+    const scrollPosition = useSelector((state: IStateSchema) =>
+        getUIScrollByPath(state, pathname),
+    )
 
     useInfiniteScroll({
         wrapperRef,
@@ -58,7 +60,9 @@ export const Page = (props: IPageProps) => {
         >
             {children}
             {/* Этот div для useInfiniteScroll - при достижении конца страницы  будет вызван onScrollEnd (например, при подгрузке списка статей) */}
-            {onScrollEnd ? <div className={cls.trigger} ref={triggerRef} /> : null}
+            {onScrollEnd ? (
+                <div className={cls.trigger} ref={triggerRef} />
+            ) : null}
         </main>
     )
 }

@@ -28,7 +28,16 @@ interface IListBoxProps {
 
 // Выпадающий список для для выбора одной опции - кастомный Select (например, список валют или стран в карточке профиля )
 export const ListBox = (props: IListBoxProps) => {
-    const { className, items, value, defaultValue, onChange, readonly, direction = 'bottom right', label } = props
+    const {
+        className,
+        items,
+        value,
+        defaultValue,
+        onChange,
+        readonly,
+        direction = 'bottom right',
+        label,
+    } = props
 
     const checkmark = ' ✔'
 
@@ -40,7 +49,10 @@ export const ListBox = (props: IListBoxProps) => {
 
             <HListBox
                 as="div"
-                className={classNames(cls.listBox, {}, [className, popupCls.popup])}
+                className={classNames(cls.listBox, {}, [
+                    className,
+                    popupCls.popup,
+                ])}
                 value={value}
                 onChange={onChange}
                 disabled={readonly}
@@ -49,9 +61,16 @@ export const ListBox = (props: IListBoxProps) => {
                     <Button disabled={readonly}>{value ?? defaultValue}</Button>
                 </HListBox.Button>
 
-                <HListBox.Options className={classNames(cls.options, {}, optionsClasses)}>
+                <HListBox.Options
+                    className={classNames(cls.options, {}, optionsClasses)}
+                >
                     {items?.map((item) => (
-                        <HListBox.Option key={item.value} value={item.value} disabled={item.disabled} as={Fragment}>
+                        <HListBox.Option
+                            key={item.value}
+                            value={item.value}
+                            disabled={item.disabled}
+                            as={Fragment}
+                        >
                             {({ active, selected }) => (
                                 <li
                                     className={classNames(cls.item, {

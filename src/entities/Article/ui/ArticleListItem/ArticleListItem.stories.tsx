@@ -12,7 +12,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticleListItem>
 
-const Template: ComponentStory<typeof ArticleListItem> = (args) => <ArticleListItem {...args} />
+const Template: ComponentStory<typeof ArticleListItem> = (args) => (
+    <ArticleListItem {...args} />
+)
 
 const article = {
     id: '1',

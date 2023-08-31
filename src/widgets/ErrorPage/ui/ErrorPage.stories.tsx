@@ -10,7 +10,9 @@ export default {
 } as ComponentMeta<typeof ErrorPage>
 
 // eslint-disable-next-line react/jsx-props-no-spreading
-const Template: ComponentStory<typeof ErrorPage> = (args) => <ErrorPage {...args} />
+const Template: ComponentStory<typeof ErrorPage> = (args) => (
+    <ErrorPage {...args} />
+)
 
 export const Light = Template.bind({})
 Light.args = {}

@@ -5,10 +5,19 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
 import { Button, EButtonTheme } from '@/shared/ui/Button'
 import { Input } from '@/shared/ui/Input'
-import { DynamicModuleLoader, TReducerLIst } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import {
+    DynamicModuleLoader,
+    TReducerLIst,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { HStack } from '@/shared/ui/Stack'
-import { addCommentFormActions, addCommentFormReducer } from '../../model/slices/addCommentFormSlice'
-import { getAddCommentFormError, getAddCommentFormText } from '../../model/selectors/addCommentFormSelectors'
+import {
+    addCommentFormActions,
+    addCommentFormReducer,
+} from '../../model/slices/addCommentFormSlice'
+import {
+    getAddCommentFormError,
+    getAddCommentFormText,
+} from '../../model/selectors/addCommentFormSelectors'
 import cls from './AddCommentForm.module.scss'
 
 export interface IAddCommentFormProps {
@@ -56,7 +65,11 @@ const AddCommentForm = memo((props: IAddCommentFormProps) => {
                     onChange={onCommentTextChange}
                 />
 
-                <Button data-testid="AddCommentForm.Button" theme={EButtonTheme.OUTLINE} onClick={onSendHandler}>
+                <Button
+                    data-testid="AddCommentForm.Button"
+                    theme={EButtonTheme.OUTLINE}
+                    onClick={onSendHandler}
+                >
                     {t('Отправить')}
                 </Button>
             </HStack>

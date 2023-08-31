@@ -8,7 +8,10 @@ import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitial
 import { ECurrency } from '@/entities/Currency'
 import { ECountry } from '@/entities/Country'
 import { ETextTheme, Text } from '@/shared/ui/Text'
-import { DynamicModuleLoader, TReducerLIst } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
+import {
+    DynamicModuleLoader,
+    TReducerLIst,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { VStack } from '@/shared/ui/Stack'
 import { EValidateProfileError } from '../../model/consts/consts'
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm'
@@ -41,10 +44,14 @@ export const EditableProfileCard = memo((props: IEditableProfileCardProps) => {
     const validateErrors = useSelector(getProfileValidateErrors)
 
     const validateErrorsTranslates = {
-        [EValidateProfileError.SERVER_ERROR]: t('Серверная ошибка при сохранении'),
+        [EValidateProfileError.SERVER_ERROR]: t(
+            'Серверная ошибка при сохранении',
+        ),
         [EValidateProfileError.NO_DATA]: t('Данные не указаны'),
         [EValidateProfileError.INCORRECT_COUNTRY]: t('Некорректный регион'),
-        [EValidateProfileError.INCORRECT_USER_DATA]: t('Имя и фамилия обязательны'),
+        [EValidateProfileError.INCORRECT_USER_DATA]: t(
+            'Имя и фамилия обязательны',
+        ),
         [EValidateProfileError.INCORRECT_AGE]: t('Некорректный возраст'),
     }
 

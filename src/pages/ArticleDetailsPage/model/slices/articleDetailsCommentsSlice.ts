@@ -1,4 +1,8 @@
-import { createEntityAdapter, createSlice, PayloadAction } from '@reduxjs/toolkit'
+import {
+    createEntityAdapter,
+    createSlice,
+    PayloadAction,
+} from '@reduxjs/toolkit'
 import { IStateSchema } from '@/app/providers/StoreProvider'
 import { IComment } from '@/entities/Comment'
 import { fetchCommentsByArticleId } from '../services/fetchCommentsByArticleId/fetchCommentsByArticleId'
@@ -12,18 +16,21 @@ const commentsAdapter = createEntityAdapter<IComment>({
 
 // Это селекторы
 export const getArticleComments = commentsAdapter.getSelectors<IStateSchema>(
-    (state) => state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
+    (state) =>
+        state.articleDetailsPage?.comments || commentsAdapter.getInitialState(),
 )
 
 const articleDetailsCommentsSlice = createSlice({
     name: 'articleDetailsCommentsSlice',
     // Инициализируем стейт
-    initialState: commentsAdapter.getInitialState<IArticleDeatlsCommentsSchema>({
-        isLoading: false,
-        error: undefined,
-        ids: [],
-        entities: {},
-    }),
+    initialState: commentsAdapter.getInitialState<IArticleDeatlsCommentsSchema>(
+        {
+            isLoading: false,
+            error: undefined,
+            ids: [],
+            entities: {},
+        },
+    ),
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -31,12 +38,15 @@ const articleDetailsCommentsSlice = createSlice({
                 state.error = undefined
                 state.isLoading = true
             })
-            .addCase(fetchCommentsByArticleId.fulfilled, (state, action: PayloadAction<IComment[]>) => {
-                state.isLoading = false
+            .addCase(
+                fetchCommentsByArticleId.fulfilled,
+                (state, action: PayloadAction<IComment[]>) => {
+                    state.isLoading = false
 
-                // Далее Редакс самостоятельно нормализует данные и заполнит ids и entities
-                commentsAdapter.setAll(state, action.payload)
-            })
+                    // Далее Редакс самостоятельно нормализует данные и заполнит ids и entities
+                    commentsAdapter.setAll(state, action.payload)
+                },
+            )
             .addCase(fetchCommentsByArticleId.rejected, (state, action) => {
                 state.isLoading = false
                 state.error = action.payload
@@ -44,5 +54,7 @@ const articleDetailsCommentsSlice = createSlice({
     },
 })
 
-export const { reducer: articleDetailsCommentsReducer } = articleDetailsCommentsSlice
-export const { actions: articleDetailsCommentsActions } = articleDetailsCommentsSlice
+export const { reducer: articleDetailsCommentsReducer } =
+    articleDetailsCommentsSlice
+export const { actions: articleDetailsCommentsActions } =
+    articleDetailsCommentsSlice
