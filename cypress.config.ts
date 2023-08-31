@@ -9,4 +9,11 @@ export default defineConfig({
         // Теперь в методе visit можем указывать относительный адрес (без хоста)
         baseUrl: 'http://localhost:3000/',
     },
+
+    component: {
+        devServer: {
+            framework: 'react',
+            bundler: 'webpack',
+        },
+    },
 })

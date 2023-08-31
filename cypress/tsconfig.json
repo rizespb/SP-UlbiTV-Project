@@ -8,5 +8,5 @@
         "isolatedModules": false
     },
     "extends": "../tsconfig.json",
-    "include": ["**/*.ts", "../cypress.config.ts"]
+    "include": ["**/*.ts", "**/*.tsx", "../cypress.config.ts"]
 }
