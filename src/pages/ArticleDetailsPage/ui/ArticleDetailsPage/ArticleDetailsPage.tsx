@@ -14,6 +14,8 @@ import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDet
 import { ArticleDetailsComment } from '../ArticleDetailsComment/ArticleDetailsComment'
 import cls from './ArticleDetailsPage.module.scss'
 import { ArticleRating } from '@/features/articleRating'
+import { Counter } from '@/entities/Counter'
+import { getFeatureFlag } from '@/shared/lib/features'
 
 interface IArticleDetailsPageProps {
     className?: string
@@ -27,6 +29,9 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
     const { className } = props
     // const { t } = useTranslation('article-details')
     const { id } = useParams<{ id: string }>()
+
+    const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled')
+    const isCounterEnabled = getFeatureFlag('isCounterEnabled')
 
     if (!id) {
         return null
@@ -45,7 +50,11 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
 
                     <ArticleDetails id={id} />
 
-                    <ArticleRating articleId={id} />
+                    {/* Пример фичтоггла (фича-флаг) */}
+                    {isCounterEnabled && <Counter />}
+
+                    {/* Пример фичтоггла (фича-флаг) */}
+                    {isArticleRatingEnabled && <ArticleRating articleId={id} />}
 
                     <ArticleRecommendationsList />
 

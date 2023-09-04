@@ -1,3 +1,4 @@
+import { FeatureFlags } from '@/shared/types/featureFlags'
 import { EUserRole } from '../consts/consts'
 
 export interface IUser {
@@ -5,6 +6,7 @@ export interface IUser {
     username: string
     avatar?: string
     roles?: EUserRole[]
+    features?: FeatureFlags
 }
 
 // Интерфейс для стейта
