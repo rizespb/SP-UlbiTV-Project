@@ -4,6 +4,7 @@ import {
     EArticleType,
     EArticleView,
 } from '@/entities/Article'
+import { buildSelector } from '@/shared/lib/store'
 
 export const getArticlesPageIsLoading = (state: IStateSchema) =>
     state.articlesPage?.isLoading || false
@@ -27,3 +28,7 @@ export const getArticlesPageSearch = (state: IStateSchema) =>
     state.articlesPage?.search ?? ''
 export const getArticlesPageType = (state: IStateSchema) =>
     state.articlesPage?.type ?? EArticleType.ALL
+
+export const [useArticleItemById] = buildSelector(
+    (state, id: string) => state.articlesPage?.entities[id],
+)
