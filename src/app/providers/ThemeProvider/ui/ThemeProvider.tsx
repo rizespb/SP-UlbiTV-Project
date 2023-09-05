@@ -1,10 +1,10 @@
-import { FC, ReactNode, useMemo, useState } from 'react'
-import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage'
+import { FC, ReactNode, useEffect, useMemo, useState } from 'react'
 import { Theme } from '@/shared/const/theme'
 import { ThemeContext } from '@/shared/lib/context/ThemeContext'
+import { useJsonSettings } from '@/entities/User'
 
-const defaultTheme =
-    (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT
+// const defaultTheme =
+//     (localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme) || Theme.LIGHT
 
 interface ThemeProdviderProps {
     initialTheme?: Theme
@@ -14,7 +14,19 @@ interface ThemeProdviderProps {
 const ThemeProvider: FC<ThemeProdviderProps> = (props) => {
     const { children, initialTheme } = props
 
+    // Вначале тему хранили в localStorage, потом стали хранить в Redux (сохранять на сервере)
+    const { theme: defaultTheme = Theme.LIGHT } = useJsonSettings()
+
+    const [isThemeInited, setThemeInited] = useState(false)
+
     const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme)
+
+    useEffect(() => {
+        if (!isThemeInited) {
+            setTheme(defaultTheme)
+            setThemeInited(true)
+        }
+    }, [defaultTheme, isThemeInited])
 
     const defaultProps = useMemo(() => ({ theme, setTheme }), [theme])
 

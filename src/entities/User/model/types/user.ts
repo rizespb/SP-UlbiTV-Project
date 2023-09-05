@@ -1,5 +1,6 @@
 import { FeatureFlags } from '@/shared/types/featureFlags'
 import { EUserRole } from '../consts/consts'
+import { IJsonSettings } from './jsonSettings'
 
 export interface IUser {
     id: string
@@ -7,6 +8,8 @@ export interface IUser {
     avatar?: string
     roles?: EUserRole[]
     features?: FeatureFlags
+    // Настройки пользователя, которые мы храним на бэке
+    jsonSettings?: IJsonSettings
 }
 
 // Интерфейс для стейта

@@ -18,5 +18,6 @@ export function buildSelector<T, Args extends any[]>(
     const useSelectorHook: Hook<T, Args> = (...args: Args) =>
         useSelector((state: IStateSchema) => selector(state, ...args))
 
+    // Отличие useSelectorHook от selector в том, что useSelector принимает аргументы, а selector стейт и аргументы
     return [useSelectorHook, selector]
 }
