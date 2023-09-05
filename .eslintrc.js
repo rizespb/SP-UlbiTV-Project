@@ -86,6 +86,9 @@ module.exports = {
             { argsIgnorePattern: '^_' },
         ],
 
+        // Запрещает объявлять (создавать и описывать) новые компоненты в теле другого компонента
+        'react/no-unstable-nested-components': 'warn',
+
         // Правило, которое проверяет, что импорты в рамках одного слайса (слайс, например, entities/User или entities/Profile) должны быть относительными
         'rizespb-fsd/path-checker': ['error', { alias: '@' }],
 

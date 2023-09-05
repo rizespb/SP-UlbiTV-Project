@@ -266,6 +266,46 @@ npm run test:ui и npm run test:ui:ok
 
 ---
 
+----
+
+### Работа с feature-flags
+
+Разрешено использование feature flags только с помощью хелпера toggleFeatures
+
+в него передается объект с опциями 
+
+{
+   name: название фича-флага, 
+   on: функция, которая отработает после Включения фичи 
+   of: функция, которая отработает после ВЫключения фичи
+}
+
+Для автоматического удаления фичи использовать скрипт remove-feature.ts,
+который принимает 2 аргумента
+1. Название удаляемого фича-флага
+2. Состояние (on\off)
+
+Пример:
+```
+npx ts-node ./scripts/remove-feature.ts isArticleRatingEnabled on
+```
+Преобразует код вида:
+```
+const articleRatingCard = toggleFeatures({
+    name: 'isArticleRatingEnabled',
+    // eslint-disable-next-line react/no-unstable-nested-components
+    on: () => <ArticleRating articleId={id} />,
+    // eslint-disable-next-line react/no-unstable-nested-components
+    off: () => <Card>{t('Оценка статей скоро появится!')}</Card>,
+})
+```
+в
+
+```
+const articleRatingCard =  <Card>{t('Оценка статей скоро появится!')}</Card>
+```
+
+
 ## Сущности (entities)
 
 -   [Article](/src/entities/Article)

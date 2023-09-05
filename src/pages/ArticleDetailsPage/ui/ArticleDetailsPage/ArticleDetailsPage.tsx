@@ -1,5 +1,6 @@
 import { memo } from 'react'
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ArticleDetails } from '@/entities/Article'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import {
@@ -14,8 +15,8 @@ import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDet
 import { ArticleDetailsComment } from '../ArticleDetailsComment/ArticleDetailsComment'
 import cls from './ArticleDetailsPage.module.scss'
 import { ArticleRating } from '@/features/articleRating'
-import { Counter } from '@/entities/Counter'
-import { getFeatureFlag } from '@/shared/lib/features'
+import { toggleFeatures } from '@/shared/lib/features'
+import { Card } from '@/shared/ui/Card'
 
 interface IArticleDetailsPageProps {
     className?: string
@@ -27,15 +28,20 @@ const asyncReducers: TReducerLIst = {
 
 const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
     const { className } = props
-    // const { t } = useTranslation('article-details')
+    const { t } = useTranslation('article-details')
     const { id } = useParams<{ id: string }>()
-
-    const isArticleRatingEnabled = getFeatureFlag('isArticleRatingEnabled')
-    const isCounterEnabled = getFeatureFlag('isCounterEnabled')
 
     if (!id) {
         return null
     }
+
+    const articleRatingCard = toggleFeatures({
+        name: 'isArticleRatingEnabled',
+        // eslint-disable-next-line react/no-unstable-nested-components
+        on: () => <ArticleRating articleId={id} />,
+        // eslint-disable-next-line react/no-unstable-nested-components
+        off: () => <Card>{t('Оценка статей скоро появится!')}</Card>,
+    })
 
     return (
         <DynamicModuleLoader
@@ -50,11 +56,7 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
 
                     <ArticleDetails id={id} />
 
-                    {/* Пример фичтоггла (фича-флаг) */}
-                    {isCounterEnabled && <Counter />}
-
-                    {/* Пример фичтоггла (фича-флаг) */}
-                    {isArticleRatingEnabled && <ArticleRating articleId={id} />}
+                    {articleRatingCard}
 
                     <ArticleRecommendationsList />
 
