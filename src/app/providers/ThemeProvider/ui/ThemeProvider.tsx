@@ -15,14 +15,16 @@ const ThemeProvider: FC<ThemeProdviderProps> = (props) => {
     const { children, initialTheme } = props
 
     // Вначале тему хранили в localStorage, потом стали хранить в Redux (сохранять на сервере)
-    const { theme: defaultTheme = Theme.LIGHT } = useJsonSettings()
+    const { theme: defaultTheme } = useJsonSettings()
 
     const [isThemeInited, setThemeInited] = useState(false)
 
-    const [theme, setTheme] = useState<Theme>(initialTheme || defaultTheme)
+    const [theme, setTheme] = useState<Theme>(
+        initialTheme || defaultTheme || Theme.LIGHT,
+    )
 
     useEffect(() => {
-        if (!isThemeInited) {
+        if (!isThemeInited && defaultTheme) {
             setTheme(defaultTheme)
             setThemeInited(true)
         }

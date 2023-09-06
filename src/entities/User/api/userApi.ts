@@ -22,6 +22,20 @@ const userApi = rtkApi.injectEndpoints({
                 },
             }),
         }),
+        // При авторизации сохраняем id пользователя в localStorage
+        // При следующем заходе на сайт подгружаем данные о user по этому id из localStorage
+        // IUser - что возвращаем
+        // string - что передаем в функцию (id пользователя)
+        getUserDataById: build.query<IUser, string>({
+            query: (userId) => {
+                console.log(userId)
+
+                return {
+                    url: `/users/${userId}`,
+                    method: 'GET',
+                }
+            },
+        }),
     }),
 })
 
@@ -29,3 +43,5 @@ const userApi = rtkApi.injectEndpoints({
 // В других местах использовали аналогичные api с помощью хука
 export const setJsonSettingsMutation =
     userApi.endpoints.setJsonSettings.initiate
+
+export const getUserDataByIdQuery = userApi.endpoints.getUserDataById.initiate
