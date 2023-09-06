@@ -22,8 +22,6 @@ export const initAuthData = createAsyncThunk<IUser, void, IThunkConfig<string>>(
             return rejectWithValue('')
         }
 
-        console.log('userId', userId)
-
         try {
             const response = await dispatch(
                 getUserDataByIdQuery(userId),

@@ -15,6 +15,7 @@ import { articlesPageReducer } from '../../model/slices/articlesPageSlice'
 import cls from './ArticlesPage.module.scss'
 import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters'
 import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList'
+import { ArticlePageGreeting } from '@/features/articlePageGreeting'
 
 interface IArticlesPageProps {
     className?: string
@@ -56,6 +57,10 @@ const ArticlesPage = (props: IArticlesPageProps) => {
                 <ArticlesPageFilters />
 
                 <ArticleInfiniteList className={cls.list} />
+
+                {/* Привественное сообщение на странице статей.
+Показывается один раз при первой авторизации пользователя */}
+                <ArticlePageGreeting />
             </Page>
         </DynamicModuleLoader>
     )
