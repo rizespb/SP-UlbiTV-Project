@@ -15,7 +15,7 @@ import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDet
 import { ArticleDetailsComment } from '../ArticleDetailsComment/ArticleDetailsComment'
 import cls from './ArticleDetailsPage.module.scss'
 import { ArticleRating } from '@/features/articleRating'
-import { toggleFeatures } from '@/shared/lib/features'
+import { ToggleFeatures } from '@/shared/lib/features'
 import { Card } from '@/shared/ui/Card'
 
 interface IArticleDetailsPageProps {
@@ -35,14 +35,6 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
         return null
     }
 
-    const articleRatingCard = toggleFeatures({
-        name: 'isArticleRatingEnabled',
-        // eslint-disable-next-line react/no-unstable-nested-components
-        on: () => <ArticleRating articleId={id} />,
-        // eslint-disable-next-line react/no-unstable-nested-components
-        off: () => <Card>{t('Оценка статей скоро появится!')}</Card>,
-    })
-
     return (
         <DynamicModuleLoader
             asyncReducers={asyncReducers}
@@ -56,7 +48,14 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
 
                     <ArticleDetails id={id} />
 
-                    {articleRatingCard}
+                    {/* Если фич-тоггле isArticleRatingEnabled в настройках пользователя jsonSettings (которые хранятся в БД на бэке) включен (true), тогда отображаем ArticleRating
+                    Если выключен (false), тогда надпись 
+                    'Оценка статей скоро появится!' */}
+                    <ToggleFeatures
+                        feature="isArticleRatingEnabled"
+                        on={<ArticleRating articleId={id} />}
+                        off={<Card>{t('Оценка статей скоро появится!')}</Card>}
+                    />
 
                     <ArticleRecommendationsList />
 

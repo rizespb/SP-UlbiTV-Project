@@ -36,7 +36,9 @@
         "comment for generate:slice": "команда для запуска скрипта автоматической генерации слайсов FSD (не redux-slice)",
         "generate:slice": "node ./scripts/createSlice/index.js",
         "comment for postinstall": "автоматически должен запускаться после установки новой зависимости. Но у меня так и не стал запускаться автоматически. Можно запустить вручную",
-        "postinstall": "node ./scripts/clear-cache.js"
+        "postinstall": "node ./scripts/clear-cache.js",
+        "comment for remove-feature": "скрипт для автоматического удаления фич-тогглов из кода (toggleFeatures или ToggleFeatures). В него надо передать имя ФТ и состояние (on или off), которое надо оставить в коде",
+        "remove-feature": "ts-node ./scripts/remove-feature.ts"
     },
     "comment for lint-staged": "Библотека, которая с precommit хуками (husky) будет прогонять линтер только для измененных файлов (для ts,tsx файлов)",
     "lint-staged": {
