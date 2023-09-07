@@ -3,7 +3,7 @@ import { FeatureFlags } from '@/shared/types/featureFlags'
 // ФИЧИ НЕ МЕНЯЮТСЯ В ХОДЕ СЕССИИ, ИХ НЕОБЯЗАТЕЛЬНО ДЕЛАТЬ РЕАКТИВНЫМИ!
 // то есть мы не подписываем Реакт на изменение фичтогглов
 // Для хранения информации будет сипользоваться просто глобальная переменная
-let featureFlags: FeatureFlags
+let featureFlags: FeatureFlags = {}
 
 export function setFeatureFlags(newFeatureFlags?: FeatureFlags) {
     if (newFeatureFlags) {
@@ -12,9 +12,5 @@ export function setFeatureFlags(newFeatureFlags?: FeatureFlags) {
 }
 
 export function getFeatureFlag(flag: keyof FeatureFlags) {
-    if (!featureFlags) {
-        return false
-    }
-
     return featureFlags[flag]
 }

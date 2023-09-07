@@ -9,17 +9,30 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
     // Если файл имеет расширение svg, использовать @svgr/webpack
     const svgLoader = {
         test: /\.svg$/,
-        // Самостоятельно подключил настройку, чтобы при загрузке svg не удалялся аттрибут viewBox из svg (рендерилось некорректно)
+        
         // use: ['@svgr/webpack'],
         use: {
             loader: '@svgr/webpack',
             options: {
+                // заменят в svg width и height на кастомные значения
+                // Если кастомные значения в иконку не проброшены, размер иконки будет 1em * 1em
+                // Ниже есть мое решение этого вопроса путем удаления removeViewBox
+                icon: true,
                 svgoConfig: {
                     plugins: [
+                        // {
+                            // Самостоятельно подключал настройку, чтобы при загрузке svg не удалялся аттрибут viewBox из svg (рендерилось некорректно)
+                            // Потом заменили на icon: true (чуть выше)
+                        //     name: 'removeViewBox',
+                        //     active: false,
+                        // },
                         {
-                            name: 'removeViewBox',
-                            active: false,
-                        },
+                            // Эта настройка для того, чтобы была возможность переопределять цвет иконки fill в стилях
+                            name: 'convertColors',
+                            params: {
+                                currentColor: true,
+                            }
+                        }
                     ],
                 },
             },
