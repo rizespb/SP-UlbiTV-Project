@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { Button, EButtonTheme } from '@/shared/ui/Button'
-import { Input } from '@/shared/ui/Input'
+import { Button, EButtonTheme } from '@/shared/ui/depricated/Button'
+import { Input } from '@/shared/ui/depricated/Input'
 import {
     DynamicModuleLoader,
     TReducerLIst,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { HStack } from '@/shared/ui/Stack'
+import { HStack } from '@/shared/ui/depricated/Stack'
 import {
     addCommentFormActions,
     addCommentFormReducer,

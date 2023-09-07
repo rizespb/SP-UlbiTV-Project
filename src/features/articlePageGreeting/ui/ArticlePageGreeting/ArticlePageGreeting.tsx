@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 import { memo, useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
-import { Modal } from '@/shared/ui/Modal'
-import { Text } from '@/shared/ui/Text'
+import { Modal } from '@/shared/ui/depricated/Modal'
+import { Text } from '@/shared/ui/depricated/Text'
 import { saveJsonSettings, useJsonSettings } from '@/entities/User'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { Drawer } from '@/shared/ui/Drawer'
+import { Drawer } from '@/shared/ui/depricated/Drawer'
 
 // Приветственная модалка, которая открывается один раз при первом заходе пользователя в приложение
 export const ArticlePageGreeting = memo(() => {

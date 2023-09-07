@@ -59,7 +59,7 @@ files.forEach((sourceFile) => {
 
     // Итерируемся по каждому импорту в файле
     importDeclarations.forEach((importDeclaration) => {
-        // Поулчаем строку-код с импротом (import {...} from "@/shared/ui/AppLink/AppLink)
+        // Поулчаем строку-код с импротом (import {...} from "@/shared/ui/depricated/AppLink/AppLink)
         const value = importDeclaration.getModuleSpecifierValue()
 
         // Избавляемся от алиаса в этой строке
