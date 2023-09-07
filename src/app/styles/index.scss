@@ -16,6 +16,17 @@
     background: var(--bg-color);
 }
 
+// Сделали редизайн
+// У некоторых пользователей будет новый дизайн
+// А некоторых оставим старый
+// Регулируется с помощью ФТ isAppRedesigned
+.app_redesigned {
+    min-height: 100vh;
+    background: var(--bg-redesigned);
+    font: var(--font-m-redesigned);
+    color: var(--text-redesigned);
+}
+
 .content-page {
     display: flex;
 }
