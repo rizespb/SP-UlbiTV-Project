@@ -8,12 +8,14 @@ import {
 } from '@/shared/ui/depricated/Button'
 import { LangSwitcher } from '@/features/LangSwitcher'
 import { ThemeSwitcher } from '@/features/ThemeSwitcher'
-import { VStack } from '@/shared/ui/depricated/Stack'
 import { getSidebarItems } from '../../model/selectors/getSidebarItems'
 import cls from './Sidebar.module.scss'
 import { SidebarItem } from '../SidebarItem/SidebarItem'
 import { ToggleFeatures } from '@/shared/lib/features'
-import { AppLogo } from '@/shared/ui/depricated/AppLogo'
+import { VStack } from '@/shared/ui/depricated/Stack'
+import { AppLogo } from '@/shared/ui/redesigned/AppLogo'
+import { Icon } from '@/shared/ui/redesigned/Icon'
+import ArrowIcon from '@/shared/assets/icons/arrow-bottom.svg'
 
 interface ISidebarProps {
     className?: string
@@ -51,11 +53,28 @@ export const Sidebar = memo(({ className }: ISidebarProps) => {
                     data-testid="sidebar"
                     className={classNames(
                         cls.SidebarRedesigned,
-                        { [cls.collapsed]: collapsed },
+                        { [cls.collapsedRedesigned]: collapsed },
                         [className],
                     )}
                 >
-                    <AppLogo className={cls.appLogo} />
+                    <AppLogo
+                        size={collapsed ? 30 : 50}
+                        className={cls.appLogo}
+                    />
+                    <VStack role="navigation" gap="8" className={cls.items}>
+                        {itemsList}
+                    </VStack>
+                    <Icon
+                        data-testid="sidebar-toggle"
+                        onClick={onToggle}
+                        className={cls.collapseBtn}
+                        Svg={ArrowIcon}
+                        clickable
+                    />
+                    <div className={cls.switchers}>
+                        <ThemeSwitcher />
+                        <LangSwitcher short={collapsed} className={cls.lang} />
+                    </div>
                 </aside>
             }
             off={
@@ -78,10 +97,6 @@ export const Sidebar = memo(({ className }: ISidebarProps) => {
                     >
                         {collapsed ? '>' : '<'}
                     </Button>
-
-                    <VStack role="navigation" gap="8" className={cls.items}>
-                        {itemsList}
-                    </VStack>
 
                     <div className={cls.switchers}>
                         <ThemeSwitcher />
