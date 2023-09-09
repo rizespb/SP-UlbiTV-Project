@@ -8,7 +8,7 @@ import {
     TReducerLIst,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
 import { Page } from '@/widgets/Page'
-import { VStack } from '@/shared/ui/depricated/Stack'
+import { VStack } from '@/shared/ui/redesigned/Stack'
 import { ArticleRecommendationsList } from '@/features/articleRecommendationsList'
 import { articleDetailsPageReducer } from '../../model/slices'
 import { ArticleDetailsPageHeader } from '../ArticleDetailsPageHeader/ArticleDetailsPageHeader'

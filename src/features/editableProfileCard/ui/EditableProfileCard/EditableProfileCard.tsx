@@ -12,7 +12,7 @@ import {
     DynamicModuleLoader,
     TReducerLIst,
 } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader'
-import { VStack } from '@/shared/ui/depricated/Stack'
+import { VStack } from '@/shared/ui/redesigned/Stack'
 import { EValidateProfileError } from '../../model/consts/consts'
 import { getProfileForm } from '../../model/selectors/getProfileForm/getProfileForm'
 import { getProfileIsLoading } from '../../model/selectors/getProfileIsLoading/getProfileIsLoading'

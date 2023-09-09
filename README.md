@@ -162,6 +162,8 @@ npm run test:ui:ci:ok
 
 Файл со сторикейсами создает рядом с компонентом с расширением .stories.tsx
 
+На shares/ui/redisigned компоненты story-кейсы не писали
+
 Запустить сторибук можно командой:
 
 -   `npm run storybook`
@@ -266,30 +268,34 @@ npm run test:ui и npm run test:ui:ok
 
 ---
 
-----
+---
 
 ### Работа с feature-flags
 
 Разрешено использование feature flags только с помощью хелпера toggleFeatures
 
-в него передается объект с опциями 
+в него передается объект с опциями
 
 {
-   name: название фича-флага, 
-   on: функция, которая отработает после Включения фичи 
-   of: функция, которая отработает после ВЫключения фичи
+name: название фича-флага,
+on: функция, которая отработает после Включения фичи
+of: функция, которая отработает после ВЫключения фичи
 }
 
 Для автоматического удаления фичи использовать скрипт remove-feature.ts,
 который принимает 2 аргумента
+
 1. Название удаляемого фича-флага
 2. Состояние (on\off)
 
 Пример:
+
 ```
 npx ts-node ./scripts/remove-feature.ts isArticleRatingEnabled on
 ```
+
 Преобразует код вида:
+
 ```
 const articleRatingCard = toggleFeatures({
     name: 'isArticleRatingEnabled',
@@ -299,12 +305,12 @@ const articleRatingCard = toggleFeatures({
     off: () => <Card>{t('Оценка статей скоро появится!')}</Card>,
 })
 ```
+
 в
 
 ```
 const articleRatingCard =  <Card>{t('Оценка статей скоро появится!')}</Card>
 ```
-
 
 ## Сущности (entities)
 
