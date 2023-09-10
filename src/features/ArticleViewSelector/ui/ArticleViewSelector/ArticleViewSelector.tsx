@@ -1,11 +1,22 @@
 import { memo } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import ListIcon from '@/shared/assets/icons/list-24-24.svg'
-import TiledIcon from '@/shared/assets/icons/tiled-24-24.svg'
-import { Button, EButtonTheme } from '@/shared/ui/depricated/Button'
-import { Icon } from '@/shared/ui/depricated/Icon'
+import ListIconDeprecated from '@/shared/assets/icons/list-24-24.svg'
+import TiledIconDeprecated from '@/shared/assets/icons/tiled-24-24.svg'
+
+import ListIcon from '@/shared/assets/icons/burger.svg'
+import TiledIcon from '@/shared/assets/icons/tile.svg'
+
+import {
+    Button as ButtonDeprecated,
+    EButtonTheme,
+} from '@/shared/ui/depricated/Button'
+import { Icon as IconDeprecated } from '@/shared/ui/depricated/Icon'
 import cls from './ArticleViewSelector.module.scss'
 import { EArticleView } from '@/entities/Article'
+import { ToggleFeatures, toggleFeatures } from '@/shared/lib/features'
+import { Card } from '@/shared/ui/redesigned/Card'
+import { HStack } from '@/shared/ui/redesigned/Stack'
+import { Icon } from '@/shared/ui/redesigned/Icon'
 
 interface IArticleViewSelectorProps {
     className?: string
@@ -16,11 +27,19 @@ interface IArticleViewSelectorProps {
 const viewTypes = [
     {
         view: EArticleView.SMALL,
-        icon: TiledIcon,
+        icon: toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => TiledIcon,
+            off: () => TiledIconDeprecated,
+        }),
     },
     {
         view: EArticleView.BIG,
-        icon: ListIcon,
+        icon: toggleFeatures({
+            name: 'isAppRedesigned',
+            on: () => ListIcon,
+            off: () => ListIconDeprecated,
+        }),
     },
 ]
 
@@ -32,23 +51,75 @@ export const ArticleViewSelector = memo((props: IArticleViewSelectorProps) => {
     }
 
     return (
-        <div className={classNames(cls.articleViewSelector, {}, [className])}>
-            {viewTypes.map((viewType) => (
-                <Button
-                    theme={EButtonTheme.CLEAR}
-                    onClick={onClick(viewType.view)}
-                    key={viewType.view}
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            on={
+                <Card
+                    className={classNames(
+                        cls.articleViewSelectorRedesigned,
+                        {},
+                        [className],
+                    )}
+                    border="roundBorder"
                 >
-                    <Icon
-                        width={24}
-                        height={24}
-                        Svg={viewType.icon}
-                        className={classNames('', {
-                            [cls.notSelected]: viewType.view !== view,
-                        })}
-                    />
-                </Button>
-            ))}
-        </div>
+                    <HStack gap="8">
+                        {viewTypes.map((viewType) => (
+                            <Icon
+                                clickable
+                                onClick={onClick(viewType.view)}
+                                Svg={viewType.icon}
+                                className={classNames('', {
+                                    [cls.notSelected]: viewType.view !== view,
+                                })}
+                                key={viewType.view}
+                            />
+                        ))}
+                    </HStack>
+                </Card>
+            }
+            off={
+                <div
+                    className={classNames(cls.articleViewSelector, {}, [
+                        className,
+                    ])}
+                >
+                    {viewTypes.map((viewType) => (
+                        <ButtonDeprecated
+                            key={viewType.view}
+                            theme={EButtonTheme.CLEAR}
+                            onClick={onClick(viewType.view)}
+                        >
+                            <IconDeprecated
+                                width={24}
+                                height={24}
+                                Svg={viewType.icon}
+                                className={classNames('', {
+                                    [cls.notSelected]: viewType.view !== view,
+                                })}
+                            />
+                        </ButtonDeprecated>
+                    ))}
+                </div>
+            }
+        />
+
+        // <div className={classNames(cls.articleViewSelector, {}, [className])}>
+        //     {viewTypes.map((viewType) => (
+        //         <Button
+        //             theme={EButtonTheme.CLEAR}
+        //             onClick={onClick(viewType.view)}
+        //             key={viewType.view}
+        //         >
+        //             <Icon
+        //                 width={24}
+        //                 height={24}
+        //                 Svg={viewType.icon}
+        //                 className={classNames('', {
+        //                     [cls.notSelected]: viewType.view !== view,
+        //                 })}
+        //             />
+        //         </Button>
+        //     ))}
+        // </div>
     )
 })

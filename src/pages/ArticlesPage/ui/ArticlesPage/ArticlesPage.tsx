@@ -16,6 +16,10 @@ import cls from './ArticlesPage.module.scss'
 import { ArticlesPageFilters } from '../ArticlesPageFilters/ArticlesPageFilters'
 import { ArticleInfiniteList } from '../ArticleInfiniteList/ArticleInfiniteList'
 import { ArticlePageGreeting } from '@/features/articlePageGreeting'
+import { ToggleFeatures } from '@/shared/lib/features'
+import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout'
+import { ViewSelectorContainer } from '../ViewSelectorContainer/ViewSelectorContainer'
+import { FiltersContainer } from '../FiltersContainer/FiltersContainer'
 
 interface IArticlesPageProps {
     className?: string
@@ -44,24 +48,56 @@ const ArticlesPage = (props: IArticlesPageProps) => {
         disptach(initArticlesPage(searchParams))
     })
 
+    const content = (
+        <ToggleFeatures
+            feature="isAppRedesigned"
+            on={
+                <StickyContentLayout
+                    left={<ViewSelectorContainer />}
+                    right={<FiltersContainer />}
+                    content={
+                        <Page
+                            data-testid="ArticlesPage"
+                            onScrollEnd={onLoadNextPart}
+                            className={classNames(
+                                cls.ArticlesPageRedesigned,
+                                {},
+                                [className],
+                            )}
+                        >
+                            <ArticleInfiniteList className={cls.list} />
+
+                            {/* Привественное сообщение на странице статей.
+Показывается один раз при первой авторизации пользователя */}
+                            <ArticlePageGreeting />
+                        </Page>
+                    }
+                />
+            }
+            off={
+                <Page
+                    data-testid="ArticlesPage"
+                    onScrollEnd={onLoadNextPart}
+                    className={classNames(cls.articlesPage, {}, [className])}
+                >
+                    <ArticlesPageFilters />
+
+                    <ArticleInfiniteList className={cls.list} />
+
+                    {/* Привественное сообщение на странице статей.
+Показывается один раз при первой авторизации пользователя */}
+                    <ArticlePageGreeting />
+                </Page>
+            }
+        />
+    )
+
     return (
         <DynamicModuleLoader
             asyncReducers={asyncReducers}
             removeAfterUnmount={false}
         >
-            <Page
-                data-testid="ArticlesPage"
-                onScrollEnd={onLoadNextPart}
-                className={classNames(cls.articlesPage, {}, [className])}
-            >
-                <ArticlesPageFilters />
-
-                <ArticleInfiniteList className={cls.list} />
-
-                {/* Привественное сообщение на странице статей.
-Показывается один раз при первой авторизации пользователя */}
-                <ArticlePageGreeting />
-            </Page>
+            {content}
         </DynamicModuleLoader>
     )
 }
