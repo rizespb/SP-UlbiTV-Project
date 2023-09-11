@@ -62,37 +62,38 @@ export const EditableProfileCard = memo((props: IEditableProfileCardProps) => {
     })
 
     const onChangeFirstname = useCallback(
-        (value: string) => {
+        (value?: string) => {
             dispatch(profileActions.updateProfile({ first: value || '' }))
         },
         [dispatch],
     )
     const onChangeLastname = useCallback(
-        (value: string) => {
+        (value?: string) => {
             dispatch(profileActions.updateProfile({ lastname: value || '' }))
         },
         [dispatch],
     )
+
     const onChangeAge = useCallback(
-        (value: string) => {
+        (value?: string) => {
             dispatch(profileActions.updateProfile({ age: Number(value) || 0 }))
         },
         [dispatch],
     )
     const onChangeCity = useCallback(
-        (value: string) => {
+        (value?: string) => {
             dispatch(profileActions.updateProfile({ city: value || '' }))
         },
         [dispatch],
     )
     const onChangeUsername = useCallback(
-        (value: string) => {
+        (value?: string) => {
             dispatch(profileActions.updateProfile({ username: value || '' }))
         },
         [dispatch],
     )
     const onChangeAvatar = useCallback(
-        (value: string) => {
+        (value?: string) => {
             dispatch(profileActions.updateProfile({ avatar: value || '' }))
         },
         [dispatch],
@@ -129,7 +130,7 @@ export const EditableProfileCard = memo((props: IEditableProfileCardProps) => {
                     data={formData}
                     isLoading={isLoading}
                     error={error}
-                    readOnly={readOnly}
+                    readonly={readOnly}
                     onChangeFirstname={onChangeFirstname}
                     onChangeLastname={onChangeLastname}
                     onChangeAge={onChangeAge}

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { Card } from '@/shared/ui/depricated/Card'
-import { Input } from '@/shared/ui/redesigned/Input'
+import { Input } from '@/shared/ui/depricated/Input'
 
 import cls from './ArticlesPageFilters.module.scss'
 import { ArticleSortSelector } from '@/features/ArticleSortSelector'

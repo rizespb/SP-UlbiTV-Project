@@ -1,13 +1,15 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ListBox } from '@/shared/ui/depricated/popups'
+import { ListBox as ListBoxDeprecated } from '@/shared/ui/depricated/popups'
 import { ECountry } from '../../model/types/country'
+import { ToggleFeatures } from '@/shared/lib/features'
+import { ListBox } from '@/shared/ui/redesigned/Popups'
 
 interface ICountrySelectProps {
-    className: string
+    className?: string
     value?: ECountry
     onChange?: (value: ECountry) => void
-    readOnly?: boolean
+    readonly?: boolean
 }
 
 const options = [
@@ -33,27 +35,34 @@ const options = [
     },
 ]
 
-export const CountrySelect = memo((props: ICountrySelectProps) => {
-    const { value, onChange, readOnly, className } = props
-    const { t } = useTranslation()
+export const CountrySelect = memo(
+    ({ value, onChange, readonly, className }: ICountrySelectProps) => {
+        const { t } = useTranslation('profile')
 
-    const onChangeHandler = useCallback(
-        (value: string) => {
-            onChange?.(value as ECountry)
-        },
-        [onChange],
-    )
+        const onChangeHandler = useCallback(
+            (value: string) => {
+                onChange?.(value as ECountry)
+            },
+            [onChange],
+        )
 
-    return (
-        <ListBox
-            className={className}
-            onChange={onChangeHandler}
-            value={value}
-            defaultValue={t('Укажите страну')}
-            label={t('Укажите страну')}
-            items={options}
-            readonly={readOnly}
-            direction="top right"
-        />
-    )
-})
+        const props = {
+            className,
+            value,
+            defaultValue: t('Укажите страну'),
+            label: t('Укажите страну'),
+            items: options,
+            onChange: onChangeHandler,
+            readonly,
+            direction: 'top right' as const,
+        }
+
+        return (
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={<ListBox {...props} />}
+                off={<ListBoxDeprecated {...props} />}
+            />
+        )
+    },
+)

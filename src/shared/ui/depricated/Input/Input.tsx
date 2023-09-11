@@ -18,7 +18,7 @@ interface InputProps extends HTMLInputProps {
     value?: string | number
     onChange?: (value: string) => void
     autofocus?: boolean
-    readOnly?: boolean
+    readonly?: boolean
 }
 
 /**
@@ -33,7 +33,7 @@ export const Input = memo((props: InputProps) => {
         type = 'text',
         placeholder,
         autofocus,
-        readOnly,
+        readonly,
         ...otherProps
     } = props
 
@@ -42,7 +42,7 @@ export const Input = memo((props: InputProps) => {
     const [isFocused, setIsFocused] = useState(false)
     const [caretPosition, setCaretPosition] = useState(0)
 
-    const isCaretVisible = isFocused && !readOnly
+    const isCaretVisible = isFocused && !readonly
 
     useEffect(() => {
         if (autofocus) {
@@ -68,7 +68,7 @@ export const Input = memo((props: InputProps) => {
     }
 
     const mods: TMods = {
-        [cls.readonly]: readOnly,
+        [cls.readonly]: readonly,
     }
 
     return (
@@ -87,7 +87,7 @@ export const Input = memo((props: InputProps) => {
                     onBlur={onBlur}
                     onFocus={onFocus}
                     onSelect={onSelect}
-                    readOnly={readOnly}
+                    readOnly={readonly}
                     {...otherProps}
                 />
 
