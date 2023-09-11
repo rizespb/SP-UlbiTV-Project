@@ -75,6 +75,7 @@
     .infoWrapper {
         display: flex;
         align-items: center;
+        margin-top: 8px;
     }
 
     .types p {
@@ -94,8 +95,7 @@
     }
 
     .title p {
-        margin-top: 8px;
-        width: 200;
+        width: 200px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

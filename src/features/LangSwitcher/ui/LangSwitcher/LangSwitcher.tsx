@@ -4,7 +4,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import {
     Button as ButtonDeprecated,
     EButtonTheme,
-} from '@/shared/ui/depricated/Button'
+} from '@/shared/ui/deprecated/Button'
 import { ToggleFeatures } from '@/shared/lib/features'
 import { Button } from '@/shared/ui/redesigned/Button'
 

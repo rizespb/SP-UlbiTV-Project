@@ -1,7 +1,7 @@
 import { memo, useCallback, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { ITabItem, Tabs as TabsDeprecated } from '@/shared/ui/depricated/Tabs'
+import { ITabItem, Tabs as TabsDeprecated } from '@/shared/ui/deprecated/Tabs'
 import { EArticleType } from '@/entities/Article'
 import { ToggleFeatures } from '@/shared/lib/features'
 import { Tabs } from '@/shared/ui/redesigned/Tabs'

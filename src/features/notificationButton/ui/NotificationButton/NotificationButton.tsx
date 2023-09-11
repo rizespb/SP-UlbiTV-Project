@@ -1,16 +1,16 @@
 import { memo, useCallback, useState } from 'react'
 import { BrowserView, MobileView } from 'react-device-detect'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Icon as IconDeprecated } from '@/shared/ui/depricated/Icon'
+import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon'
 import NotificationIconDeprecated from '@/shared/assets/icons/notification-20-20.svg'
 import NotificationIcon from '@/shared/assets/icons/notification.svg'
 import { NotificationList } from '@/entities/Notification'
-import { Popover as PopoverDeprecated } from '@/shared/ui/depricated/popups'
+import { Popover as PopoverDeprecated } from '@/shared/ui/deprecated/popups'
 import {
     Button as ButtonDeprecated,
     EButtonTheme,
-} from '@/shared/ui/depricated/Button'
-import { Drawer } from '@/shared/ui/depricated/Drawer'
+} from '@/shared/ui/deprecated/Button'
+import { Drawer } from '@/shared/ui/deprecated/Drawer'
 import cls from './NotificationButton.module.scss'
 import { ToggleFeatures } from '@/shared/lib/features'
 import { Icon } from '@/shared/ui/redesigned/Icon'

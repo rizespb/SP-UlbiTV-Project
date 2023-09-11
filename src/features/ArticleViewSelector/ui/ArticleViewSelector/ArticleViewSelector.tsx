@@ -9,8 +9,8 @@ import TiledIcon from '@/shared/assets/icons/tile.svg'
 import {
     Button as ButtonDeprecated,
     EButtonTheme,
-} from '@/shared/ui/depricated/Button'
-import { Icon as IconDeprecated } from '@/shared/ui/depricated/Icon'
+} from '@/shared/ui/deprecated/Button'
+import { Icon as IconDeprecated } from '@/shared/ui/deprecated/Icon'
 import cls from './ArticleViewSelector.module.scss'
 import { EArticleView } from '@/entities/Article'
 import { ToggleFeatures, toggleFeatures } from '@/shared/lib/features'

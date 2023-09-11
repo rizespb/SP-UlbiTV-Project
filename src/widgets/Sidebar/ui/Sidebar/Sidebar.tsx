@@ -5,7 +5,7 @@ import {
     Button,
     EButtonSize,
     EButtonTheme,
-} from '@/shared/ui/depricated/Button'
+} from '@/shared/ui/deprecated/Button'
 import { LangSwitcher } from '@/features/LangSwitcher'
 import { ThemeSwitcher } from '@/features/ThemeSwitcher'
 import { getSidebarItems } from '../../model/selectors/getSidebarItems'

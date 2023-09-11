@@ -4,16 +4,16 @@ import { classNames, TMods } from '@/shared/lib/classNames/classNames'
 import cls from './ProfileCardDeprecated.module.scss'
 import { ProfileCardProps } from '../ProfileCard/ProfileCard'
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack'
-import { Avatar as AvatarDeprecated } from '@/shared/ui/depricated/Avatar'
-import { Input as InputDeprecated } from '@/shared/ui/depricated/Input'
+import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar'
+import { Input as InputDeprecated } from '@/shared/ui/deprecated/Input'
 import { CurrencySelect } from '@/entities/Currency'
 import { CountrySelect } from '@/entities/Country'
-import { Loader } from '@/shared/ui/depricated/Loader'
+import { Loader } from '@/shared/ui/deprecated/Loader'
 import {
     Text as TextDeprecated,
     ETextAlign,
     ETextTheme,
-} from '@/shared/ui/depricated/Text'
+} from '@/shared/ui/deprecated/Text'
 
 export const ProfileCardDeprecatedError = () => {
     const { t } = useTranslation('profile')

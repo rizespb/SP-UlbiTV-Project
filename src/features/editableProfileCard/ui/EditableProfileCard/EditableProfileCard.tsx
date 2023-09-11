@@ -7,7 +7,7 @@ import { ProfileCard } from '@/entities/Profile'
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect'
 import { ECurrency } from '@/entities/Currency'
 import { ECountry } from '@/entities/Country'
-import { ETextTheme, Text } from '@/shared/ui/depricated/Text'
+import { ETextTheme, Text } from '@/shared/ui/deprecated/Text'
 import {
     DynamicModuleLoader,
     TReducerLIst,

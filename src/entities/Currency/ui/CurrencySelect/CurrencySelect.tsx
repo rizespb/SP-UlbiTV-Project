@@ -1,6 +1,6 @@
 import { memo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ListBox as ListBoxDeprecated } from '@/shared/ui/depricated/popups'
+import { ListBox as ListBoxDeprecated } from '@/shared/ui/deprecated/popups'
 import { ECurrency } from '../../model/types/currency'
 import { ToggleFeatures } from '@/shared/lib/features'
 import { ListBox } from '@/shared/ui/redesigned/Popups'

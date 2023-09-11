@@ -16,7 +16,7 @@ import { ArticleDetailsComment } from '../ArticleDetailsComment/ArticleDetailsCo
 import cls from './ArticleDetailsPage.module.scss'
 import { ArticleRating } from '@/features/articleRating'
 import { ToggleFeatures } from '@/shared/lib/features'
-import { Card } from '@/shared/ui/depricated/Card'
+import { Card } from '@/shared/ui/deprecated/Card'
 
 interface IArticleDetailsPageProps {
     className?: string

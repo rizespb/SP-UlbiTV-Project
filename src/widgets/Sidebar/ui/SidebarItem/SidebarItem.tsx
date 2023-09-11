@@ -6,7 +6,7 @@ import { classNames } from '@/shared/lib/classNames/classNames'
 import {
     AppLink as AppLinkDeprecated,
     EAppLinkTheme,
-} from '@/shared/ui/depricated/AppLink'
+} from '@/shared/ui/deprecated/AppLink'
 import { ISidebarItemType } from '../../model/types/sidebar'
 import cls from './SidebarItem.module.scss'
 import { ToggleFeatures } from '@/shared/lib/features'

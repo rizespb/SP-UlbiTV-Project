@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next'
 import { memo, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Avatar as AvatarDeprecated } from '@/shared/ui/depricated/Avatar'
-import { Dropdown as DropdownDeprecated } from '@/shared/ui/depricated/popups'
+import { Avatar as AvatarDeprecated } from '@/shared/ui/deprecated/Avatar'
+import { Dropdown as DropdownDeprecated } from '@/shared/ui/deprecated/popups'
 import {
     getUserAuthData,
     isUserAdmin,

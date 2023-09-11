@@ -2,8 +2,8 @@ import { memo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Card } from '@/shared/ui/depricated/Card'
-import { Input } from '@/shared/ui/depricated/Input'
+import { Card } from '@/shared/ui/deprecated/Card'
+import { Input } from '@/shared/ui/deprecated/Input'
 
 import cls from './ArticlesPageFilters.module.scss'
 import { ArticleSortSelector } from '@/features/ArticleSortSelector'

@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { Button, EButtonTheme } from '@/shared/ui/depricated/Button'
-import { Input } from '@/shared/ui/depricated/Input'
+import { Button, EButtonTheme } from '@/shared/ui/deprecated/Button'
+import { Input } from '@/shared/ui/deprecated/Input'
 import {
     DynamicModuleLoader,
     TReducerLIst,

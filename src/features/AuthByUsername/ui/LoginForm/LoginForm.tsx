@@ -2,9 +2,9 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { classNames } from '@/shared/lib/classNames/classNames'
-import { Button, EButtonTheme } from '@/shared/ui/depricated/Button'
-import { Input } from '@/shared/ui/depricated/Input'
-import { Text, ETextTheme } from '@/shared/ui/depricated/Text'
+import { Button, EButtonTheme } from '@/shared/ui/deprecated/Button'
+import { Input } from '@/shared/ui/deprecated/Input'
+import { Text, ETextTheme } from '@/shared/ui/deprecated/Text'
 import {
     DynamicModuleLoader,
     TReducerLIst,
