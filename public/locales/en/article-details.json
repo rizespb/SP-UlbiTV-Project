@@ -4,5 +4,8 @@
     "Рекомендуем": "Recommendations",
     "Комментарии": "Comments",
     "Назад к списку": "Bact to articles list",
-    "Редактировать": "Edit"
+    "Редактировать": "Edit",
+    "{{count}} просмотров_zero": "{{count}} views",
+    "{{count}} просмотров_one": "{{count}} view",
+    "{{count}} просмотров_other": "{{count}} views"
 }

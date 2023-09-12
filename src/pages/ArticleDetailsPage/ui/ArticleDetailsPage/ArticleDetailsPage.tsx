@@ -17,6 +17,9 @@ import cls from './ArticleDetailsPage.module.scss'
 import { ArticleRating } from '@/features/articleRating'
 import { ToggleFeatures } from '@/shared/lib/features'
 import { Card } from '@/shared/ui/deprecated/Card'
+import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout'
+import { DetailsContainer } from '../DetailsContainer/DetailsContainer'
+import { AdditionalInfoContainer } from '../AdditionalInfoContainer/AdditionalInfoContainer'
 
 interface IArticleDetailsPageProps {
     className?: string
@@ -40,28 +43,59 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
             asyncReducers={asyncReducers}
             removeAfterUnmount={true}
         >
-            <Page
-                className={classNames(cls.articleDetailsPage, {}, [className])}
-            >
-                <VStack gap="16" max>
-                    <ArticleDetailsPageHeader />
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    // Содержимое статьи по центру скороллится
+                    <StickyContentLayout
+                        content={
+                            <Page
+                                className={classNames(
+                                    cls.ArticleDetailsPage,
+                                    {},
+                                    [className],
+                                )}
+                            >
+                                <VStack gap="16" max>
+                                    {/* Блок с текстом статьи */}
+                                    <DetailsContainer />
 
-                    <ArticleDetails id={id} />
+                                    <ArticleRating articleId={id} />
 
-                    {/* Если фич-тоггле isArticleRatingEnabled в настройках пользователя jsonSettings (которые хранятся в БД на бэке) включен (true), тогда отображаем ArticleRating
-                    Если выключен (false), тогда надпись 
-                    'Оценка статей скоро появится!' */}
-                    <ToggleFeatures
-                        feature="isArticleRatingEnabled"
-                        on={<ArticleRating articleId={id} />}
-                        off={<Card>{t('Оценка статей скоро появится!')}</Card>}
+                                    <ArticleRecommendationsList />
+
+                                    <ArticleDetailsComment id={id} />
+                                </VStack>
+                            </Page>
+                        }
+                        // sticky-блок справа с доп интформацией
+                        right={<AdditionalInfoContainer />}
                     />
-
-                    <ArticleRecommendationsList />
-
-                    <ArticleDetailsComment id={id} />
-                </VStack>
-            </Page>
+                }
+                off={
+                    <Page
+                        className={classNames(cls.ArticleDetailsPage, {}, [
+                            className,
+                        ])}
+                    >
+                        <VStack gap="16" max>
+                            <ArticleDetailsPageHeader />
+                            <ArticleDetails id={id} />
+                            <ToggleFeatures
+                                feature="isArticleRatingEnabled"
+                                on={<ArticleRating articleId={id} />}
+                                off={
+                                    <Card>
+                                        {t('Оценка статей скоро появится!')}
+                                    </Card>
+                                }
+                            />
+                            <ArticleRecommendationsList />
+                            <ArticleDetailsComment id={id} />
+                        </VStack>
+                    </Page>
+                }
+            />
         </DynamicModuleLoader>
     )
 }

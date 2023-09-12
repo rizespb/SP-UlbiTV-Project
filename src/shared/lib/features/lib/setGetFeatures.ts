@@ -13,6 +13,7 @@ export function setFeatureFlags(newFeatureFlags?: FeatureFlags) {
 
 // Возвращает ФТ по ключу
 export function getFeatureFlag(flag: keyof FeatureFlags) {
+    // ?? true - временная заглушка, чтобы возвращать новый дизайн по ФТ isAppRedesigned для неавторизованного пользователя (jsonSettings с бэка не получили, пока не авторизуется)
     return featureFlags[flag] ?? true
 }
 
