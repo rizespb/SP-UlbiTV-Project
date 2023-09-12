@@ -80,7 +80,9 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
                     >
                         <VStack gap="16" max>
                             <ArticleDetailsPageHeader />
+
                             <ArticleDetails id={id} />
+
                             <ToggleFeatures
                                 feature="isArticleRatingEnabled"
                                 on={<ArticleRating articleId={id} />}
