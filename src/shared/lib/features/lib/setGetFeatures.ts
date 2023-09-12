@@ -13,7 +13,7 @@ export function setFeatureFlags(newFeatureFlags?: FeatureFlags) {
 
 // Возвращает ФТ по ключу
 export function getFeatureFlag(flag: keyof FeatureFlags) {
-    return featureFlags[flag]
+    return featureFlags[flag] ?? true
 }
 
 // Возвращает все ФТ

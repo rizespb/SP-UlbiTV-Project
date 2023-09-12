@@ -8,6 +8,7 @@ import { Overlay } from '../../redesigned/Overlay/Overlay'
 import cls from './Drawer.module.scss'
 import { Portal } from '../../redesigned/Portal/Portal'
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
+import { toggleFeatures } from '@/shared/lib/features'
 
 interface IDrawerProps {
     className?: string
@@ -87,12 +88,17 @@ const DrawerContent = memo((props: IDrawerProps) => {
     const display = y.to((py) => (py < height ? 'block' : 'none'))
 
     return (
-        <Portal>
+        <Portal element={document.getElementById('app') ?? document.body}>
             <div
                 className={classNames(cls.drawer, {}, [
                     className,
                     theme,
                     'app_drawer',
+                    toggleFeatures({
+                        name: 'isAppRedesigned',
+                        on: () => cls.drawerNew,
+                        off: () => cls.drawerOld,
+                    }),
                 ])}
             >
                 <Overlay onClick={close} />
