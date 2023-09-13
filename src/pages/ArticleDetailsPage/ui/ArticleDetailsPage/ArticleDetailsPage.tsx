@@ -92,7 +92,9 @@ const ArticleDetailsPage = (props: IArticleDetailsPageProps) => {
                                     </Card>
                                 }
                             />
+
                             <ArticleRecommendationsList />
+                            
                             <ArticleDetailsComment id={id} />
                         </VStack>
                     </Page>

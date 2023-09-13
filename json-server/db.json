@@ -1135,6 +1135,24 @@
       "userId": "1",
       "text": "fghdfg",
       "id": "mQnewI8"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "New comment",
+      "id": "iTuZfyy"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae tempore voluptatum architecto perferendis animi dignissimos? Eos quis quas odio optio officiis velit aut, adipisci eveniet expedita iste accusantium? Quae, deserunt.",
+      "id": "nVTEn-O"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "dfhgswdhg",
+      "id": "JW8nJxZ"
     }
   ],
   "users": [
@@ -1152,7 +1170,7 @@
       },
       "avatar": "https://img.freepik.com/free-vector/cute-panda-drinking-boba-milk-tea-cartoon-vector-illustration-animal-food-concept-isolated-vector-flat-cartoon-style_138676-1949.jpg?w=826&t=st=1688204570~exp=1688205170~hmac=0ab8f2189821200a556d9607897257691aed3c76e9bc36e93151b005419b444b",
       "jsonSettings": {
-        "theme": "app_orange_theme",
+        "theme": "app_dark_theme",
         "isFirstVisit": true,
         "isArticlesPageWasOpened": true
       }
@@ -1301,6 +1319,20 @@
       "rate": 5,
       "feedback": "Очень интересная информация)",
       "id": "RI14ko_"
+    },
+    {
+      "userId": "1",
+      "articleId": "jdT4V81",
+      "rate": 4,
+      "feedback": "Nice article!",
+      "id": "gfM6y1j"
+    },
+    {
+      "userId": "1",
+      "articleId": "11",
+      "rate": 4,
+      "feedback": "Отличная инфа!",
+      "id": "YDTBq8G"
     }
   ],
   "profile-ratings": [
