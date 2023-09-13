@@ -30,6 +30,11 @@ const ThemeProvider: FC<ThemeProdviderProps> = (props) => {
         }
     }, [defaultTheme, isThemeInited])
 
+    useEffect(() => {
+        // Мы добавляем стиль с темой на body, чтобы поддержать стилизацию скролла, т.к. скролл в нашем приложении часто появляется именно на элементе body
+        document.body.className = theme
+    }, [theme])
+
     const defaultProps = useMemo(() => ({ theme, setTheme }), [theme])
 
     return (
