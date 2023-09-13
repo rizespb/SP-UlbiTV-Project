@@ -2,7 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { IThunkConfig } from '@/app/providers/StoreProvider'
 import { getUserDataByIdQuery } from '../../api/userApi'
 import { IUser } from '../types/user'
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
+import {
+    LOCAL_STORAGE_LAST_DESIGN_KEY,
+    USER_LOCALSTORAGE_KEY,
+} from '@/shared/const/localstorage'
 
 // Санки для получения данных о пользователе
 // При авторизации сохраняем id пользователя в localStorage
@@ -26,6 +29,13 @@ export const initAuthData = createAsyncThunk<IUser, void, IThunkConfig<string>>(
             const response = await dispatch(
                 getUserDataByIdQuery(userId),
             ).unwrap()
+
+            // Сохраняем последний выбранный дизайн в localStorage, чтобы при следующем заходе во время инициализации приложения знать, какой дизайн показывать: новый или старый
+            // Это же самое делаем в userSclice -> setAuthData (потому что не для всех кейсов срабатывало)
+            localStorage.setItem(
+                LOCAL_STORAGE_LAST_DESIGN_KEY,
+                response.features?.isAppRedesigned ? 'new' : 'old',
+            )
 
             return response
         } catch (e) {

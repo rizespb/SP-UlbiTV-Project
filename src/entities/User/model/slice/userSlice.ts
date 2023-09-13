@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { USER_LOCALSTORAGE_KEY } from '@/shared/const/localstorage'
+import {
+    LOCAL_STORAGE_LAST_DESIGN_KEY,
+    USER_LOCALSTORAGE_KEY,
+} from '@/shared/const/localstorage'
 import { IUser, IUserSchema } from '../types/user'
 import { setFeatureFlags } from '@/shared/lib/features'
 import { IJsonSettings } from '../types/jsonSettings'
@@ -15,12 +18,19 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setAuthData: (state, action: PayloadAction<IUser>) => {
-            state.authData = action.payload
+        setAuthData: (state, { payload }: PayloadAction<IUser>) => {
+            state.authData = payload
 
-            setFeatureFlags(action.payload.features)
+            setFeatureFlags(payload.features)
 
-            localStorage.setItem(USER_LOCALSTORAGE_KEY, action.payload.id)
+            localStorage.setItem(USER_LOCALSTORAGE_KEY, payload.id)
+
+            // Сохраняем последний выбранный дизайн в localStorage, чтобы при следующем заходе во время инициализации приложения знать, какой дизайн показывать: новый или старый
+            // Это же самое делаем в initAuthData (потому что не для всех кейсов срабатывало)
+            localStorage.setItem(
+                LOCAL_STORAGE_LAST_DESIGN_KEY,
+                payload.features?.isAppRedesigned ? 'new' : 'old',
+            )
         },
 
         logout: (state) => {

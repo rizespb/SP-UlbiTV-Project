@@ -7,9 +7,10 @@ import { getUserInited, initAuthData } from '@/entities/User'
 import { AppRouter } from './providers/router'
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch'
-import { PageLoader } from '@/widgets/PageLoader'
 import { ToggleFeatures } from '@/shared/lib/features'
 import { MainLayout } from '@/shared/layouts/MainLayout'
+import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout'
+import { PageLoader } from '@/widgets/PageLoader'
 
 function App() {
     const dispatch = useAppDispatch()
@@ -23,7 +24,21 @@ function App() {
     }, [dispatch, inited])
 
     if (!inited) {
-        return <PageLoader />
+        return (
+            <ToggleFeatures
+                feature="isAppRedesigned"
+                on={
+                    // Обрачиваем в div с классом темы, чтобы в скелетоне поддерживались цвета из выбранной темы
+                    <div
+                        id="app"
+                        className={classNames('app_redesigned', {}, [theme])}
+                    >
+                        <AppLoaderLayout />
+                    </div>
+                }
+                off={<PageLoader />}
+            />
+        )
     }
 
     return (

@@ -1170,7 +1170,8 @@
       },
       "avatar": "https://img.freepik.com/free-vector/cute-panda-drinking-boba-milk-tea-cartoon-vector-illustration-animal-food-concept-isolated-vector-flat-cartoon-style_138676-1949.jpg?w=826&t=st=1688204570~exp=1688205170~hmac=0ab8f2189821200a556d9607897257691aed3c76e9bc36e93151b005419b444b",
       "jsonSettings": {
-        "isArticlesPageWasOpened": true
+        "isArticlesPageWasOpened": true,
+        "theme": "app_dark_theme"
       }
     },
     {
@@ -1182,7 +1183,8 @@
       ],
       "features": {
         "isArticleRatingEnabled": false,
-        "isCounterEnabled": false
+        "isCounterEnabled": false,
+        "isAppRedesigned": true
       },
       "avatar": "https://xakep.ru/wp-content/uploads/2018/05/171485/KuroiSH-hacker.jpg",
       "jsonSettings": {
