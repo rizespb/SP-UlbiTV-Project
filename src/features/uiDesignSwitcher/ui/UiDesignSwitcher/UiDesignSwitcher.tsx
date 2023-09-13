@@ -8,6 +8,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { getUserAuthData } from '@/entities/User'
 import { HStack } from '@/shared/ui/redesigned/Stack'
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton'
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate'
 
 interface UiDesignSwitcherProps {
     className?: string
@@ -25,6 +26,8 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
     const authData = useSelector(getUserAuthData)
 
     const [isLoading, setIsLoading] = useState(false)
+
+    const forceUpdate = useForceUpdate()
 
     // Список для выбора
     const items = [
@@ -52,6 +55,9 @@ export const UiDesignSwitcher = memo((props: UiDesignSwitcherProps) => {
             ).unwrap()
 
             setIsLoading(false)
+
+            // forceUpdate вызываем, чтобы перерисовать интерфейс приложения, чтобы подхватились новые значения ФТ (ФТ хранятся в глобальной переменной и они не реактивные)
+            forceUpdate()
         }
     }
 

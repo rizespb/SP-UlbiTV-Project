@@ -25,6 +25,7 @@ import { ToggleFeatures } from '@/shared/lib/features'
 import { Button } from '@/shared/ui/redesigned/Button'
 import { Input } from '@/shared/ui/redesigned/Input'
 import { VStack } from '@/shared/ui/redesigned/Stack'
+import { useForceUpdate } from '@/shared/lib/render/forceUpdate'
 
 export interface ILoginFormProps {
     className?: string
@@ -42,6 +43,7 @@ const LoginForm = memo(({ className, onSuccess }: ILoginFormProps) => {
     const password = useSelector(getLoginPassword)
     const isLoading = useSelector(getLoginIsLoading)
     const error = useSelector(getLoginError)
+    const forceUpdate = useForceUpdate()
 
     const onChangeUsername = useCallback(
         (value: string) => {
@@ -61,8 +63,11 @@ const LoginForm = memo(({ className, onSuccess }: ILoginFormProps) => {
         const result = await dispatch(loginByUsername({ username, password }))
         if (result.meta.requestStatus === 'fulfilled') {
             onSuccess()
+
+            // forceUpdate вызываем, чтобы перерисовать интерфейс приложения, чтобы подхватились новые значения ФТ (ФТ хранятся в глобальной переменной и они не реактивные)
+            forceUpdate()
         }
-    }, [onSuccess, dispatch, password, username])
+    }, [onSuccess, dispatch, password, username, forceUpdate])
 
     // Самостоятельно добавил keyDownHandler для удобства авторизации
     const keyDownHandler = (event: KeyboardEvent<HTMLDivElement>) => {
