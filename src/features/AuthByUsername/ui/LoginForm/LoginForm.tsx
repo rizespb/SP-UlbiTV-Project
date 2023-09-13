@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { memo, useCallback } from 'react'
+import { KeyboardEvent, memo, useCallback } from 'react'
 import { classNames } from '@/shared/lib/classNames/classNames'
 import {
     Button as ButtonDeprecated,
@@ -64,6 +64,15 @@ const LoginForm = memo(({ className, onSuccess }: ILoginFormProps) => {
         }
     }, [onSuccess, dispatch, password, username])
 
+    // Самостоятельно добавил keyDownHandler для удобства авторизации
+    const keyDownHandler = (event: KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+
+            onLoginClick()
+        }
+    }
+
     return (
         <DynamicModuleLoader removeAfterUnmount asyncReducers={initialReducers}>
             <ToggleFeatures
@@ -72,6 +81,7 @@ const LoginForm = memo(({ className, onSuccess }: ILoginFormProps) => {
                     <VStack
                         gap="16"
                         className={classNames(cls.LoginForm, {}, [className])}
+                        onKeyPress={keyDownHandler}
                     >
                         <Text title={t('Форма авторизации')} />
                         {error && (
@@ -105,7 +115,10 @@ const LoginForm = memo(({ className, onSuccess }: ILoginFormProps) => {
                     </VStack>
                 }
                 off={
-                    <div className={classNames(cls.LoginForm, {}, [className])}>
+                    <div
+                        className={classNames(cls.LoginForm, {}, [className])}
+                        onKeyPress={keyDownHandler}
+                    >
                         <TextDeprecated title={t('Форма авторизации')} />
                         {error && (
                             <TextDeprecated
