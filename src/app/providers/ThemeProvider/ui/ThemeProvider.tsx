@@ -1,7 +1,6 @@
 import { FC, ReactNode, useEffect, useMemo, useState } from 'react'
 import { Theme } from '@/shared/const/theme'
 import { ThemeContext } from '@/shared/lib/context/ThemeContext'
-import { useJsonSettings } from '@/entities/User'
 import { LOCAL_STORAGE_THEME_KEY } from '@/shared/const/localstorage'
 
 // const defaultTheme =
@@ -19,9 +18,6 @@ const fallbackTheme = localStorage.getItem(LOCAL_STORAGE_THEME_KEY) as Theme
 const ThemeProvider: FC<ThemeProdviderProps> = (props) => {
     const { children, initialTheme } = props
 
-    // Вначале тему хранили в localStorage, потом стали хранить в Redux (сохранять на сервере)
-    const { theme: defaultTheme } = useJsonSettings()
-
     const [isThemeInited, setThemeInited] = useState(false)
 
     const [theme, setTheme] = useState<Theme>(
@@ -30,11 +26,11 @@ const ThemeProvider: FC<ThemeProdviderProps> = (props) => {
 
     // После подгрузки jsonSettings с бэка тема будет изменена на хранящуюся в настройках пользователя в БД на бэке
     useEffect(() => {
-        if (!isThemeInited && defaultTheme) {
-            setTheme(defaultTheme)
+        if (!isThemeInited && initialTheme) {
+            setTheme(initialTheme)
             setThemeInited(true)
         }
-    }, [defaultTheme, isThemeInited])
+    }, [initialTheme, isThemeInited])
 
     useEffect(() => {
         // Мы добавляем стиль с темой на body, чтобы поддержать стилизацию скролла, т.к. скролл в нашем приложении часто появляется именно на элементе body

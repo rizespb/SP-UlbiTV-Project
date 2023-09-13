@@ -12,6 +12,7 @@ import { MainLayout } from '@/shared/layouts/MainLayout'
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout'
 import { PageLoader } from '@/widgets/PageLoader'
 import { useAppToolbar } from './lib/useAppToolbar'
+import { withTheme } from './providers/ThemeProvider/ui/withTheme'
 
 function App() {
     const dispatch = useAppDispatch()
@@ -87,4 +88,4 @@ function App() {
     )
 }
 
-export default App
+export default withTheme(App)
