@@ -9,6 +9,7 @@ import MainIcon from '@/shared/assets/icons/home.svg'
 import ArticleIcon from '@/shared/assets/icons/article.svg'
 import AboutIcon from '@/shared/assets/icons/Info.svg'
 import ProfileIcon from '@/shared/assets/icons/avatar.svg'
+import SettingsIcon from '@/shared/assets/icons/burger.svg'
 
 import { ISidebarItemType } from '../types/sidebar'
 import {
@@ -16,6 +17,7 @@ import {
     getRouteMain,
     getRouteArticles,
     getRouteProfile,
+    getRouteSettings,
 } from '@/shared/const/router'
 import { toggleFeatures } from '@/shared/lib/features'
 
@@ -63,6 +65,16 @@ export const useSidebarItems = () => {
                     on: () => ArticleIcon,
                 }),
                 text: 'Статьи',
+                authOnly: true,
+            },
+            {
+                path: getRouteSettings(),
+                Icon: toggleFeatures({
+                    name: 'isAppRedesigned',
+                    off: () => SettingsIcon,
+                    on: () => SettingsIcon,
+                }),
+                text: 'Настройки',
                 authOnly: true,
             },
         )

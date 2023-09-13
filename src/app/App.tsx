@@ -11,11 +11,16 @@ import { ToggleFeatures } from '@/shared/lib/features'
 import { MainLayout } from '@/shared/layouts/MainLayout'
 import { AppLoaderLayout } from '@/shared/layouts/AppLoaderLayout'
 import { PageLoader } from '@/widgets/PageLoader'
+import { useAppToolbar } from './lib/useAppToolbar'
 
 function App() {
     const dispatch = useAppDispatch()
     const { theme } = useTheme()
     const inited = useSelector(getUserInited)
+
+    // toolbar - это панель справа на странице у самого правого края
+    // В зависимости от текущей страницы получаем или нужный toolbar (в нашем приложении это кнопка скролла наверх ScrollToolbar) или undefined, если на текущей странице не должно быть toolbar
+    const toolbar = useAppToolbar()
 
     useEffect(() => {
         if (!inited) {
@@ -73,6 +78,7 @@ function App() {
                             header={<Navbar />}
                             content={<AppRouter />}
                             sidebar={<Sidebar />}
+                            toolbar={toolbar}
                         />
                     </Suspense>
                 </div>
