@@ -1,4 +1,9 @@
-import { ButtonHTMLAttributes, memo, ReactNode } from 'react'
+import {
+    ButtonHTMLAttributes,
+    ForwardedRef,
+    forwardRef,
+    ReactNode,
+} from 'react'
 import { classNames, TMods } from '@/shared/lib/classNames/classNames'
 import cls from './Button.module.scss'
 
@@ -49,34 +54,37 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
  * Устарел, используем новые компоненты из папки redesigned
  * @deprecated
  */
-export const Button = memo((props: IButtonProps) => {
-    const {
-        className,
-        children,
-        theme = EButtonTheme.OUTLINE,
-        square,
-        disabled,
-        fullWidth,
-        size = EButtonSize.M,
-        ...otherProps
-    } = props
+export const Button = forwardRef(
+    (props: IButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
+        const {
+            className,
+            children,
+            theme = EButtonTheme.OUTLINE,
+            square,
+            disabled,
+            fullWidth,
+            size = EButtonSize.M,
+            ...otherProps
+        } = props
 
-    const mods: TMods = {
-        [cls[theme]]: true,
-        [cls.square]: square,
-        [cls[size]]: true,
-        [cls.disabled]: disabled,
-        [cls.fullWidth]: fullWidth,
-    }
+        const mods: TMods = {
+            [cls[theme]]: true,
+            [cls.square]: square,
+            [cls[size]]: true,
+            [cls.disabled]: disabled,
+            [cls.fullWidth]: fullWidth,
+        }
 
-    return (
-        <button
-            type="button"
-            className={classNames(cls.Button, mods, [className])}
-            disabled={disabled}
-            {...otherProps}
-        >
-            {children}
-        </button>
-    )
-})
+        return (
+            <button
+                type="button"
+                className={classNames(cls.Button, mods, [className])}
+                disabled={disabled}
+                {...otherProps}
+                ref={ref}
+            >
+                {children}
+            </button>
+        )
+    },
+)
